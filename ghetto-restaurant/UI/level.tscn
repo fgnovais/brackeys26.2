@@ -3,13 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://brb4annfcweoc" path="res://UI/background.png" id="1_l4ljs"]
 [ext_resource type="PackedScene" uid="uid://dbirifgmrbr41" path="res://UI/bell.tscn" id="2_yib0q"]
 [ext_resource type="PackedScene" uid="uid://vc5trsjn5t83" path="res://UI/client.tscn" id="3_l4ljs"]
-[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="4_hwoix"]
-[ext_resource type="Script" uid="uid://dcvtwhfyv2pgh" path="res://UI/drawer.gd" id="5_thgdw"]
-[ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="6_1xvvo"]
+[ext_resource type="PackedScene" uid="uid://dwivueq6apsp6" path="res://UI/drawer.tscn" id="4_k753c"]
 
 [node name="Level" type="Node2D" unique_id=1060693258]
 
-[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1633670877]
+[node name="background" type="Sprite2D" parent="." unique_id=1633670877]
 position = Vector2(965, 549)
 scale = Vector2(1.5998542, 1.6318567)
 texture = ExtResource("1_l4ljs")
@@ -22,11 +20,5 @@ scale = Vector2(0.3113112, 0.2679002)
 position = Vector2(1299.0001, 551.00006)
 scale = Vector2(1.8375095, 2.4964795)
 
-[node name="Drawer" type="Sprite2D" parent="." unique_id=1324338520]
+[node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
 position = Vector2(1485, 972)
-texture = ExtResource("4_hwoix")
-script = ExtResource("5_thgdw")
-
-[node name="HoverComponent" parent="Drawer" unique_id=163342927 instance=ExtResource("6_1xvvo")]
-
-[connection signal="pressed" from="Drawer/HoverComponent" to="Drawer" method="_on_hover_component_pressed"]

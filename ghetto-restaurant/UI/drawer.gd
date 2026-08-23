@@ -1,6 +1,6 @@
 extends Sprite2D
 
-var menu_scene : PackedScene = load("res://UI/drawer.tscn")
+var menu_scene : PackedScene = load("res://UI/inside_drawer.tscn")
 var is_menu_spawned : bool = false
 
 func spawn_menu():

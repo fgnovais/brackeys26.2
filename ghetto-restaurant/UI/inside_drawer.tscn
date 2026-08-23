@@ -1,0 +1,94 @@
+[gd_scene format=3 uid="uid://g6yflkgbrpe0"]
+
+[ext_resource type="Script" uid="uid://dtcvysygw85dk" path="res://UI/InsideDrawer.gd" id="1_6po3p"]
+[ext_resource type="Texture2D" uid="uid://j8ldqg8ydcdg" path="res://UI/drawer_inside.png" id="2_rcdte"]
+[ext_resource type="PackedScene" uid="uid://bjhkdoe56uyc6" path="res://UI/item_icon.tscn" id="3_1lwsr"]
+
+[node name="InsideDrawer" type="Control" unique_id=2143381936]
+show_behind_parent = true
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -83.0
+offset_right = 11.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_default_cursor_shape = 2
+script = ExtResource("1_6po3p")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1614829577]
+modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -644.9999
+offset_top = -399.00003
+offset_right = -209.99988
+offset_bottom = -69.00003
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.9066606, 2.9130344)
+texture = ExtResource("2_rcdte")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1431018868]
+layout_mode = 0
+offset_bottom = 40.0
+scale = Vector2(0.33233917, 0.5413122)
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1992209483]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 283.99997
+offset_right = 4366.0
+offset_bottom = 2706.0
+scale = Vector2(0.21800433, 0.29749054)
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 200
+columns = 3
+
+[node name="ItemIcon" parent="GridContainer" unique_id=1469221418 instance=ExtResource("3_1lwsr")]
+layout_mode = 2
+
+[node name="ItemIcon2" parent="GridContainer" unique_id=87494349 instance=ExtResource("3_1lwsr")]
+layout_mode = 2
+description = "This item is bad!!!"
+
+[node name="ItemIcon3" parent="GridContainer" unique_id=524041530 instance=ExtResource("3_1lwsr")]
+layout_mode = 2
+description = "This item is sick!!!"
+
+[node name="ItemIcon4" parent="GridContainer" unique_id=697623407 instance=ExtResource("3_1lwsr")]
+layout_mode = 2
+description = "This item is woop!!!"
+
+[node name="ItemIcon5" parent="GridContainer" unique_id=291335315 instance=ExtResource("3_1lwsr")]
+layout_mode = 2
+description = "This item is AUGHH!!!"
+
+[node name="ItemIcon6" parent="GridContainer" unique_id=1916012161 instance=ExtResource("3_1lwsr")]
+layout_mode = 2
+description = "This item is BLEH!!!"
+
+[node name="Button" type="Button" parent="." unique_id=1025547223]
+layout_mode = 0
+offset_left = 1421.0
+offset_top = 161.0
+offset_right = 1439.0
+offset_bottom = 192.0
+scale = Vector2(7.3617997, 4.1971054)
+text = "X"
+
+[connection signal="selected" from="GridContainer/ItemIcon" to="." method="_on_item_icon_selected"]
+[connection signal="selected" from="GridContainer/ItemIcon2" to="." method="_on_item_icon_selected"]
+[connection signal="selected" from="GridContainer/ItemIcon3" to="." method="_on_item_icon_selected"]
+[connection signal="selected" from="GridContainer/ItemIcon4" to="." method="_on_item_icon_selected"]
+[connection signal="selected" from="GridContainer/ItemIcon5" to="." method="_on_item_icon_selected"]
+[connection signal="selected" from="GridContainer/ItemIcon6" to="." method="_on_item_icon_selected"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
