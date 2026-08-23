@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://dbirifgmrbr41"]
+
+[ext_resource type="Script" uid="uid://da730m8poa5np" path="res://bell.gd" id="1_ukktk"]
+[ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="2_fqbv2"]
+[ext_resource type="Texture2D" uid="uid://bi67mdeyk0rab" path="res://UI/bell.png" id="3_akgyd"]
+[ext_resource type="AudioStream" uid="uid://bmr8ni2ai5atl" path="res://Assets/ding.mp3" id="4_fqbv2"]
+
+[node name="Bell" type="Node2D" unique_id=2098198925]
+script = ExtResource("1_ukktk")
+
+[node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("2_fqbv2")]
+scale = Vector2(3.1484878, 2.2002819)
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060882218]
+texture = ExtResource("3_akgyd")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1367600675]
+stream = ExtResource("4_fqbv2")
+
+[connection signal="selected" from="HoverComponent" to="." method="_on_hover_component_selected"]

@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://dnnwt5r5gbtot"]
+
+[ext_resource type="Script" uid="uid://4ueq52nevrk7" path="res://Utils/hover_component.gd" id="1_cr6cu"]
+[ext_resource type="Shader" uid="uid://bs4gmrkeurs52" path="res://Utils/hover.gdshader" id="2_0wx25"]
+[ext_resource type="Texture2D" uid="uid://dedeu7aq8kow3" path="res://icon.svg" id="3_3tsn6"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_7ta8d"]
+shader = ExtResource("2_0wx25")
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ta8d"]
+
+[node name="HoverComponent" type="Node2D" unique_id=163342927]
+script = ExtResource("1_cr6cu")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=400949873]
+visible = false
+material = SubResource("ShaderMaterial_7ta8d")
+texture = ExtResource("3_3tsn6")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1623728395]
+position = Vector2(1, 3)
+scale = Vector2(8.143148, 7.9256454)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1379531726]
+shape = SubResource("CircleShape2D_7ta8d")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

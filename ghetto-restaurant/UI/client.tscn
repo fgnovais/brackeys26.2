@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://vc5trsjn5t83"]
+
+[ext_resource type="Script" uid="uid://i7ovvsvdrqob" path="res://Entities/client.gd" id="1_74uuh"]
+[ext_resource type="Texture2D" uid="uid://u3hxpcc5t4fj" path="res://UI/client.png" id="1_vgdxb"]
+[ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_55wjg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_74uuh"]
+font_size = 35
+font_color = Color(0, 0, 0, 1)
+outline_size = 33
+
+[node name="Client" type="Node2D" unique_id=1169049832]
+script = ExtResource("1_74uuh")
+
+[node name="Client" type="Sprite2D" parent="." unique_id=437999518]
+texture = ExtResource("1_vgdxb")
+
+[node name="Label" type="Label" parent="." unique_id=797437850]
+offset_left = -92.0
+offset_top = -137.0
+offset_right = 93.0
+offset_bottom = -88.0
+text = "adsadadad"
+label_settings = SubResource("LabelSettings_74uuh")
+
+[node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("3_55wjg")]
+
+[connection signal="selected" from="HoverComponent" to="." method="_on_hover_component_selected"]
