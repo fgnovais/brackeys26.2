@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bikuptriwv0xq"]
+
+[ext_resource type="Texture2D" uid="uid://bmir47o0eq3ic" path="res://Entities/Bee/sprite.png" id="1_mv1ah"]
+[ext_resource type="Script" uid="uid://bx2fv3ny14ujd" path="res://Entities/Player/player.gd" id="2_3uyv8"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_7ta8d"]
+
+[node name="Player" type="Sprite2D" unique_id=1384506691]
+scale = Vector2(0.41171658, 0.36025584)
+texture = ExtResource("1_mv1ah")
+script = ExtResource("2_3uyv8")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1150271896]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1684848889]
+scale = Vector2(11.10773, 15.903104)
+shape = SubResource("CapsuleShape2D_7ta8d")

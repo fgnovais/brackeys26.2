@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://dwnkj4nj5dv5s"]
+
+[ext_resource type="Script" uid="uid://jvwf6apfcghh" path="res://Entities/Attack/attack.gd" id="1_16m47"]
+[ext_resource type="Texture2D" uid="uid://k6fs7l6aqbiu" path="res://Entities/Attack/mana.png" id="2_3wt7c"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bp5er"]
+
+[node name="Attack" type="Node2D" unique_id=1844461604]
+script = ExtResource("1_16m47")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=2009606619]
+texture = ExtResource("2_3wt7c")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=770512002]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1697275465]
+shape = SubResource("CircleShape2D_bp5er")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

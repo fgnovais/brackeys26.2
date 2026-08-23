@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://b0xgtf23rh8pc"]
+
+[ext_resource type="Script" uid="uid://cc78h0xknsbxm" path="res://Utils/line2d.gd" id="1_7ms3o"]
+
+[sub_resource type="Curve" id="Curve_7ms3o"]
+_data = [Vector2(0.022429906, 0.035874367), 0.0, 0.0, 0, 0, Vector2(0.98317754, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[node name="Line2D" type="Line2D" unique_id=2103234735]
+width = 4.225
+width_curve = SubResource("Curve_7ms3o")
+default_color = Color(1, 0.74509805, 0.28235295, 1)
+joint_mode = 2
+begin_cap_mode = 2
+end_cap_mode = 2
+sharp_limit = 0.0
+round_precision = 1
+antialiased = true
+script = ExtResource("1_7ms3o")
+
+[node name="Timer" type="Timer" parent="." unique_id=1534932202]
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

@@ -1,0 +1,69 @@
+[gd_scene format=3 uid="uid://odyp0cn8aleb"]
+
+[ext_resource type="Texture2D" uid="uid://pwier8mgqi2f" path="res://Levels/background.png" id="1_gnif3"]
+[ext_resource type="Script" uid="uid://dsl0t6w7l3u2x" path="res://Levels/main.gd" id="1_nj2yk"]
+[ext_resource type="PackedScene" uid="uid://sekn1c63bdlq" path="res://Entities/Attack/spawner.tscn" id="3_lwy2l"]
+[ext_resource type="PackedScene" uid="uid://bikuptriwv0xq" path="res://Entities/Player/player.tscn" id="3_nj2yk"]
+[ext_resource type="PackedScene" uid="uid://tp6052fnay76" path="res://Entities/Attack/wasd_spawner.tscn" id="5_7pswh"]
+[ext_resource type="PackedScene" uid="uid://b0xgtf23rh8pc" path="res://Utils/line_2d.tscn" id="6_34bfm"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_nj2yk"]
+font_size = 90
+font_color = Color(0, 0.43137255, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font_size = 69
+
+[node name="Main" type="Node2D" unique_id=1252310396]
+script = ExtResource("1_nj2yk")
+
+[node name="Background" type="Sprite2D" parent="." unique_id=1257723257]
+position = Vector2(561, 330)
+scale = Vector2(1.053072, 0.93595886)
+texture = ExtResource("1_gnif3")
+
+[node name="Player" parent="." unique_id=1384506691 instance=ExtResource("3_nj2yk")]
+position = Vector2(570, 324)
+
+[node name="Spawner" parent="." unique_id=2019607208 instance=ExtResource("3_lwy2l")]
+position = Vector2(-2.000002, 1.999999)
+scale = Vector2(1, 0.9960338)
+
+[node name="PlayerHP" type="Label" parent="." unique_id=355421968]
+offset_left = 483.00003
+offset_top = 223.0
+offset_right = 544.0
+offset_bottom = 370.0
+scale = Vector2(0.7922072, 0.5229333)
+text = "5"
+label_settings = SubResource("LabelSettings_nj2yk")
+
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=626143758]
+visible = false
+
+[node name="Label" type="Label" parent="GameOver" unique_id=549548539]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -198.0
+offset_right = 198.0
+offset_bottom = 95.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "GAME OVER"
+label_settings = SubResource("LabelSettings_7ta8d")
+
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=1525158084]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.33333334)
+
+[node name="WASDSpawner" parent="." unique_id=184170359 instance=ExtResource("5_7pswh")]
+
+[node name="Line2D" parent="." unique_id=2103234735 instance=ExtResource("6_34bfm")]
+
+[connection signal="player_was_hit" from="Spawner" to="." method="_on_player_was_hit"]
+[connection signal="player_was_hit" from="WASDSpawner" to="." method="_on_player_was_hit"]
