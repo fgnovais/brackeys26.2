@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://g6yflkgbrpe0"]
+
+[ext_resource type="Script" uid="uid://dtcvysygw85dk" path="res://UI/InsideDrawer.gd" id="1_3hgwf"]
+[ext_resource type="Texture2D" uid="uid://j8ldqg8ydcdg" path="res://UI/drawer_inside.png" id="1_sodo1"]
+[ext_resource type="Texture2D" uid="uid://brb4annfcweoc" path="res://UI/background.png" id="2_3hgwf"]
+[ext_resource type="Script" uid="uid://dxsbfwx5rvy5l" path="res://UI/texture_rect.gd" id="3_sodo1"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font_size = 110
+font_color = Color(0, 0, 0, 1)
+outline_size = 64
+
+[node name="Drawer" type="Control" unique_id=2143381936]
+show_behind_parent = true
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -83.0
+offset_right = 11.0
+offset_bottom = -83.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_3hgwf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1614829577]
+modulate = Color(1, 1, 1, 0.47058824)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -644.9999
+offset_top = -399.00003
+offset_right = -209.99988
+offset_bottom = -69.00003
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2.9066606, 2.9130344)
+texture = ExtResource("1_sodo1")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1431018868]
+layout_mode = 0
+offset_bottom = 40.0
+scale = Vector2(0.33233917, 0.5413122)
+
+[node name="GridContainer" type="GridContainer" parent="." unique_id=1992209483]
+layout_mode = 0
+offset_left = 545.0
+offset_top = 283.99997
+offset_right = 4366.0
+offset_bottom = 2706.0
+scale = Vector2(0.21800433, 0.29749054)
+theme_override_constants/h_separation = 100
+theme_override_constants/v_separation = 200
+columns = 3
+
+[node name="ItemIcon" type="TextureRect" parent="GridContainer" unique_id=802389622]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+script = ExtResource("3_sodo1")
+description = "This item is AWESOME!!!"
+
+[node name="Label" type="Label" parent="GridContainer/ItemIcon" unique_id=253476394]
+z_index = 1
+layout_mode = 0
+offset_left = -339.44278
+offset_top = -198.3255
+offset_right = 1592.5573
+offset_bottom = 106.6745
+scale = Vector2(1.0194856, 0.8950996)
+text = "This item is AWESOME!!!"
+label_settings = SubResource("LabelSettings_7ta8d")
+
+[node name="TextureRect6" type="TextureRect" parent="GridContainer" unique_id=845779719]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="TextureRect7" type="TextureRect" parent="GridContainer" unique_id=1809976349]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="TextureRect8" type="TextureRect" parent="GridContainer" unique_id=742447116]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="TextureRect9" type="TextureRect" parent="GridContainer" unique_id=310919815]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="TextureRect10" type="TextureRect" parent="GridContainer" unique_id=845605672]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="TextureRect11" type="TextureRect" parent="GridContainer" unique_id=1995180216]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="TextureRect12" type="TextureRect" parent="GridContainer" unique_id=152548577]
+layout_mode = 2
+texture = ExtResource("2_3hgwf")
+
+[node name="Button" type="Button" parent="." unique_id=1025547223]
+layout_mode = 0
+offset_left = 1421.0
+offset_top = 161.0
+offset_right = 1439.0
+offset_bottom = 192.0
+scale = Vector2(7.3617997, 4.1971054)
+text = "X"
+
+[connection signal="gui_input" from="GridContainer/ItemIcon" to="GridContainer/ItemIcon" method="_on_gui_input"]
+[connection signal="mouse_entered" from="GridContainer/ItemIcon" to="GridContainer/ItemIcon" method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="GridContainer/ItemIcon" to="GridContainer/ItemIcon" method="_on_mouse_exited"]
+[connection signal="selected" from="GridContainer/ItemIcon" to="." method="_on_item_icon_selected"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,18 +1,32 @@
 [gd_scene format=3 uid="uid://b6qnw4fxtou7m"]
 
-[ext_resource type="Texture2D" uid="uid://c4nx12py1yeyd" path="res://UI/image.png" id="1_kxba8"]
+[ext_resource type="Texture2D" uid="uid://brb4annfcweoc" path="res://UI/background.png" id="1_l4ljs"]
 [ext_resource type="PackedScene" uid="uid://dbirifgmrbr41" path="res://UI/bell.tscn" id="2_yib0q"]
 [ext_resource type="PackedScene" uid="uid://vc5trsjn5t83" path="res://UI/client.tscn" id="3_l4ljs"]
+[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="4_hwoix"]
+[ext_resource type="Script" uid="uid://dcvtwhfyv2pgh" path="res://UI/drawer.gd" id="5_thgdw"]
+[ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="6_1xvvo"]
 
 [node name="Level" type="Node2D" unique_id=1060693258]
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1633670877]
 position = Vector2(965, 549)
-scale = Vector2(1.094575, 1.1117821)
-texture = ExtResource("1_kxba8")
+scale = Vector2(1.5998542, 1.6318567)
+texture = ExtResource("1_l4ljs")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
-position = Vector2(1276, 975)
+position = Vector2(696, 872.99994)
+scale = Vector2(0.3113112, 0.2679002)
 
 [node name="Client" parent="." unique_id=1169049832 instance=ExtResource("3_l4ljs")]
-position = Vector2(965, 598)
+position = Vector2(1299.0001, 551.00006)
+scale = Vector2(1.8375095, 2.4964795)
+
+[node name="Drawer" type="Sprite2D" parent="." unique_id=1324338520]
+position = Vector2(1485, 972)
+texture = ExtResource("4_hwoix")
+script = ExtResource("5_thgdw")
+
+[node name="HoverComponent" parent="Drawer" unique_id=163342927 instance=ExtResource("6_1xvvo")]
+
+[connection signal="pressed" from="Drawer/HoverComponent" to="Drawer" method="_on_hover_component_pressed"]

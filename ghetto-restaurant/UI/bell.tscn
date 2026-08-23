@@ -8,13 +8,13 @@
 [node name="Bell" type="Node2D" unique_id=2098198925]
 script = ExtResource("1_ukktk")
 
-[node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("2_fqbv2")]
-scale = Vector2(3.1484878, 2.2002819)
-
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1060882218]
 texture = ExtResource("3_akgyd")
+
+[node name="HoverComponent" parent="Sprite2D" unique_id=163342927 instance=ExtResource("2_fqbv2")]
+scale = Vector2(3.1484878, 2.2002819)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1367600675]
 stream = ExtResource("4_fqbv2")
 
-[connection signal="selected" from="HoverComponent" to="." method="_on_hover_component_selected"]
+[connection signal="pressed" from="Sprite2D/HoverComponent" to="." method="_on_hover_component_pressed"]
