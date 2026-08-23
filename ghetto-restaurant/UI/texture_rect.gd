@@ -4,7 +4,7 @@ class_name ItemIcon
 
 @onready var label: Label = $Label
 @export var description : String
-var item_name : String= ""
+@export var item_name : String= ""
 signal selected
 
 func _ready() -> void:

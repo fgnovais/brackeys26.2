@@ -17,6 +17,7 @@ offset_right = 11.0
 offset_bottom = -83.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6po3p")
 
@@ -35,12 +36,14 @@ offset_bottom = -69.00003
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(2.9066606, 2.9130344)
+mouse_filter = 0
 texture = ExtResource("2_rcdte")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=1431018868]
 layout_mode = 0
 offset_bottom = 40.0
 scale = Vector2(0.33233917, 0.5413122)
+mouse_filter = 0
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1992209483]
 layout_mode = 0
@@ -49,32 +52,40 @@ offset_top = 283.99997
 offset_right = 4366.0
 offset_bottom = 2706.0
 scale = Vector2(0.21800433, 0.29749054)
+mouse_filter = 0
+mouse_default_cursor_shape = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 200
 columns = 3
 
 [node name="ItemIcon" parent="GridContainer" unique_id=1469221418 instance=ExtResource("3_1lwsr")]
 layout_mode = 2
+item_name = "tony soprano"
 
 [node name="ItemIcon2" parent="GridContainer" unique_id=87494349 instance=ExtResource("3_1lwsr")]
 layout_mode = 2
 description = "This item is bad!!!"
+item_name = "shotgun"
 
 [node name="ItemIcon3" parent="GridContainer" unique_id=524041530 instance=ExtResource("3_1lwsr")]
 layout_mode = 2
 description = "This item is sick!!!"
+item_name = "indian spices"
 
 [node name="ItemIcon4" parent="GridContainer" unique_id=697623407 instance=ExtResource("3_1lwsr")]
 layout_mode = 2
 description = "This item is woop!!!"
+item_name = "guitar"
 
 [node name="ItemIcon5" parent="GridContainer" unique_id=291335315 instance=ExtResource("3_1lwsr")]
 layout_mode = 2
 description = "This item is AUGHH!!!"
+item_name = "sugar"
 
 [node name="ItemIcon6" parent="GridContainer" unique_id=1916012161 instance=ExtResource("3_1lwsr")]
 layout_mode = 2
 description = "This item is BLEH!!!"
+item_name = "ancient fire"
 
 [node name="Button" type="Button" parent="." unique_id=1025547223]
 layout_mode = 0
