@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dlfya75iltgey"]
+
+[node name="Dealer" type="Node2D" unique_id=1568024547]
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1957946258]
+
+[node name="Label" type="Label" parent="Sprite2D" unique_id=1520223738]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Dealer"

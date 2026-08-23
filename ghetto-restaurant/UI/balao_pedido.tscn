@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://bf5awjjm3bd6g"]
+
+[ext_resource type="Script" uid="uid://dxfl1uggwsfbx" path="res://UI/balao_pedido.gd" id="1_hwgys"]
+
+[node name="BalaoPedido" type="Node2D" unique_id=721826535]
+
+[node name="BalaoPedido" type="Node2D" parent="." unique_id=1664292443]
+script = ExtResource("1_hwgys")
+
+[node name="NinePatchRect" type="NinePatchRect" parent="BalaoPedido" unique_id=1123226892]
+offset_left = 360.0
+offset_top = 213.0
+offset_right = 1017.0
+offset_bottom = 464.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="BalaoPedido/NinePatchRect" unique_id=1786067042]
+layout_mode = 0
+offset_left = -8.0
+offset_top = 1.0
+offset_right = 651.0
+offset_bottom = 240.0
+metadata/_edit_use_anchors_ = true
