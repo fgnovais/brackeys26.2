@@ -8,8 +8,8 @@
 [node name="Level" type="Node2D" unique_id=1060693258]
 
 [node name="background" type="Sprite2D" parent="." unique_id=1633670877]
-position = Vector2(965, 549)
-scale = Vector2(1.5998542, 1.6318567)
+position = Vector2(961.00006, 537)
+scale = Vector2(1.396169, 1.424576)
 texture = ExtResource("1_l4ljs")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
@@ -17,8 +17,8 @@ position = Vector2(696, 872.99994)
 scale = Vector2(0.3113112, 0.2679002)
 
 [node name="Client" parent="." unique_id=1169049832 instance=ExtResource("3_l4ljs")]
-position = Vector2(1299.0001, 551.00006)
+position = Vector2(1109, 482)
 scale = Vector2(1.8375095, 2.4964795)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
-position = Vector2(1485, 972)
+position = Vector2(1390, 902)
