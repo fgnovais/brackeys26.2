@@ -2,10 +2,6 @@
 
 [ext_resource type="Script" uid="uid://dtcvysygw85dk" path="res://UI/InsideDrawer.gd" id="1_6po3p"]
 [ext_resource type="Texture2D" uid="uid://j8ldqg8ydcdg" path="res://UI/drawer_inside.png" id="2_rcdte"]
-[ext_resource type="PackedScene" uid="uid://bjhkdoe56uyc6" path="res://UI/item_icon.tscn" id="3_1lwsr"]
-[ext_resource type="Resource" uid="uid://b8m1dhakbt7pl" path="res://Assets/Items/Bribe.tres" id="4_ufma1"]
-[ext_resource type="Resource" uid="uid://bpjeyxtc4ingu" path="res://Assets/Items/Coupon.tres" id="5_1dual"]
-[ext_resource type="Resource" uid="uid://c3de3qg8k2svm" path="res://Assets/Items/SkipCustomer.tres" id="6_1qcnd"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_ufma1"]
 device = -1
@@ -66,22 +62,6 @@ theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 50
 columns = 3
 
-[node name="ItemIcon" parent="GridContainer" unique_id=1469221418 instance=ExtResource("3_1lwsr")]
-layout_mode = 2
-item = ExtResource("4_ufma1")
-
-[node name="ItemIcon2" parent="GridContainer" unique_id=87494349 instance=ExtResource("3_1lwsr")]
-layout_mode = 2
-item = ExtResource("5_1dual")
-
-[node name="ItemIcon3" parent="GridContainer" unique_id=524041530 instance=ExtResource("3_1lwsr")]
-layout_mode = 2
-item = ExtResource("6_1qcnd")
-
-[node name="ItemIcon4" parent="GridContainer" unique_id=982787899 instance=ExtResource("3_1lwsr")]
-layout_mode = 2
-item = ExtResource("6_1qcnd")
-
 [node name="Button" type="Button" parent="." unique_id=1025547223]
 layout_mode = 0
 offset_left = 1467.0
@@ -93,8 +73,4 @@ theme_override_font_sizes/font_size = 180
 shortcut = SubResource("Shortcut_hwoix")
 text = "X"
 
-[connection signal="selected" from="GridContainer/ItemIcon" to="." method="_on_item_icon_selected"]
-[connection signal="selected" from="GridContainer/ItemIcon2" to="." method="_on_item_icon_selected"]
-[connection signal="selected" from="GridContainer/ItemIcon3" to="." method="_on_item_icon_selected"]
-[connection signal="selected" from="GridContainer/ItemIcon4" to="." method="_on_item_icon_selected"]
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

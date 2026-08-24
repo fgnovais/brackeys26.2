@@ -1,5 +1,7 @@
 extends Node
 
+var current_items : Array[Item] = []
+
 func apply(item_name : String) -> void:
 	match item_name:
 		"Bribe":
