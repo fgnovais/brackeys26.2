@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var client_manager: ClientManager = $ClientManager
+@onready var client_spawner: ClientSpawner = $ClientSpawner
 @onready var money: Label = $Money
 @onready var day: Label = $Day
 @onready var health_points: Label = $HealthPoints
@@ -73,7 +73,7 @@ func next_day() -> void:
 			client_count = 500
 			
 	for i in client_count:
-		client_queue.push_back(client_manager.spawn_aleatorio())
+		client_queue.push_back(client_spawner.spawn_aleatorio())
 		
 	start_round()
 

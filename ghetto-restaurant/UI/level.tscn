@@ -75,7 +75,7 @@ offset_bottom = 825.0
 scale = Vector2(0.3506328, 0.22928691)
 label_settings = SubResource("LabelSettings_7ta8d")
 
-[node name="ClientManager" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
+[node name="ClientSpawner" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
 
 [node name="Day" type="Label" parent="." unique_id=2137333337]
 offset_right = 40.0

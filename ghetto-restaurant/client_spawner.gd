@@ -1,5 +1,5 @@
 extends Node2D
-class_name ClientManager
+class_name ClientSpawner
 
 @export var client_scene: PackedScene  
 @export var dealer_scene: PackedScene   
@@ -25,12 +25,4 @@ func spawn_aleatorio() -> Client:
 		#var d = dealer_scene.instantiate()
 		#d.position = spawn_point.position
 		#add_child(d)
-
-func serve_good_food(client:Client) -> int:
-	var money_back = client.receive_good_food()
-	return money_back
-	
-func serve_bad_food(client:Client) -> int:
-	var money_back = client.receive_bad_food()
-	return money_back
 	
