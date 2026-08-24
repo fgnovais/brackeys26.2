@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://brb4annfcweoc" path="res://UI/background.png" id="1_l4ljs"]
 [ext_resource type="PackedScene" uid="uid://bgud77th1frp0" path="res://UI/client_manager.tscn" id="2_thgdw"]
 [ext_resource type="PackedScene" uid="uid://dbirifgmrbr41" path="res://UI/bell.tscn" id="2_yib0q"]
-[ext_resource type="PackedScene" uid="uid://vc5trsjn5t83" path="res://UI/client.tscn" id="3_l4ljs"]
 [ext_resource type="PackedScene" uid="uid://dwivueq6apsp6" path="res://UI/drawer.tscn" id="4_k753c"]
 [ext_resource type="Script" uid="uid://dco7df3l46xvq" path="res://UI/service_controller.gd" id="5_8bcmq"]
 
@@ -22,11 +21,6 @@ texture = ExtResource("1_l4ljs")
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
 position = Vector2(696, 872.99994)
 scale = Vector2(0.3113112, 0.2679002)
-
-[node name="Client" parent="." unique_id=1169049832 instance=ExtResource("3_l4ljs")]
-visible = false
-position = Vector2(1109, 482)
-scale = Vector2(1.8375095, 2.4964795)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
 position = Vector2(1390, 902)

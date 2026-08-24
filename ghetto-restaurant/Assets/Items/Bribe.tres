@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://b8m1dhakbt7pl"]
+
+[ext_resource type="Texture2D" uid="uid://u3hxpcc5t4fj" path="res://UI/client.png" id="1_v5t2f"]
+[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="2_vyl0s"]
+
+[resource]
+script = ExtResource("2_vyl0s")
+description = "Bribe a Health Inspector (-20$)"
+title = "Bribe"
+icon = ExtResource("1_v5t2f")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

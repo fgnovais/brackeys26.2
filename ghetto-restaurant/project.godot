@@ -18,6 +18,7 @@ config/icon="uid://cjej8nxd2857f"
 [autoload]
 
 GameState="*uid://8a21gnylovmy"
+ItemManager="*uid://b33qinco2gpic"
 
 [display]
 
