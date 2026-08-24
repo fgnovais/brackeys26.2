@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Client" format=3 uid="uid://bxjtkg4ijlw0r"]
 
-[ext_resource type="Script" uid="uid://do1ner3t3cmfk" path="res://Assets/Clients/client.gd" id="1_m8fx3"]
+[ext_resource type="Script" uid="uid://do1ner3t3cmfk" path="res://Assets/Clients/client_info.gd" id="1_m8fx3"]
 [ext_resource type="Texture2D" uid="uid://bmh1fc8ur5fc3" path="res://Assets/cop.png" id="1_o5ty6"]
 
 [resource]

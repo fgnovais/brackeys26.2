@@ -31,6 +31,7 @@ func start_round():
 	if client_queue.size() > 0:
 		var client_scene = client_queue.get(0)
 		client_queue.remove_at(0)
+		print(current_client.client_info.type)
 		add_child(client_scene)
 		current_client = client_scene
 	else:
@@ -73,7 +74,7 @@ func next_day() -> void:
 			client_count = 500
 			
 	for i in client_count:
-		client_queue.push_back(client_spawner.spawn_aleatorio())
+		client_queue.push_back(client_spawner.spawn_client())
 		
 	start_round()
 

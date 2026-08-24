@@ -5,24 +5,18 @@ class_name ClientSpawner
 @export var dealer_scene: PackedScene   
 
 @onready var spawn_point: Marker2D = $SpawnPoint
+var client_resources : Array[Client_Info]
+const C_LIENT_ASAE = preload("uid://bcrpnv1lff03s")
+const CLIENT_NORMAL = preload("uid://iu1hleornxbi")
+const CLIENT_POLICE = preload("uid://bxjtkg4ijlw0r")
 
-func spawn_client(tipo: Client.Tipo) -> Client:
+func _ready() -> void:
+	client_resources.push_back(C_LIENT_ASAE)
+	client_resources.push_back(CLIENT_NORMAL)
+	client_resources.push_back(CLIENT_POLICE)
+
+func spawn_client() -> Client:
 	var c: Client = client_scene.instantiate()
-	c.tipo = tipo
+	c.client_info = client_resources.pick_random()
 	c.global_position = spawn_point.global_position
 	return c 
-
-func spawn_aleatorio() -> Client:
-	var r = randf()
-	if r < 0.7:
-		return spawn_client(Client.Tipo.NORMAL)
-	elif r < 0.85:
-		return spawn_client(Client.Tipo.ASAE)
-	elif r < 0.95:
-		return spawn_client(Client.Tipo.POLICIA)
-	return spawn_client(Client.Tipo.NORMAL)
-	#else:
-		#var d = dealer_scene.instantiate()
-		#d.position = spawn_point.position
-		#add_child(d)
-	
