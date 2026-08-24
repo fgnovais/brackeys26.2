@@ -28,9 +28,16 @@ func spawn_aleatorio() -> void:
 func serve_good_food() -> int:
 	var client : Client = get_child(-1)
 	var money_back = client.receive_good_food()
+	next_client()
 	return money_back
 	
 func serve_bad_food() -> int:
 	var client : Client = get_child(-1)
 	var money_back = client.receive_bad_food()
+	next_client()
 	return money_back
+	
+func next_client() -> void:
+	var client : Client = get_child(-1)
+	client.queue_free()
+	spawn_aleatorio()

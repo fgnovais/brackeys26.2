@@ -8,4 +8,4 @@ script = ExtResource("1_86ll5")
 client_scene = ExtResource("2_86ll5")
 
 [node name="SpawnPoint" type="Marker2D" parent="." unique_id=1426983609]
-position = Vector2(1257, 726)
+position = Vector2(1237, 618)

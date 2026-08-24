@@ -2,8 +2,10 @@
 
 [ext_resource type="Script" uid="uid://i7ovvsvdrqob" path="res://Entities/client.gd" id="1_74uuh"]
 [ext_resource type="Texture2D" uid="uid://cjej8nxd2857f" path="res://Assets/logo.png" id="2_bi6ty"]
+[ext_resource type="Texture2D" uid="uid://b5bwqcdmm453" path="res://Assets/asae.png" id="3_7ncga"]
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_55wjg"]
 [ext_resource type="PackedScene" uid="uid://bf5awjjm3bd6g" path="res://UI/balao_pedido.tscn" id="3_akvtx"]
+[ext_resource type="Texture2D" uid="uid://bmh1fc8ur5fc3" path="res://Assets/cop.png" id="4_b07cc"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_74uuh"]
 font_size = 35
@@ -13,19 +15,19 @@ outline_size = 33
 [node name="Client" type="Node2D" unique_id=1169049832]
 script = ExtResource("1_74uuh")
 textura_normal = ExtResource("2_bi6ty")
-textura_asae = ExtResource("2_bi6ty")
-textura_policia = ExtResource("2_bi6ty")
+textura_asae = ExtResource("3_7ncga")
+textura_policia = ExtResource("4_b07cc")
 balao_scene = ExtResource("3_akvtx")
 
 [node name="Client" type="Sprite2D" parent="." unique_id=437999518]
 texture = ExtResource("2_bi6ty")
 
 [node name="Label" type="Label" parent="." unique_id=797437850]
-offset_left = -92.0
-offset_top = -137.0
-offset_right = 93.0
-offset_bottom = -88.0
-text = "adsadadad"
+offset_left = -372.0
+offset_top = -276.0
+offset_right = -15.0
+offset_bottom = -227.0
+text = "Give me a burger, yo!"
 label_settings = SubResource("LabelSettings_74uuh")
 
 [node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("3_55wjg")]

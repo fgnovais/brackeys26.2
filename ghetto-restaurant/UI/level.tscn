@@ -14,8 +14,8 @@ font_size = 144
 script = ExtResource("1_hwoix")
 
 [node name="background" type="Sprite2D" parent="." unique_id=1633670877]
-position = Vector2(961.00006, 537)
-scale = Vector2(1.396169, 1.424576)
+position = Vector2(961.6775, 540.1325)
+scale = Vector2(1.084023, 1.0902697)
 texture = ExtResource("1_l4ljs")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
@@ -23,7 +23,7 @@ position = Vector2(696, 872.99994)
 scale = Vector2(0.3113112, 0.2679002)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
-position = Vector2(1390, 902)
+position = Vector2(1428, 937)
 
 [node name="ServiceController" type="Control" parent="." unique_id=1547221562]
 layout_mode = 3
@@ -34,21 +34,23 @@ script = ExtResource("5_8bcmq")
 
 [node name="Good" type="Button" parent="ServiceController" unique_id=1464754603]
 layout_mode = 0
-offset_left = 98.00006
-offset_top = 923.0
-offset_right = 247.00006
-offset_bottom = 954.0
-scale = Vector2(2.116308, 3.1124911)
+offset_left = 27.0
+offset_top = 921.00006
+offset_right = 1613.0
+offset_bottom = 1175.0
+scale = Vector2(0.22779456, 0.32865506)
+theme_override_font_sizes/font_size = 180
 text = "Give Good Burger.
 "
 
 [node name="Bad" type="Button" parent="ServiceController" unique_id=2032489855]
 layout_mode = 0
-offset_left = 469.0
-offset_top = 931.99994
-offset_right = 613.0
-offset_bottom = 962.99994
-scale = Vector2(2.2560825, 2.6117573)
+offset_left = 444.00003
+offset_top = 923.99994
+offset_right = 1903.0
+offset_bottom = 1178.0
+scale = Vector2(0.26824448, 0.32234335)
+theme_override_font_sizes/font_size = 180
 text = "Give Bad Burger.
 "
 
