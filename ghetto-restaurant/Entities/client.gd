@@ -12,12 +12,12 @@ enum Tipo { NORMAL, ASAE, POLICIA }
 
 @export var balao_scene: PackedScene
 
-@onready var sprite: Sprite2D = $Sprite2D
+@onready var sprite: Sprite2D = $Client
 
 var recurso_penalizado: GameState.Recurso
 var quantidade_penalidade: int
 var balao_instancia: Node2D
-
+var money
 const NOMES_PRATOS := {
 	"prato_do_dia": "Prato do Dia",
 	"sopa": "Sopa da Casa",
@@ -30,6 +30,7 @@ signal reclamou(cliente)
 func _ready() -> void:
 	_configurar_por_tipo()
 	_mostrar_balao()
+	money = 15
 
 func _configurar_por_tipo() -> void:
 	match tipo:
@@ -47,8 +48,8 @@ func _configurar_por_tipo() -> void:
 			sprite.texture = textura_policia
 
 func _mostrar_balao() -> void:
-	if balao_scene == null:
-		return
+	#if balao_scene == null:
+	return
 	balao_instancia = balao_scene.instantiate()
 	add_child(balao_instancia)
 	balao_instancia.position = Vector2(0, -100)  # ajusta consoante o tamanho do sprite
@@ -67,3 +68,28 @@ func avaliar_prato(prato_servido: String) -> void:
 	else:
 		reclamou.emit(self)
 		GameState.aplicar_penalidade(recurso_penalizado, quantidade_penalidade)
+
+func receive_good_food():
+	return money
+
+func receive_bad_food():
+	var chance_to_complain = 100
+	match tipo:
+		Tipo.NORMAL:
+			chance_to_complain = 20
+		Tipo.ASAE:
+			chance_to_complain = 100
+		#Tipo.POLICIA:
+			#chance_to_complain = 50
+	
+	if chance_to_complain >= randi_range(0, 100):
+		complain()
+		return 0
+	else:
+		return money
+
+func complain():
+	pass # logic to show up again in the next round. 
+	#Depending on the client type it can be an insta HP loss or a chance to serve a new burger
+	# Probably call a Singleton to handle this, no need to signal up
+	

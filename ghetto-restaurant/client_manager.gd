@@ -9,7 +9,7 @@ class_name ClientManager
 func spawn_client(tipo: Client.Tipo) -> void:
 	var c: Client = client_scene.instantiate()
 	c.tipo = tipo
-	c.position = spawn_point.position
+	c.global_position = spawn_point.global_position
 	add_child(c) 
 
 func spawn_aleatorio() -> void:
@@ -24,3 +24,13 @@ func spawn_aleatorio() -> void:
 		var d = dealer_scene.instantiate()
 		d.position = spawn_point.position
 		add_child(d)
+
+func serve_good_food() -> int:
+	var client : Client = get_child(-1)
+	var money_back = client.receive_good_food()
+	return money_back
+	
+func serve_bad_food() -> int:
+	var client : Client = get_child(-1)
+	var money_back = client.receive_bad_food()
+	return money_back

@@ -13,7 +13,7 @@ config_version=5
 config/name="ghetto_restaurant"
 run/main_scene="uid://b6qnw4fxtou7m"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="res://icon.svg"
+config/icon="uid://cjej8nxd2857f"
 
 [autoload]
 

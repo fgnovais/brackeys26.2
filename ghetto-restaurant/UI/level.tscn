@@ -1,11 +1,18 @@
 [gd_scene format=3 uid="uid://b6qnw4fxtou7m"]
 
+[ext_resource type="Script" uid="uid://csjpabdvaodfp" path="res://Utils/level.gd" id="1_hwoix"]
 [ext_resource type="Texture2D" uid="uid://brb4annfcweoc" path="res://UI/background.png" id="1_l4ljs"]
+[ext_resource type="PackedScene" uid="uid://bgud77th1frp0" path="res://UI/client_manager.tscn" id="2_thgdw"]
 [ext_resource type="PackedScene" uid="uid://dbirifgmrbr41" path="res://UI/bell.tscn" id="2_yib0q"]
 [ext_resource type="PackedScene" uid="uid://vc5trsjn5t83" path="res://UI/client.tscn" id="3_l4ljs"]
 [ext_resource type="PackedScene" uid="uid://dwivueq6apsp6" path="res://UI/drawer.tscn" id="4_k753c"]
+[ext_resource type="Script" uid="uid://dco7df3l46xvq" path="res://UI/service_controller.gd" id="5_8bcmq"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font_size = 144
 
 [node name="Level" type="Node2D" unique_id=1060693258]
+script = ExtResource("1_hwoix")
 
 [node name="background" type="Sprite2D" parent="." unique_id=1633670877]
 position = Vector2(961.00006, 537)
@@ -17,8 +24,48 @@ position = Vector2(696, 872.99994)
 scale = Vector2(0.3113112, 0.2679002)
 
 [node name="Client" parent="." unique_id=1169049832 instance=ExtResource("3_l4ljs")]
+visible = false
 position = Vector2(1109, 482)
 scale = Vector2(1.8375095, 2.4964795)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
 position = Vector2(1390, 902)
+
+[node name="ServiceController" type="Control" parent="." unique_id=1547221562]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_8bcmq")
+
+[node name="Good" type="Button" parent="ServiceController" unique_id=1464754603]
+layout_mode = 0
+offset_left = 98.00006
+offset_top = 923.0
+offset_right = 247.00006
+offset_bottom = 954.0
+scale = Vector2(2.116308, 3.1124911)
+text = "Give Good Burger.
+"
+
+[node name="Bad" type="Button" parent="ServiceController" unique_id=2032489855]
+layout_mode = 0
+offset_left = 469.0
+offset_top = 931.99994
+offset_right = 613.0
+offset_bottom = 962.99994
+scale = Vector2(2.2560825, 2.6117573)
+text = "Give Bad Burger.
+"
+
+[node name="Money" type="Label" parent="." unique_id=993466695]
+offset_right = 39.0
+offset_bottom = 24.0
+label_settings = SubResource("LabelSettings_7ta8d")
+
+[node name="ClientManager" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
+
+[connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]
+[connection signal="serve_good" from="ServiceController" to="." method="_on_service_controller_serve_good"]
+[connection signal="pressed" from="ServiceController/Good" to="ServiceController" method="_on_good_pressed"]
+[connection signal="pressed" from="ServiceController/Bad" to="ServiceController" method="_on_bad_pressed"]
