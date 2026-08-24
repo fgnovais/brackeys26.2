@@ -10,6 +10,19 @@
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font_size = 144
 
+[sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
+font_size = 147
+
+[sub_resource type="LabelSettings" id="LabelSettings_twa8r"]
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_hwoix"]
+font_size = 73
+font_color = Color(0, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_wnmnv"]
+font_size = 301
+
 [node name="Level" type="Node2D" unique_id=1060693258]
 script = ExtResource("1_hwoix")
 
@@ -55,13 +68,85 @@ text = "Give Bad Burger.
 "
 
 [node name="Money" type="Label" parent="." unique_id=993466695]
-offset_right = 39.0
-offset_bottom = 24.0
+offset_left = 338.0
+offset_top = 628.0
+offset_right = 585.0
+offset_bottom = 825.0
+scale = Vector2(0.3506328, 0.22928691)
 label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="ClientManager" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
 
+[node name="Day" type="Label" parent="." unique_id=2137333337]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "DAY:"
+label_settings = SubResource("LabelSettings_bp5er")
+
+[node name="HealthPoints" type="Label" parent="." unique_id=1675634253]
+offset_left = 1588.0001
+offset_top = 28.0
+offset_right = 1776.0001
+offset_bottom = 81.0
+scale = Vector2(1.5898782, 1.4127605)
+text = "HEALTH: 5"
+label_settings = SubResource("LabelSettings_twa8r")
+
+[node name="GoodStock" type="Label" parent="." unique_id=677769474]
+offset_left = 353.0
+offset_top = 863.0
+offset_right = 436.0
+offset_bottom = 964.0
+text = "10"
+label_settings = SubResource("LabelSettings_hwoix")
+
+[node name="BadStock" type="Label" parent="." unique_id=972599840]
+offset_left = 802.0
+offset_top = 871.0
+offset_right = 885.0
+offset_bottom = 972.0
+text = "10"
+label_settings = SubResource("LabelSettings_hwoix")
+
+[node name="BuyGoodStock" type="Button" parent="." unique_id=417402056]
+offset_left = 114.0
+offset_top = 1018.0001
+offset_right = 154.0
+offset_bottom = 1049.0001
+scale = Vector2(3.7787066, 1.3437243)
+text = "BUY"
+
+[node name="BuyBadStock" type="Button" parent="." unique_id=101353387]
+offset_left = 544.0
+offset_top = 1011.0
+offset_right = 584.0
+offset_bottom = 1042.0
+scale = Vector2(4.475831, 2.0170162)
+text = "BUY"
+
+[node name="GameOver" type="CanvasLayer" parent="." unique_id=1288033306]
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="GameOver" unique_id=1188735128]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.8235294)
+
+[node name="Label" type="Label" parent="GameOver" unique_id=1056926789]
+offset_left = 24.0
+offset_top = 258.0
+offset_right = 1888.0
+offset_bottom = 669.0
+text = "you lose, bro!"
+label_settings = SubResource("LabelSettings_wnmnv")
+
+[connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]
 [connection signal="serve_good" from="ServiceController" to="." method="_on_service_controller_serve_good"]
 [connection signal="pressed" from="ServiceController/Good" to="ServiceController" method="_on_good_pressed"]
 [connection signal="pressed" from="ServiceController/Bad" to="ServiceController" method="_on_bad_pressed"]
+[connection signal="pressed" from="BuyGoodStock" to="." method="buy_good_stock_amount"]
+[connection signal="pressed" from="BuyBadStock" to="." method="buy_bad_stock_amount"]

@@ -13,6 +13,7 @@ enum Tipo { NORMAL, ASAE, POLICIA }
 @export var balao_scene: PackedScene
 
 @onready var sprite: Sprite2D = $Client
+@onready var label: Label = $Label
 
 var recurso_penalizado: GameState.Recurso
 var quantidade_penalidade: int
@@ -69,7 +70,8 @@ func avaliar_prato(prato_servido: String) -> void:
 		reclamou.emit(self)
 		GameState.aplicar_penalidade(recurso_penalizado, quantidade_penalidade)
 
-func receive_good_food():
+func receive_good_food()->int:
+	label.text = "Thanks!"
 	return money
 
 func receive_bad_food():
@@ -83,13 +85,6 @@ func receive_bad_food():
 			#chance_to_complain = 50
 	
 	if chance_to_complain >= randi_range(0, 100):
-		complain()
-		return 0
+		return -1
 	else:
 		return money
-
-func complain():
-	pass # logic to show up again in the next round. 
-	#Depending on the client type it can be an insta HP loss or a chance to serve a new burger
-	# Probably call a Singleton to handle this, no need to signal up
-	

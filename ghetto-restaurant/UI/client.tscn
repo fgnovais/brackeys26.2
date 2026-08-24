@@ -23,9 +23,9 @@ balao_scene = ExtResource("3_akvtx")
 texture = ExtResource("2_bi6ty")
 
 [node name="Label" type="Label" parent="." unique_id=797437850]
-offset_left = -372.0
+offset_left = -378.0
 offset_top = -276.0
-offset_right = -15.0
+offset_right = -21.0
 offset_bottom = -227.0
 text = "Give me a burger, yo!"
 label_settings = SubResource("LabelSettings_74uuh")

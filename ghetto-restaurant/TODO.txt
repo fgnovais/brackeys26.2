@@ -1,9 +1,5 @@
 Level manager
-	introduce the concept of rounds
-	dictate when the client arrives
-	dictate queue of clients
 	running the items code needs to influence SOMETHING in the level (player stats, rules, client stats, etc)
-	Player HP, trigger events that increase or decrease the current HP
 	
 Clients
 	sprite should be random: Normal clients wont always have the same sprite, sprites are irrelevant to the type of the client
@@ -11,10 +7,7 @@ Clients
 	can be influenced by items
 	
 Stocks
-	Buy Good and bad stock of food
-	the logic to buy more can remain on the level for simplicities sake
-	Have a way to trigger an "buy" event on the next round
+	Have a way to trigger an "buy" event on the next round (call the dealer, wait for groceries)
 
 Items
-	when used they disappear from drawer (inventory)
 	receive a new one every round (give choice to player or random?)

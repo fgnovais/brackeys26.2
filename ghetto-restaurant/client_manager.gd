@@ -6,38 +6,31 @@ class_name ClientManager
 
 @onready var spawn_point: Marker2D = $SpawnPoint
 
-func spawn_client(tipo: Client.Tipo) -> void:
+func spawn_client(tipo: Client.Tipo) -> Client:
 	var c: Client = client_scene.instantiate()
 	c.tipo = tipo
 	c.global_position = spawn_point.global_position
-	add_child(c) 
+	return c 
 
-func spawn_aleatorio() -> void:
+func spawn_aleatorio() -> Client:
 	var r = randf()
 	if r < 0.7:
-		spawn_client(Client.Tipo.NORMAL)
+		return spawn_client(Client.Tipo.NORMAL)
 	elif r < 0.85:
-		spawn_client(Client.Tipo.ASAE)
+		return spawn_client(Client.Tipo.ASAE)
 	elif r < 0.95:
-		spawn_client(Client.Tipo.POLICIA)
-	else:
-		var d = dealer_scene.instantiate()
-		d.position = spawn_point.position
-		add_child(d)
+		return spawn_client(Client.Tipo.POLICIA)
+	return spawn_client(Client.Tipo.NORMAL)
+	#else:
+		#var d = dealer_scene.instantiate()
+		#d.position = spawn_point.position
+		#add_child(d)
 
-func serve_good_food() -> int:
-	var client : Client = get_child(-1)
+func serve_good_food(client:Client) -> int:
 	var money_back = client.receive_good_food()
-	next_client()
 	return money_back
 	
-func serve_bad_food() -> int:
-	var client : Client = get_child(-1)
+func serve_bad_food(client:Client) -> int:
 	var money_back = client.receive_bad_food()
-	next_client()
 	return money_back
 	
-func next_client() -> void:
-	var client : Client = get_child(-1)
-	client.queue_free()
-	spawn_aleatorio()
