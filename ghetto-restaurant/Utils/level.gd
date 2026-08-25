@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level
 
 @onready var client_spawner: ClientSpawner = $ClientSpawner
 @onready var money: Label = $ServiceController/Money
@@ -7,6 +8,7 @@ extends Node2D
 @onready var good_stock: Label = $ServiceController/GoodStock
 @onready var bad_stock: Label = $ServiceController/BadStock
 @onready var game_over: CanvasLayer = $GameOver
+@onready var preview: Control = $Preview
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
 var total_money : int = 150
@@ -31,8 +33,8 @@ enum EVENT {
 
 func _ready() -> void:
 	game_over.hide()
-	next_client()
 	next_day() 
+	next_client()
 	# DEBUG
 	ItemManager.give_bribe_item()
 	ItemManager.give_bribe_item()
@@ -55,6 +57,8 @@ func refresh_labels():
 	health_points.text = "HEALTH: " + str(total_health)
 			
 func next_event():
+	preview.next_queue = event_queue.slice(0,3)
+	preview.update_textures()
 	if event_queue.size() == 0:
 		event_queue.push_front(EVENT.SPAWN_CLIENT)
 	var event = event_queue.get(0)
@@ -64,9 +68,9 @@ func next_event():
 		EVENT.SPAWN_CLIENT:
 			next_client()
 		EVENT.SPAWN_COP:
-			pass
+			next_client()
 		EVENT.SPAWN_DEALER:
-			pass
+			next_client()
 		EVENT.GIVE_ITEM:
 			#var item_name = value
 			#match item_name:
@@ -98,9 +102,10 @@ func increase_good_stock()-> void:
 	next_event()
 	
 func _on_service_controller_serve_bad() -> void:
-	if bad_stock_amount > 0:
+	if bad_stock_amount > 0 and current_client != null:
 		bad_stock_amount -= 1
 		var paid_money = current_client.receive_bad_food()
+		current_client.leave()
 		if paid_money == -1:
 			event_queue.push_back(EVENT.CLIENT_COMPLAINING)
 		else:
@@ -108,15 +113,13 @@ func _on_service_controller_serve_bad() -> void:
 		next_event()
 		
 func _on_service_controller_serve_good() -> void:
-	if good_stock_amount > 0:
+	if good_stock_amount > 0 and current_client != null:
 		good_stock_amount -= 1
 		total_money += current_client.receive_good_food()
+		current_client.leave()
 		next_event()
 		
 func next_client()->void:
-	var previous_client = get_child(-1)
-	if  previous_client is Client:
-		previous_client.leave()
 	await get_tree().create_timer(1.5).timeout
 	if client_queue.size() > 0:
 		var client_scene = client_queue.get(0)
@@ -143,23 +146,30 @@ func next_day() -> void:
 			
 	for i in client_count:
 		client_queue.push_back(client_spawner.spawn_client())
-		
-	next_event()
 
 func buy_good_stock_amount() -> void:
 	total_money -= 10
-	event_queue.push_back(EVENT.STOCK_ARRIVING)
+	add_to_queue_in(EVENT.STOCK_ARRIVING, 2)
 	
 func buy_bad_stock_amount() -> void:
-	event_queue.push_back(EVENT.SPAWN_DEALER)
+	add_to_queue_in(EVENT.SPAWN_DEALER, 5)
 
 func _on_bell_bell_pressed() -> void:
 	total_health -= 1
 	if total_health == 0:
 		show_game_over()
 		return
+	if current_client != null:
+		current_client.leave()
 	next_client()
 		
 func show_game_over()-> void:
 	game_over.show()
 	Engine.time_scale = 0 
+
+func add_to_queue_in(event: EVENT, pos: int):
+	for i in pos:
+		if i+1 == pos:
+			event_queue.insert(pos-1, event)
+		elif event_queue.size() <= i:
+			event_queue.push_back(EVENT.SPAWN_CLIENT)

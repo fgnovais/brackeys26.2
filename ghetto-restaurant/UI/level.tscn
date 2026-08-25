@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dbirifgmrbr41" path="res://UI/bell.tscn" id="2_yib0q"]
 [ext_resource type="PackedScene" uid="uid://dwivueq6apsp6" path="res://UI/drawer.tscn" id="4_k753c"]
 [ext_resource type="Script" uid="uid://dco7df3l46xvq" path="res://UI/service_controller.gd" id="5_8bcmq"]
+[ext_resource type="PackedScene" uid="uid://c468wne2xcvtm" path="res://UI/preview.tscn" id="7_thgdw"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font_size = 144
@@ -149,6 +150,13 @@ offset_right = 1888.0
 offset_bottom = 669.0
 text = "you lose, bro!"
 label_settings = SubResource("LabelSettings_wnmnv")
+
+[node name="Preview" parent="." unique_id=1857883474 instance=ExtResource("7_thgdw")]
+offset_left = 1654.0
+offset_top = 243.0
+offset_right = 1654.0
+offset_bottom = 243.0
+scale = Vector2(0.19482163, 0.18061364)
 
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]
