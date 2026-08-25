@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c3l523uhshumi"
-path="res://.godot/imported/ghetto_restaurant.png-978bdeb6c8b7408b7b89cc68727a560c.ctex"
+uid="uid://cj425qlephb21"
+path="res://.godot/imported/index.png-188faf7d23b18538a5f25753135ea174.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_exports/ghetto_restaurant.png"
-dest_files=["res://.godot/imported/ghetto_restaurant.png-978bdeb6c8b7408b7b89cc68727a560c.ctex"]
+source_file="res://_exports/index.png"
+dest_files=["res://.godot/imported/index.png-188faf7d23b18538a5f25753135ea174.ctex"]
 
 [params]
 

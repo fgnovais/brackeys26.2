@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lo5ftfra4p33"
-path="res://.godot/imported/ghetto_restaurant.icon.png-2413bdf9dfb18511a259d20ca6cf1f5c.ctex"
+uid="uid://cer85rfuy3lfi"
+path="res://.godot/imported/index.apple-touch-icon.png-283a7848e28b42ceb30ccde5b16ad54e.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://_exports/ghetto_restaurant.icon.png"
-dest_files=["res://.godot/imported/ghetto_restaurant.icon.png-2413bdf9dfb18511a259d20ca6cf1f5c.ctex"]
+source_file="res://_exports/index.apple-touch-icon.png"
+dest_files=["res://.godot/imported/index.apple-touch-icon.png-283a7848e28b42ceb30ccde5b16ad54e.ctex"]
 
 [params]
 
