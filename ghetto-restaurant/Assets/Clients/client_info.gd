@@ -1,24 +1,21 @@
 extends Resource
 class_name Client_Info
 
-enum Type { NORMAL, ASAE, POLICE }
+enum Type { NORMAL, ASAE }
 var type: Type
 
-@export var client_texture: Texture2D
-@export var asae_odd: float = 0.2
-@export var police_odd: float = 0.05
+var client_texture: Texture2D = load("res://Assets/texture1.png")
+var asae_odd: float = 0.2
+var chance_to_complain : float = 0.3
 
 func _init() -> void:
-	spawn_aleatorio()
+	var textures =  ["res://Assets/texture1.png","res://Assets/texture2.png","res://Assets/texture3.png","res://Assets/texture4.png"]
+	client_texture = load(textures.pick_random())
+	get_type()
 	
-func spawn_aleatorio() -> void:
+func get_type() -> void:
 	var r = randf()
-	if r < asae_odd && r > police_odd:
+	if r < asae_odd:
 		type = Client_Info.Type.ASAE
-	elif r < police_odd:
-		type = Client_Info.Type.POLICE
 	else:
 		type = Client_Info.Type.NORMAL
-
-#func apply() -> void:
-	#ClientManager.apply(type)

@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://g6yflkgbrpe0"]
 
 [ext_resource type="Script" uid="uid://dtcvysygw85dk" path="res://UI/InsideDrawer.gd" id="1_6po3p"]
-[ext_resource type="Texture2D" uid="uid://j8ldqg8ydcdg" path="res://UI/drawer_inside.png" id="2_rcdte"]
+[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="2_kvfo0"]
+[ext_resource type="Texture2D" uid="uid://dedeu7aq8kow3" path="res://icon.svg" id="3_1lwsr"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1lwsr"]
 
 [sub_resource type="InputEventKey" id="InputEventKey_ufma1"]
 device = -1
@@ -32,30 +35,30 @@ mouse_default_cursor_shape = 2
 script = ExtResource("1_6po3p")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1614829577]
-modulate = Color(1, 1, 1, 0.6666667)
+modulate = Color(1, 1, 1, 0.8392157)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -644.9999
-offset_top = -399.00003
-offset_right = -209.99988
-offset_bottom = -69.00003
+offset_left = -138.0
+offset_top = -154.0
+offset_right = 1643.0
+offset_bottom = 829.0
 grow_horizontal = 2
 grow_vertical = 2
-scale = Vector2(2.9066606, 2.9130344)
+scale = Vector2(0.7854375, 0.76717883)
 mouse_filter = 0
-texture = ExtResource("2_rcdte")
+texture = ExtResource("2_kvfo0")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1992209483]
 layout_mode = 0
-offset_left = 404.0
-offset_top = 376.0
-offset_right = 1099.0
-offset_bottom = 558.0
-scale = Vector2(1.58, 1.58)
+offset_left = 1186.0
+offset_top = 573.0
+offset_right = 1885.4595
+offset_bottom = 1083.2703
+scale = Vector2(0.85331446, 0.83228856)
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 theme_override_constants/h_separation = 100
@@ -64,13 +67,15 @@ columns = 3
 
 [node name="Button" type="Button" parent="." unique_id=1025547223]
 layout_mode = 0
-offset_left = 1467.0
-offset_top = 140.0
-offset_right = 1587.0
-offset_bottom = 394.0
-scale = Vector2(0.9241716, 0.40705684)
+offset_left = 1449.0001
+offset_top = 1009.0
+offset_right = 1585.0001
+offset_bottom = 1263.0
+scale = Vector2(0.73252916, 0.51062965)
 theme_override_font_sizes/font_size = 180
+theme_override_styles/hover = SubResource("StyleBoxTexture_1lwsr")
 shortcut = SubResource("Shortcut_hwoix")
-text = "X"
+icon = ExtResource("3_1lwsr")
+flat = true
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

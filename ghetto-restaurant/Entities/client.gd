@@ -10,11 +10,12 @@ var client_info : Client_Info
 #var quantidade_penalidade: int
 #var balao_instancia: Node2D
 var money
-const NOMES_PRATOS := {
-	"prato_do_dia": "Prato do Dia",
-	"sopa": "Sopa da Casa",
-	"peixe": "Peixe Grelhado"
-}
+#const NOMES_PRATOS := {
+	#"prato_do_dia": "Prato do Dia",
+	#"sopa": "Sopa da Casa",
+	#"peixe": "Peixe Grelhado"
+#}
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 #signal satisfeito(cliente)
 #signal reclamou(cliente)
@@ -23,8 +24,20 @@ func _ready() -> void:
 	#_configurar_por_tipo()
 	#_mostrar_balao()
 	money = 15
-	client_info.spawn_aleatorio()
+	#client_info.spawn_aleatorio()
 	sprite.texture = client_info.client_texture
+	animation_player.play("arrive")
+	animation_player.animation_finished.connect(transition_animations)
+
+func transition_animations(anim_name : String):
+	if anim_name == "arrive":
+		animation_player.play("idle")
+	elif anim_name == "leave":
+		queue_free()
+
+func leave():
+	animation_player.play("leave")
+	label.text = "I'm Leaving!"
 
 #func _configurar_por_tipo() -> void:
 	#match tipo:

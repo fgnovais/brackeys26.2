@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://urlcf1hueddw"]
+
+[ext_resource type="Script" uid="uid://b0ghrvwdw2y2p" path="res://UI/you_got_stock.gd" id="1_rs5ms"]
+[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_uhtvt"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font_size = 41
+
+[node name="YouGotStock" type="Control" unique_id=1096518341]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rs5ms")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1804325603]
+layout_mode = 0
+offset_left = 542.0
+offset_top = 128.0
+offset_right = 2323.0
+offset_bottom = 1111.0
+scale = Vector2(0.47033063, 0.472463)
+texture = ExtResource("1_uhtvt")
+
+[node name="Label" type="Label" parent="." unique_id=1263579796]
+layout_mode = 0
+offset_left = 774.0
+offset_top = 333.0
+offset_right = 1340.0
+offset_bottom = 425.0
+text = "YOU GOT STOCK!!"
+label_settings = SubResource("LabelSettings_7ta8d")
+
+[node name="Accept" type="Button" parent="." unique_id=1101300147]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 512.0
+offset_right = 919.0
+offset_bottom = 520.0
+scale = Vector2(9.139412, 9.599194)
+
+[connection signal="pressed" from="Accept" to="." method="_on_accept"]

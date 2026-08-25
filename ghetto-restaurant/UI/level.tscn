@@ -13,12 +13,12 @@ font_size = 144
 [sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
 font_size = 147
 
-[sub_resource type="LabelSettings" id="LabelSettings_twa8r"]
-font_size = 38
-
 [sub_resource type="LabelSettings" id="LabelSettings_hwoix"]
 font_size = 73
 font_color = Color(0, 1, 1, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_twa8r"]
+font_size = 38
 
 [sub_resource type="LabelSettings" id="LabelSettings_wnmnv"]
 font_size = 301
@@ -28,15 +28,16 @@ script = ExtResource("1_hwoix")
 
 [node name="background" type="Sprite2D" parent="." unique_id=1633670877]
 position = Vector2(961.6775, 540.1325)
-scale = Vector2(1.084023, 1.0902697)
+scale = Vector2(1.077381, 1.0969127)
 texture = ExtResource("1_l4ljs")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
-position = Vector2(696, 872.99994)
+position = Vector2(703, 812.99994)
 scale = Vector2(0.3113112, 0.2679002)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
-position = Vector2(1428, 937)
+position = Vector2(1518, 1038)
+scale = Vector2(0.5952005, 0.08138715)
 
 [node name="ServiceController" type="Control" parent="." unique_id=1547221562]
 layout_mode = 3
@@ -47,10 +48,10 @@ script = ExtResource("5_8bcmq")
 
 [node name="Good" type="Button" parent="ServiceController" unique_id=1464754603]
 layout_mode = 0
-offset_left = 27.0
-offset_top = 921.00006
-offset_right = 1613.0
-offset_bottom = 1175.0
+offset_left = 20.0
+offset_top = 871.0
+offset_right = 1606.0
+offset_bottom = 1125.0
 scale = Vector2(0.22779456, 0.32865506)
 theme_override_font_sizes/font_size = 180
 text = "Give Good Burger.
@@ -58,30 +59,66 @@ text = "Give Good Burger.
 
 [node name="Bad" type="Button" parent="ServiceController" unique_id=2032489855]
 layout_mode = 0
-offset_left = 444.00003
-offset_top = 923.99994
-offset_right = 1903.0
-offset_bottom = 1178.0
+offset_left = 437.00003
+offset_top = 873.9999
+offset_right = 1896.0
+offset_bottom = 1128.0
 scale = Vector2(0.26824448, 0.32234335)
 theme_override_font_sizes/font_size = 180
 text = "Give Bad Burger.
 "
 
-[node name="Money" type="Label" parent="." unique_id=993466695]
-offset_left = 338.0
-offset_top = 628.0
-offset_right = 585.0
-offset_bottom = 825.0
-scale = Vector2(0.3506328, 0.22928691)
+[node name="Money" type="Label" parent="ServiceController" unique_id=993466695]
+layout_mode = 0
+offset_left = 357.0
+offset_top = 581.0
+offset_right = 604.0
+offset_bottom = 778.0
+scale = Vector2(0.43296888, 0.23683104)
 label_settings = SubResource("LabelSettings_7ta8d")
 
-[node name="ClientSpawner" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
-
-[node name="Day" type="Label" parent="." unique_id=2137333337]
-offset_right = 40.0
-offset_bottom = 23.0
+[node name="Day" type="Label" parent="ServiceController" unique_id=2137333337]
+layout_mode = 0
+offset_right = 332.0
+offset_bottom = 202.0
 text = "DAY:"
 label_settings = SubResource("LabelSettings_bp5er")
+
+[node name="GoodStock" type="Label" parent="ServiceController" unique_id=677769474]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 805.0
+offset_right = 435.0
+offset_bottom = 906.0
+text = "10"
+label_settings = SubResource("LabelSettings_hwoix")
+
+[node name="BadStock" type="Label" parent="ServiceController" unique_id=972599840]
+layout_mode = 0
+offset_left = 801.0
+offset_top = 813.0
+offset_right = 884.0
+offset_bottom = 914.0
+text = "10"
+label_settings = SubResource("LabelSettings_hwoix")
+
+[node name="BuyGoodStock" type="Button" parent="ServiceController" unique_id=417402056]
+layout_mode = 0
+offset_left = 113.0
+offset_top = 960.0001
+offset_right = 153.0
+offset_bottom = 991.0001
+scale = Vector2(3.7787066, 1.3437243)
+text = "BUY"
+
+[node name="BuyBadStock" type="Button" parent="ServiceController" unique_id=101353387]
+layout_mode = 0
+offset_left = 543.0
+offset_top = 953.0
+offset_right = 583.0
+offset_bottom = 984.0
+scale = Vector2(4.475831, 2.0170162)
+text = "BUY"
 
 [node name="HealthPoints" type="Label" parent="." unique_id=1675634253]
 offset_left = 1588.0001
@@ -92,37 +129,7 @@ scale = Vector2(1.5898782, 1.4127605)
 text = "HEALTH: 5"
 label_settings = SubResource("LabelSettings_twa8r")
 
-[node name="GoodStock" type="Label" parent="." unique_id=677769474]
-offset_left = 353.0
-offset_top = 863.0
-offset_right = 436.0
-offset_bottom = 964.0
-text = "10"
-label_settings = SubResource("LabelSettings_hwoix")
-
-[node name="BadStock" type="Label" parent="." unique_id=972599840]
-offset_left = 802.0
-offset_top = 871.0
-offset_right = 885.0
-offset_bottom = 972.0
-text = "10"
-label_settings = SubResource("LabelSettings_hwoix")
-
-[node name="BuyGoodStock" type="Button" parent="." unique_id=417402056]
-offset_left = 114.0
-offset_top = 1018.0001
-offset_right = 154.0
-offset_bottom = 1049.0001
-scale = Vector2(3.7787066, 1.3437243)
-text = "BUY"
-
-[node name="BuyBadStock" type="Button" parent="." unique_id=101353387]
-offset_left = 544.0
-offset_top = 1011.0
-offset_right = 584.0
-offset_bottom = 1042.0
-scale = Vector2(4.475831, 2.0170162)
-text = "BUY"
+[node name="ClientSpawner" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
 
 [node name="GameOver" type="CanvasLayer" parent="." unique_id=1288033306]
 visible = false
@@ -148,5 +155,5 @@ label_settings = SubResource("LabelSettings_wnmnv")
 [connection signal="serve_good" from="ServiceController" to="." method="_on_service_controller_serve_good"]
 [connection signal="pressed" from="ServiceController/Good" to="ServiceController" method="_on_good_pressed"]
 [connection signal="pressed" from="ServiceController/Bad" to="ServiceController" method="_on_bad_pressed"]
-[connection signal="pressed" from="BuyGoodStock" to="." method="buy_good_stock_amount"]
-[connection signal="pressed" from="BuyBadStock" to="." method="buy_bad_stock_amount"]
+[connection signal="pressed" from="ServiceController/BuyGoodStock" to="." method="buy_good_stock_amount"]
+[connection signal="pressed" from="ServiceController/BuyBadStock" to="." method="buy_bad_stock_amount"]

@@ -1,21 +1,130 @@
 [gd_scene format=3 uid="uid://vc5trsjn5t83"]
 
 [ext_resource type="Script" uid="uid://i7ovvsvdrqob" path="res://Entities/client.gd" id="1_74uuh"]
-[ext_resource type="Texture2D" uid="uid://cjej8nxd2857f" path="res://Assets/logo.png" id="2_bi6ty"]
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_55wjg"]
 [ext_resource type="PackedScene" uid="uid://bf5awjjm3bd6g" path="res://UI/balao_pedido.tscn" id="3_akvtx"]
+[ext_resource type="Texture2D" uid="uid://dddnisudwu527" path="res://Assets/texture2.png" id="3_bi6ty"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_74uuh"]
 font_size = 35
 font_color = Color(0, 0, 0, 1)
 outline_size = 33
 
+[sub_resource type="Animation" id="Animation_akvtx"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Client:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Client:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_bi6ty"]
+resource_name = "arrive"
+length = 0.99
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Client:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(2.7320454, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Client:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.93333334),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-134.305, 112.855), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_7ncga"]
+resource_name = "idle"
+length = 0.955
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Client:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.7, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 6), Vector2(0, 0), Vector2(-2, -6), Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_b07cc"]
+resource_name = "leave"
+length = 1.2666667
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Client:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(142.29, -139.685)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Client:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_b07cc"]
+_data = {
+&"RESET": SubResource("Animation_akvtx"),
+&"arrive": SubResource("Animation_bi6ty"),
+&"idle": SubResource("Animation_7ncga"),
+&"leave": SubResource("Animation_b07cc")
+}
+
 [node name="Client" type="Node2D" unique_id=1169049832]
 script = ExtResource("1_74uuh")
 balao_scene = ExtResource("3_akvtx")
 
 [node name="Client" type="Sprite2D" parent="." unique_id=437999518]
-texture = ExtResource("2_bi6ty")
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_bi6ty")
 
 [node name="Label" type="Label" parent="." unique_id=797437850]
 offset_left = -378.0
@@ -26,5 +135,9 @@ text = "Give me a burger, yo!"
 label_settings = SubResource("LabelSettings_74uuh")
 
 [node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("3_55wjg")]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1365836231]
+libraries/ = SubResource("AnimationLibrary_b07cc")
+autoplay = &"idle"
 
 [connection signal="selected" from="HoverComponent" to="." method="_on_hover_component_selected"]

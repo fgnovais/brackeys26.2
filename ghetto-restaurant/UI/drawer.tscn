@@ -9,5 +9,6 @@ texture = ExtResource("1_sodo1")
 script = ExtResource("2_3hgwf")
 
 [node name="HoverComponent" parent="." unique_id=1123238874 instance=ExtResource("3_q80vo")]
+scale = Vector2(6.5741587, 6.221759)
 
 [connection signal="pressed" from="HoverComponent" to="." method="_on_hover_component_pressed"]

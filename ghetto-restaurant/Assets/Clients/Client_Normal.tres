@@ -1,9 +1,0 @@
-[gd_resource type="Resource" script_class="Client" format=3 uid="uid://iu1hleornxbi"]
-
-[ext_resource type="Texture2D" uid="uid://cjej8nxd2857f" path="res://Assets/logo.png" id="1_pgqko"]
-[ext_resource type="Script" uid="uid://do1ner3t3cmfk" path="res://Assets/Clients/client_info.gd" id="1_qb4ag"]
-
-[resource]
-script = ExtResource("1_qb4ag")
-client_texture = ExtResource("1_pgqko")
-metadata/_custom_type_script = "uid://do1ner3t3cmfk"
