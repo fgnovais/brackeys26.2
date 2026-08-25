@@ -1,9 +1,24 @@
-Level manager
-	running the items code needs to influence SOMETHING in the level (player stats, rules, client stats, etc)
+Dealer
+	spawn dealer
+	select items to buy / bad stock
+	can be a cop
+
+Cop
+	spawn cop
+	can be fake cop
 	
-Clients
-	can be influenced by items
+Inspector
+	spawn inspector
+	can be fake inspector
 
 Items
-	every item implementation
+	implement bribe
+	implement flipphone
 	receive a new one every round (give choice to player or random?)
+	
+
+Client
+	can be inspector (animation to change to inspector texture)
+	
+Level manager
+	polish
