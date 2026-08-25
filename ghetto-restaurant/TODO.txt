@@ -2,12 +2,8 @@ Level manager
 	running the items code needs to influence SOMETHING in the level (player stats, rules, client stats, etc)
 	
 Clients
-	sprite should be random: Normal clients wont always have the same sprite, sprites are irrelevant to the type of the client
-	stats should be resources: create a new resource that has the type of the client, chances to complain, name, personality, wtv
 	can be influenced by items
-	
-Stocks
-	Have a way to trigger an "buy" event on the next round (call the dealer, wait for groceries)
 
 Items
+	every item implementation
 	receive a new one every round (give choice to player or random?)

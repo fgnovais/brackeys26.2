@@ -54,16 +54,16 @@ texture = ExtResource("2_kvfo0")
 
 [node name="GridContainer" type="GridContainer" parent="." unique_id=1992209483]
 layout_mode = 0
-offset_left = 1186.0
-offset_top = 573.0
-offset_right = 1885.4595
-offset_bottom = 1083.2703
-scale = Vector2(0.85331446, 0.83228856)
+offset_left = 1183.9999
+offset_top = 587.0
+offset_right = 2264.0
+offset_bottom = 1269.0
+scale = Vector2(0.57, 0.57)
 mouse_filter = 0
 mouse_default_cursor_shape = 2
 theme_override_constants/h_separation = 100
 theme_override_constants/v_separation = 50
-columns = 3
+columns = 4
 
 [node name="Button" type="Button" parent="." unique_id=1025547223]
 layout_mode = 0

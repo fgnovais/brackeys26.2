@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cjbd5fkdnlw4a"]
+
+[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="1_3wgfi"]
+[ext_resource type="Texture2D" uid="uid://clcd1j1vfkvpc" path="res://Assets/Items/lupa.png" id="1_pbnl0"]
+
+[resource]
+script = ExtResource("1_3wgfi")
+description = "See their exact percentage"
+title = "Lupa"
+icon = ExtResource("1_pbnl0")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

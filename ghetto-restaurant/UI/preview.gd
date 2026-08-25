@@ -1,4 +1,5 @@
 extends Control
+class_name Preview
 
 var next_queue : Array[Level.EVENT]
 var spawn_client_texture = load("res://Assets/texture1.png")
@@ -6,6 +7,7 @@ var spawn_cop_texture = load("res://Assets/cop.png")
 var spawn_dealer_texture = load("res://Assets/dealer.png")
 var get_stock_texture = load("res://UI/bell.png")
 var get_item_texture = load("res://UI/client.png")
+var empty_texture = load("res://Assets/question_mark.png")
 @onready var h_box_container: HBoxContainer = $TextureRect/HBoxContainer
 
 func update_textures():
@@ -23,4 +25,4 @@ func update_textures():
 			Level.EVENT.GIVE_ITEM:
 				h_box_container.get_child(i).texture = get_item_texture
 			_:
-				h_box_container.get_child(i).texture = null
+				h_box_container.get_child(i).texture = empty_texture

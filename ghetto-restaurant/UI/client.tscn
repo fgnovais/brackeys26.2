@@ -10,6 +10,11 @@ font_size = 35
 font_color = Color(0, 0, 0, 1)
 outline_size = 33
 
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font_size = 72
+outline_size = 43
+outline_color = Color(0, 0, 0, 1)
+
 [sub_resource type="Animation" id="Animation_akvtx"]
 length = 0.001
 tracks/0/type = "value"
@@ -126,13 +131,23 @@ balao_scene = ExtResource("3_akvtx")
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("3_bi6ty")
 
-[node name="Label" type="Label" parent="." unique_id=797437850]
+[node name="Dialog" type="Label" parent="." unique_id=797437850]
 offset_left = -378.0
 offset_top = -276.0
 offset_right = -21.0
 offset_bottom = -227.0
 text = "Give me a burger, yo!"
 label_settings = SubResource("LabelSettings_74uuh")
+
+[node name="Percentage" type="Label" parent="." unique_id=714298718]
+visible = false
+offset_left = 105.00001
+offset_top = -137.0
+offset_right = 291.0
+offset_bottom = -38.0
+scale = Vector2(0.6846924, 0.6345766)
+text = "100%"
+label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("3_55wjg")]
 

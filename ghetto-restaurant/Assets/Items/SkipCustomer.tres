@@ -1,11 +1,11 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://c3de3qg8k2svm"]
 
-[ext_resource type="Texture2D" uid="uid://u3hxpcc5t4fj" path="res://UI/client.png" id="1_r4wb8"]
+[ext_resource type="Texture2D" uid="uid://d1tk4dhaktqsn" path="res://Assets/Items/flex.png" id="1_r4wb8"]
 [ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="2_wg22a"]
 
 [resource]
 script = ExtResource("2_wg22a")
 description = "Skip a pesky customer!"
-title = "Skip Customer"
+title = "SkipCustomer"
 icon = ExtResource("1_r4wb8")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

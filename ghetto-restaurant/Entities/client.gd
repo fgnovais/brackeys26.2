@@ -4,7 +4,8 @@ class_name Client
 @export var balao_scene: PackedScene
 var client_info : Client_Info
 @onready var sprite: Sprite2D = $Client
-@onready var label: Label = $Label
+@onready var dialog: Label = $Dialog
+@onready var percentage: Label = $Percentage
 
 #var recurso_penalizado: GameState.Recurso
 #var quantidade_penalidade: int
@@ -28,6 +29,9 @@ func _ready() -> void:
 	sprite.texture = client_info.client_texture
 	animation_player.play("arrive")
 	animation_player.animation_finished.connect(transition_animations)
+	dialog.text = client_info.dialog.pick_random()
+	percentage.text = str(client_info.asae_odd*100) + "%	"
+	percentage.hide()
 
 func transition_animations(anim_name : String):
 	if anim_name == "arrive":
@@ -37,7 +41,7 @@ func transition_animations(anim_name : String):
 
 func leave():
 	animation_player.play("leave")
-	label.text = "I'm Leaving!"
+	dialog.text = "I'm Leaving!"
 
 #func _configurar_por_tipo() -> void:
 	#match tipo:
@@ -77,7 +81,7 @@ func leave():
 		#GameState.aplicar_penalidade(recurso_penalizado, quantidade_penalidade)
 
 func receive_good_food()->int:
-	label.text = "Thanks!"
+	dialog.text = "Thanks!"
 	return money
 
 func receive_bad_food():

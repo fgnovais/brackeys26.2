@@ -8,7 +8,7 @@ class_name Level
 @onready var good_stock: Label = $ServiceController/GoodStock
 @onready var bad_stock: Label = $ServiceController/BadStock
 @onready var game_over: CanvasLayer = $GameOver
-@onready var preview: Control = $Preview
+@onready var preview: Preview = $Preview
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
 var total_money : int = 150
@@ -19,6 +19,7 @@ var good_stock_amount = 1
 var bad_stock_amount = 1
 
 var event_queue : Array[EVENT] = []
+var coupon_is_active: bool = false
 
 ## EVENT SYSTEM
 enum EVENT {
@@ -37,10 +38,39 @@ func _ready() -> void:
 	next_client()
 	# DEBUG
 	ItemManager.give_bribe_item()
-	ItemManager.give_bribe_item()
+	ItemManager.give_flipphone_item()
 	ItemManager.give_coupon_item()
 	ItemManager.give_skip_item()
+	ItemManager.give_ubereats_item()
+	ItemManager.give_lupa_item()
+	ItemManager.connect("uberEats", uberEats)
+	ItemManager.connect("bribe", bribe)
+	ItemManager.connect("skip_customer", skip_customer)
+	ItemManager.connect("coupon", coupon)
+	ItemManager.connect("lupa", lupa)
+	ItemManager.connect("flipphone", flipphone)
 
+func uberEats():
+	var stock = you_got_stock_scene.instantiate()
+	stock.connect("stock_accepted", increase_good_stock)
+	add_child(stock)
+	
+func bribe():
+	print("test")
+
+func skip_customer():
+	current_client.leave()
+	next_event()
+	
+func coupon():
+	coupon_is_active = true
+
+func lupa():
+	current_client.percentage.show()
+
+func flipphone():
+	print("flipphone")
+	
 #refresh labels every 0.3 seconds
 var delta_add : float = 0.3
 func _process(delta: float) -> void:
@@ -72,21 +102,20 @@ func next_event():
 		EVENT.SPAWN_DEALER:
 			next_client()
 		EVENT.GIVE_ITEM:
-			#var item_name = value
-			#match item_name:
-				#"Coupon":
-					#ItemManager.give_coupon_item()
-				#"Bribe":
-					#ItemManager.give_bribe_item()
-				#"Skip Customer":
-					#ItemManager.give_skip_item()
-				#"Lupa":
-					#ItemManager.give_skip_item()
-				#"Flipfone":
-					#ItemManager.give_skip_item()
-				#"UberEats":
-					#ItemManager.give_skip_item()
-			pass
+			var item_name = "Coupon"
+			match item_name:
+				"Coupon":
+					ItemManager.give_coupon_item()
+				"Bribe":
+					ItemManager.give_bribe_item()
+				"SkipCustomer":
+					ItemManager.give_skip_item()
+				"Lupa":
+					ItemManager.give_lupa_item()
+				"Flipphone":
+					ItemManager.give_flipphone_item()
+				"UberEats":
+					ItemManager.give_ubereats_item()
 		EVENT.STOCK_ARRIVING:
 			var stock = you_got_stock_scene.instantiate()
 			stock.connect("stock_accepted", increase_good_stock)
@@ -148,7 +177,12 @@ func next_day() -> void:
 		client_queue.push_back(client_spawner.spawn_client())
 
 func buy_good_stock_amount() -> void:
-	total_money -= 10
+	if coupon_is_active:
+		total_money -= 5
+		coupon_is_active = false
+	else:
+		total_money -= 10
+		
 	add_to_queue_in(EVENT.STOCK_ARRIVING, 2)
 	
 func buy_bad_stock_amount() -> void:
@@ -161,7 +195,7 @@ func _on_bell_bell_pressed() -> void:
 		return
 	if current_client != null:
 		current_client.leave()
-	next_client()
+	next_event()
 		
 func show_game_over()-> void:
 	game_over.show()

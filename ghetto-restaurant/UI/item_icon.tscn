@@ -4,7 +4,7 @@
 [ext_resource type="Script" uid="uid://dxsbfwx5rvy5l" path="res://UI/texture_rect.gd" id="2_umbco"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
-font_size = 67
+font_size = 100
 font_color = Color(0, 0, 0, 1)
 outline_size = 64
 
@@ -18,11 +18,11 @@ script = ExtResource("2_umbco")
 z_index = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_left = -77.0
-offset_top = -96.00001
-offset_right = 725.233
-offset_bottom = 209.0
-scale = Vector2(0.46121266, 0.47290173)
+offset_left = -108.0
+offset_top = -277.0
+offset_right = 857.7015
+offset_bottom = 28.0
+scale = Vector2(0.63270074, 0.6366692)
 text = "This item is AWESOME!!!"
 label_settings = SubResource("LabelSettings_7ta8d")
 autowrap_mode = 2

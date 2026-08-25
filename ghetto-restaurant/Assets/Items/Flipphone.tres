@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://4ibny6dxmq2v"]
+
+[ext_resource type="Texture2D" uid="uid://bk10s7uinlb1c" path="res://Assets/Items/flipphone.png" id="1_pekov"]
+[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="1_qw70s"]
+
+[resource]
+script = ExtResource("1_qw70s")
+description = "Call a friend to avoid a cop???"
+title = "FlipPhone"
+icon = ExtResource("1_pekov")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
