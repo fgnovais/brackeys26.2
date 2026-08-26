@@ -4,6 +4,9 @@
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_55wjg"]
 [ext_resource type="PackedScene" uid="uid://bf5awjjm3bd6g" path="res://UI/balao_pedido.tscn" id="3_akvtx"]
 [ext_resource type="Texture2D" uid="uid://dddnisudwu527" path="res://Assets/texture2.png" id="3_bi6ty"]
+[ext_resource type="AudioStream" uid="uid://byg4fqb04jbp8" path="res://Assets/Audio/Footstep.wav" id="5_b07cc"]
+[ext_resource type="AudioStream" uid="uid://bkjyu0dftbd1a" path="res://Assets/Audio/Laugh.wav" id="6_66y5m"]
+[ext_resource type="AudioStream" uid="uid://btsqleifxyl8b" path="res://Assets/Audio/Complain.wav" id="7_tpe35"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_74uuh"]
 font_size = 35
@@ -132,6 +135,7 @@ modulate = Color(1, 1, 1, 0)
 texture = ExtResource("3_bi6ty")
 
 [node name="Dialog" type="Label" parent="." unique_id=797437850]
+visible = false
 offset_left = -378.0
 offset_top = -276.0
 offset_right = -21.0
@@ -154,5 +158,14 @@ label_settings = SubResource("LabelSettings_7ta8d")
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1365836231]
 libraries/ = SubResource("AnimationLibrary_b07cc")
 autoplay = &"idle"
+
+[node name="ArriveSound" type="AudioStreamPlayer" parent="." unique_id=1812835863]
+stream = ExtResource("5_b07cc")
+
+[node name="LeaveSound" type="AudioStreamPlayer" parent="." unique_id=305517918]
+stream = ExtResource("6_66y5m")
+
+[node name="ComplainSound" type="AudioStreamPlayer" parent="." unique_id=985776046]
+stream = ExtResource("7_tpe35")
 
 [connection signal="selected" from="HoverComponent" to="." method="_on_hover_component_selected"]

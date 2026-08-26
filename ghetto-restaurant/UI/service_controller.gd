@@ -4,9 +4,12 @@ signal serve_bad
 signal serve_good
 var can_buy_good : bool = true
 var can_buy_bad : bool = true
+@onready var hover_audio: AudioStreamPlayer = $HoverAudio
+@onready var click_audio: AudioStreamPlayer = $ClickAudio
 
 func _on_good_pressed() -> void:
 	if can_buy_good:
+		click_audio.play()
 		serve_good.emit()
 		can_buy_good = false
 		await get_tree().create_timer(2).timeout
@@ -14,7 +17,15 @@ func _on_good_pressed() -> void:
 
 func _on_bad_pressed() -> void:
 	if can_buy_bad:
+		click_audio.play()
 		serve_bad.emit()
 		can_buy_bad = false
 		await get_tree().create_timer(2).timeout
 		can_buy_bad = true
+
+func _on_hover() -> void:
+	hover_audio.pitch_scale = randf_range(0.2,0.4)
+	hover_audio.play()
+
+func _on_leave_hover() -> void:
+	hover_audio.stop()

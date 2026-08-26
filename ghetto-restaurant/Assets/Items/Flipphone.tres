@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_qw70s")
-description = "Call a friend to avoid a cop???"
+description = "Run a background check on a \"Cop\"."
 title = "FlipPhone"
 icon = ExtResource("1_pekov")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

@@ -6,6 +6,9 @@ var client_info : Client_Info
 @onready var sprite: Sprite2D = $Client
 @onready var dialog: Label = $Dialog
 @onready var percentage: Label = $Percentage
+@onready var arrive_sound: AudioStreamPlayer = $ArriveSound
+@onready var leave_sound: AudioStreamPlayer = $LeaveSound
+@onready var complain_sound: AudioStreamPlayer = $ComplainSound
 
 #var recurso_penalizado: GameState.Recurso
 #var quantidade_penalidade: int
@@ -32,6 +35,7 @@ func _ready() -> void:
 	dialog.text = client_info.dialog.pick_random()
 	percentage.text = str(client_info.asae_odd*100) + "%	"
 	percentage.hide()
+	arrive_sound.play()
 
 func transition_animations(anim_name : String):
 	if anim_name == "arrive":
@@ -42,7 +46,8 @@ func transition_animations(anim_name : String):
 func leave():
 	animation_player.play("leave")
 	dialog.text = "I'm Leaving!"
-
+	leave_sound.play()
+	
 #func _configurar_por_tipo() -> void:
 	#match tipo:
 		#Tipo.NORMAL:
@@ -95,6 +100,7 @@ func receive_bad_food():
 			chance_to_complain = 10
 	
 	if chance_to_complain >= randi_range(0, 100):
+		complain_sound.play()
 		return -1
 	else:
 		return money

@@ -6,7 +6,10 @@
 [ext_resource type="PackedScene" uid="uid://dbirifgmrbr41" path="res://UI/bell.tscn" id="2_yib0q"]
 [ext_resource type="PackedScene" uid="uid://dwivueq6apsp6" path="res://UI/drawer.tscn" id="4_k753c"]
 [ext_resource type="Script" uid="uid://dco7df3l46xvq" path="res://UI/service_controller.gd" id="5_8bcmq"]
+[ext_resource type="AudioStream" uid="uid://dsng4lpuekalk" path="res://Assets/Audio/UI.wav" id="6_1xvvo"]
 [ext_resource type="PackedScene" uid="uid://c468wne2xcvtm" path="res://UI/preview.tscn" id="7_thgdw"]
+[ext_resource type="PackedScene" uid="uid://tvnrhe63rnis" path="res://UI/dialog_box.tscn" id="9_2im43"]
+[ext_resource type="Texture2D" uid="uid://cuqor4c18sm8a" path="res://Assets/player_box.png" id="10_7j0cy"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font_size = 144
@@ -121,6 +124,13 @@ offset_bottom = 984.0
 scale = Vector2(4.475831, 2.0170162)
 text = "BUY"
 
+[node name="HoverAudio" type="AudioStreamPlayer" parent="ServiceController" unique_id=1515059205]
+stream = ExtResource("6_1xvvo")
+pitch_scale = 0.3
+
+[node name="ClickAudio" type="AudioStreamPlayer" parent="ServiceController" unique_id=1379615659]
+stream = ExtResource("6_1xvvo")
+
 [node name="HealthPoints" type="Label" parent="." unique_id=1675634253]
 offset_left = 1588.0001
 offset_top = 28.0
@@ -158,10 +168,34 @@ offset_right = -61.0
 offset_bottom = 185.00002
 scale = Vector2(0.19482163, 0.18061364)
 
+[node name="DialogBox" parent="." unique_id=1505121633 instance=ExtResource("9_2im43")]
+
+[node name="PlayerBox" parent="." unique_id=309634947 instance=ExtResource("9_2im43")]
+offset_left = 320.0
+offset_top = 285.0
+offset_right = 977.0
+offset_bottom = 540.0
+texture = ExtResource("10_7j0cy")
+
+[node name="Label" parent="PlayerBox" index="0" unique_id=60028819]
+offset_left = 156.0
+offset_top = 64.0
+offset_right = 647.0
+offset_bottom = 207.0
+
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]
 [connection signal="serve_good" from="ServiceController" to="." method="_on_service_controller_serve_good"]
+[connection signal="mouse_entered" from="ServiceController/GiveGoodBurger" to="ServiceController" method="_on_hover"]
 [connection signal="pressed" from="ServiceController/GiveGoodBurger" to="ServiceController" method="_on_good_pressed"]
+[connection signal="mouse_entered" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_hover"]
+[connection signal="mouse_exited" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_leave_hover"]
 [connection signal="pressed" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_bad_pressed"]
+[connection signal="mouse_entered" from="ServiceController/BuyGoodStock" to="ServiceController" method="_on_hover"]
+[connection signal="mouse_exited" from="ServiceController/BuyGoodStock" to="ServiceController" method="_on_leave_hover"]
 [connection signal="pressed" from="ServiceController/BuyGoodStock" to="." method="buy_good_stock_amount"]
+[connection signal="mouse_entered" from="ServiceController/BuyBadStock" to="ServiceController" method="_on_hover"]
+[connection signal="mouse_exited" from="ServiceController/BuyBadStock" to="ServiceController" method="_on_leave_hover"]
 [connection signal="pressed" from="ServiceController/BuyBadStock" to="." method="buy_bad_stock_amount"]
+
+[editable path="PlayerBox"]

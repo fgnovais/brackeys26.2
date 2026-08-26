@@ -9,6 +9,8 @@ class_name Level
 @onready var bad_stock: Label = $ServiceController/BadStock
 @onready var game_over: CanvasLayer = $GameOver
 @onready var preview: Preview = $Preview
+@onready var dialog_box: DialogBox = $DialogBox
+@onready var player_box: DialogBox = $PlayerBox
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
 var total_money : int = 150
@@ -69,6 +71,8 @@ func bribe():
 		print("Not Inspector, you missed your chance")
 
 func skip_customer():
+	await dialog_box.hide_dialog_box()
+	await player_box.hide_dialog_box()
 	current_client.leave()
 	next_event()
 	
@@ -150,6 +154,8 @@ func _on_service_controller_serve_bad() -> void:
 	if bad_stock_amount > 0 and current_client != null:
 		bad_stock_amount -= 1
 		var paid_money = current_client.receive_bad_food()
+		await dialog_box.hide_dialog_box()
+		await player_box.hide_dialog_box()
 		current_client.leave()
 		if paid_money == -1:
 			event_queue.push_back(EVENT.CLIENT_COMPLAINING)
@@ -161,6 +167,8 @@ func _on_service_controller_serve_good() -> void:
 	if good_stock_amount > 0 and current_client != null:
 		good_stock_amount -= 1
 		total_money += current_client.receive_good_food()
+		await dialog_box.hide_dialog_box()
+		await player_box.hide_dialog_box()
 		current_client.leave()
 		next_event()
 		
@@ -171,6 +179,9 @@ func next_client()->void:
 		client_queue.remove_at(0)
 		add_child(client_scene)
 		current_client = client_scene
+		dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
+		player_box.show_dialog_box("HUHHUH??")
+		print(current_client.client_info.type)
 	else:
 		next_day()
 
@@ -212,6 +223,8 @@ func _on_bell_bell_pressed() -> void:
 		show_game_over()
 		return
 	if current_client != null:
+		await dialog_box.hide_dialog_box()
+		await player_box.hide_dialog_box()
 		current_client.leave()
 	next_event()
 
