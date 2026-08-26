@@ -9,7 +9,7 @@ func _ready() -> void:
 	
 func show_dialog_box(dialog : String):
 	var tween = create_tween()
-	await tween.tween_property(self, "modulate", Color.WHITE, 1).finished
+	tween.tween_property(self, "modulate", Color.WHITE, 1).finished
 	label.text = dialog
 	tween = create_tween()
 	tween.tween_property(label, "visible_ratio", 1, 1)

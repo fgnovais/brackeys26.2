@@ -134,6 +134,8 @@ balao_scene = ExtResource("3_akvtx")
 modulate = Color(1, 1, 1, 0)
 texture = ExtResource("3_bi6ty")
 
+[node name="HoverComponent" parent="Client" unique_id=163342927 instance=ExtResource("3_55wjg")]
+
 [node name="Dialog" type="Label" parent="." unique_id=797437850]
 visible = false
 offset_left = -378.0
@@ -153,8 +155,6 @@ scale = Vector2(0.6846924, 0.6345766)
 text = "100%"
 label_settings = SubResource("LabelSettings_7ta8d")
 
-[node name="HoverComponent" parent="." unique_id=163342927 instance=ExtResource("3_55wjg")]
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1365836231]
 libraries/ = SubResource("AnimationLibrary_b07cc")
 autoplay = &"idle"
@@ -168,4 +168,4 @@ stream = ExtResource("6_66y5m")
 [node name="ComplainSound" type="AudioStreamPlayer" parent="." unique_id=985776046]
 stream = ExtResource("7_tpe35")
 
-[connection signal="selected" from="HoverComponent" to="." method="_on_hover_component_selected"]
+[connection signal="selected" from="Client/HoverComponent" to="." method="_on_hover_component_selected"]

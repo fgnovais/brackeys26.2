@@ -1,0 +1,23 @@
+extends Control
+
+var client_dialog : Array[String] = ["test", "yo", "burger", "hey boss"]
+var idx := 0
+var dialog_scene : PackedScene = load("res://UI/dialog_box.tscn")
+
+@onready var client_dialogs: VBoxContainer = $ClientDialogs
+@onready var player_dialogs: VBoxContainer = $PlayerDialogs
+signal no_more_dialog
+
+func _unhandled_input(event: InputEvent) -> void:
+	if idx < client_dialog.size():
+		if event.is_action_pressed("space"):
+			var inst : DialogBox = dialog_scene.instantiate()
+			client_dialogs.add_child(inst)
+			inst.show_dialog_box(client_dialog[idx])
+			idx+= 1
+			
+			if idx > 1:
+				var tween = create_tween()
+				tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -200), 1)
+	else:
+		no_more_dialog.emit()

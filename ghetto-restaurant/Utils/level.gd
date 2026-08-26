@@ -13,7 +13,7 @@ class_name Level
 @onready var player_box: DialogBox = $PlayerBox
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
-var total_money : int = 150
+var total_money : int = 15
 var client_queue : Array[Client] = []
 var current_client : Client
 var current_day : int = 0
@@ -21,7 +21,7 @@ var good_stock_amount = 1
 var bad_stock_amount = 1
 
 var event_queue : Array[EVENT] = []
-var coupon_is_active: bool = false
+var coupon_count: int = 0
 
 ## EVENT SYSTEM
 enum EVENT {
@@ -77,7 +77,7 @@ func skip_customer():
 	next_event()
 	
 func coupon():
-	coupon_is_active = true
+	coupon_count = 3
 
 func lupa():
 	current_client.percentage.show()
@@ -180,7 +180,7 @@ func next_client()->void:
 		add_child(client_scene)
 		current_client = client_scene
 		dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
-		player_box.show_dialog_box("HUHHUH??")
+		player_box.show_dialog_box("I'll give you a....")
 		print(current_client.client_info.type)
 	else:
 		next_day()
@@ -204,18 +204,18 @@ func next_day() -> void:
 		client_queue.push_back(client_spawner.spawn_client())
 
 func buy_good_stock_amount() -> void:
-	if coupon_is_active && total_money >= 5:
-		total_money -= 5
-		coupon_is_active = false
-	elif total_money >= 10:
+	if coupon_count > 0 && total_money >= 5:
 		total_money -= 10
+		coupon_count -= 1
+	elif total_money >= 20:
+		total_money -= 20
 	else:
 		print("You got no money!")
 		
-	add_to_queue_in(EVENT.STOCK_ARRIVING, 2)
+	add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
 	
 func buy_bad_stock_amount() -> void:
-	add_to_queue_in(EVENT.SPAWN_DEALER, 5)
+	add_to_queue_in(EVENT.SPAWN_DEALER, 2)
 
 func _on_bell_bell_pressed() -> void:
 	total_health -= 1

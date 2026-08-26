@@ -19,5 +19,7 @@ void fragment() {
 	outline = min(outline, 1.0);
 	
 	vec4 color = texture(TEXTURE, UV);
-	COLOR = mix(color, line_color, outline - color.a) * onoff ; 
+	if (onoff > 0.0){
+		COLOR = mix(color, line_color, outline - color.a) * onoff ; 
+	}
 }

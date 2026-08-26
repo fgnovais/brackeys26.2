@@ -27,7 +27,7 @@ var money
 func _ready() -> void:
 	#_configurar_por_tipo()
 	#_mostrar_balao()
-	money = 15
+	money = 5
 	#client_info.spawn_aleatorio()
 	sprite.texture = client_info.client_texture
 	animation_player.play("arrive")

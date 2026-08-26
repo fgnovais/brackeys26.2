@@ -1,16 +1,18 @@
+Dialog System
+	Scroll through dialog boxes
+	dialog boxes are fed text from current_client.dialog[]
+	default 
+
 Dealer
 	spawn dealer 
 	select items to buy / bad stock
 	can be a cop
 
 Items
-	implement bribe
+	implement bribe ()
 	implement flipphone
 	receive a new one every round (give choice to player or random?)
 	
-
 Client
 	can be inspector (animation to change to inspector texture)
 	
-Level manager
-	polish

@@ -1,14 +1,23 @@
 [gd_scene format=3 uid="uid://dwivueq6apsp6"]
 
-[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_sodo1"]
+[ext_resource type="Shader" uid="uid://d25a46rib4y4v" path="res://Assets/highlight.gdshader" id="1_sodo1"]
 [ext_resource type="Script" uid="uid://dcvtwhfyv2pgh" path="res://UI/drawer.gd" id="2_3hgwf"]
+[ext_resource type="Texture2D" uid="uid://dr4viym4uckim" path="res://UI/drawer_outside.png" id="2_q80vo"]
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_q80vo"]
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2im43"]
+shader = ExtResource("1_sodo1")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 7.174000340765
+shader_parameter/onoff = 1.0
+
 [node name="Drawer" type="Sprite2D" unique_id=276778585]
-texture = ExtResource("1_sodo1")
+material = SubResource("ShaderMaterial_2im43")
+texture = ExtResource("2_q80vo")
 script = ExtResource("2_3hgwf")
 
 [node name="HoverComponent" parent="." unique_id=1123238874 instance=ExtResource("3_q80vo")]
-scale = Vector2(6.5741587, 6.221759)
+material = null
+scale = Vector2(3.1040165, 0.80595094)
 
 [connection signal="pressed" from="HoverComponent" to="." method="_on_hover_component_pressed"]

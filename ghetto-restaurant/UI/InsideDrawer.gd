@@ -17,3 +17,6 @@ func _on_item_icon_selected(item_node : Node) -> void:
 	grid_container.remove_child(item_node)
 	var pos = ItemManager.current_items.find(item_node.item)
 	ItemManager.current_items.remove_at(pos)
+	await get_tree().create_timer(0.1).timeout
+	killed.emit()
+	queue_free()

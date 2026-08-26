@@ -64,6 +64,7 @@ autowrap_mode = 2
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=758157654]
 stream = ExtResource("3_umbco")
+volume_db = -10.0
 pitch_scale = 0.42
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

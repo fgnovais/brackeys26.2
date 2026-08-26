@@ -12,7 +12,7 @@ script = ExtResource("1_ukktk")
 texture = ExtResource("3_akgyd")
 
 [node name="HoverComponent" parent="Sprite2D" unique_id=163342927 instance=ExtResource("2_fqbv2")]
-scale = Vector2(3.1484878, 2.2002819)
+scale = Vector2(0.7917795, 0.65540344)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1367600675]
 stream = ExtResource("4_fqbv2")
