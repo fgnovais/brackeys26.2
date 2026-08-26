@@ -18,7 +18,7 @@ class_name Level
 
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
-var total_money : int = 15
+var total_money : int = 150
 var client_queue : Array[Client] = []
 var current_client : Client
 var current_day : int = 0
@@ -59,7 +59,7 @@ func _ready() -> void:
 
 func uberEats():
 	var stock = you_got_stock_scene.instantiate()
-	stock.connect("stock_accepted", increase_good_stock)
+	stock.connect("stock_accepted", increase_stock)
 	add_child(stock)
 	
 func bribe():
@@ -147,19 +147,32 @@ func next_event():
 					ItemManager.give_ubereats_item()
 		EVENT.STOCK_ARRIVING:
 			var stock = you_got_stock_scene.instantiate()
-			stock.connect("stock_accepted", increase_good_stock)
+			stock.connect("stock_accepted", increase_stock)
+			stock.is_good_meat = true
 			add_child(stock)
 		EVENT.CHEF_COMPLAINING:
 			pass
 		EVENT.CLIENT_COMPLAINING:
 			pass
 
+func increase_stock(is_good_meat : bool):
+	if is_good_meat:
+		increase_good_stock()
+	else:
+		increase_bad_stock(deal_quantity)
+		
 func increase_good_stock()-> void:
 	good_stock_amount += 3
 	next_event()
 
 func increase_bad_stock(deal_quantity)-> void:
 	bad_stock_amount += deal_quantity
+	total_money -= deal_price
+	print("deal taken")
+	take_deal.hide()
+	cancel_deal.hide()
+	#current_client.leave()
+	next_event()	
 	
 func _on_service_controller_serve_bad() -> void:
 	if bad_stock_amount > 0 and current_client != null:
@@ -200,18 +213,18 @@ func next_client()->void:
 
 func next_day() -> void:
 	current_day += 1
-	var client_count = 4
-	match current_day:
-		1:
-			client_count = 6
-		2:
-			client_count = 8
-		3:
-			client_count = 10
-		4:
-			client_count = 15
-		_:
-			client_count = 500
+	var client_count = 500
+	#match current_day:
+		#1:
+			#client_count = 6
+		#2:
+			#client_count = 8
+		#3:
+			#client_count = 10
+		#4:
+			#client_count = 15
+		#_:
+			#client_count = 500
 			
 	for i in client_count:
 		client_queue.push_back(client_spawner.spawn_client())
@@ -254,15 +267,11 @@ func add_to_queue_in(event: EVENT, pos: int):
 			event_queue.push_back(EVENT.SPAWN_CLIENT)
 
 func _on_take_deal_pressed() -> void:
-	increase_bad_stock(deal_quantity)
-	total_money -= deal_price
-	print("deal taken")
-	take_deal.hide()
-	cancel_deal.hide()
+	var stock = you_got_stock_scene.instantiate()
+	stock.connect("stock_accepted", increase_stock)
+	stock.is_good_meat = false
+	add_child(stock)
 	
-	current_client.leave()
-	next_event()	
-
 func _on_cancel_deal_pressed() -> void:
 	print("deal cancelled")
 	take_deal.hide()

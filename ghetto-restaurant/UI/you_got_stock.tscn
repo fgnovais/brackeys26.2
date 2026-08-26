@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b0ghrvwdw2y2p" path="res://UI/you_got_stock.gd" id="1_rs5ms"]
 [ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_uhtvt"]
+[ext_resource type="Texture2D" uid="uid://coq84vnx05csr" path="res://UI/good_meat.png" id="3_pn0oq"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font_size = 41
@@ -24,12 +25,21 @@ offset_bottom = 1111.0
 scale = Vector2(0.47033063, 0.472463)
 texture = ExtResource("1_uhtvt")
 
+[node name="Meat" type="TextureRect" parent="." unique_id=280543287]
+layout_mode = 0
+offset_left = 842.99994
+offset_top = 302.00003
+offset_right = 2624.0
+offset_bottom = 1285.0
+scale = Vector2(0.1124257, 0.12795693)
+texture = ExtResource("3_pn0oq")
+
 [node name="Label" type="Label" parent="." unique_id=1263579796]
 layout_mode = 0
-offset_left = 774.0
-offset_top = 333.0
-offset_right = 1340.0
-offset_bottom = 425.0
+offset_left = 772.0
+offset_top = 231.0
+offset_right = 1338.0
+offset_bottom = 323.0
 text = "YOU GOT STOCK!!"
 label_settings = SubResource("LabelSettings_7ta8d")
 
