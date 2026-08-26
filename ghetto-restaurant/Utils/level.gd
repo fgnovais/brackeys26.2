@@ -216,13 +216,13 @@ func buy_good_stock_amount() -> void:
 	if coupon_count > 0 && total_money >= 5:
 		total_money -= 10
 		coupon_count -= 1
+		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
 	elif total_money >= 20:
 		total_money -= 20
+		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
 	else:
 		print("You got no money!")
 		
-	add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
-	
 func buy_bad_stock_amount() -> void:
 	current_client.client_info.dealer_is_requested = true
 	add_to_queue_in(EVENT.SPAWN_DEALER, 1)

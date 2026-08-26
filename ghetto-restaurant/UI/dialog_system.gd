@@ -7,7 +7,6 @@ var dialog_scene : PackedScene = load("res://UI/dialog_box.tscn")
 @onready var client_dialogs: VBoxContainer = $ClientDialogs
 @onready var player_dialogs: VBoxContainer = $PlayerDialogs
 signal no_more_dialog
-
 func _unhandled_input(event: InputEvent) -> void:
 	if idx < client_dialog.size():
 		if event.is_action_pressed("space"):
