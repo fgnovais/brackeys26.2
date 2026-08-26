@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://digwcvks4smit" path="res://Assets/client_box.png" id="1_wc47m"]
 [ext_resource type="Script" uid="uid://clkhlurtwx6wv" path="res://UI/dialog_box.gd" id="2_diy2i"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_6co6m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pncti"]
 font_size = 36
@@ -21,6 +22,7 @@ offset_left = 26.0
 offset_top = 49.0
 offset_right = 517.0
 offset_bottom = 192.0
+theme_override_fonts/font = ExtResource("3_6co6m")
 text = "Can i get a burger please"
 label_settings = SubResource("LabelSettings_pncti")
 autowrap_mode = 3

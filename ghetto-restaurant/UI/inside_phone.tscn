@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://ewpkm011sa7x"]
+
+[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_cx3bo"]
+[ext_resource type="Script" uid="uid://cug8ql2htt7j2" path="res://UI/inside_phone.gd" id="1_yetcf"]
+[ext_resource type="Texture2D" uid="uid://coq84vnx05csr" path="res://UI/good_meat.png" id="3_i4owc"]
+[ext_resource type="PackedScene" uid="uid://bjhkdoe56uyc6" path="res://UI/item_icon.tscn" id="4_51xre"]
+[ext_resource type="Texture2D" uid="uid://h4ats8hdkpyi" path="res://UI/bad_meat.png" id="4_441io"]
+[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="5_bryqp"]
+
+[sub_resource type="Shader" id="Shader_xi4sj"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+uniform float onoff: hint_range(0.0,1.0) = 0.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a  * onoff ;
+	}
+	outline = min(outline, 1.0)  * onoff ;
+	
+	vec4 color = texture(TEXTURE, UV) ;
+	COLOR = mix(color, line_color, outline - color.a); 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1fkb"]
+resource_local_to_scene = true
+shader = SubResource("Shader_xi4sj")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 6.9230003288425
+shader_parameter/onoff = 0.2
+
+[sub_resource type="Resource" id="Resource_bryqp"]
+script = ExtResource("5_bryqp")
+description = "Order expensive meat"
+title = "Good Meat"
+icon = ExtResource("3_i4owc")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
+
+[sub_resource type="Shader" id="Shader_51xre"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+uniform float onoff: hint_range(0.0,1.0) = 0.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a  * onoff ;
+	}
+	outline = min(outline, 1.0)  * onoff ;
+	
+	vec4 color = texture(TEXTURE, UV) ;
+	COLOR = mix(color, line_color, outline - color.a); 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_bryqp"]
+resource_local_to_scene = true
+shader = SubResource("Shader_51xre")
+shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 6.9230003288425
+shader_parameter/onoff = 0.2
+
+[sub_resource type="Resource" id="Resource_51xre"]
+script = ExtResource("5_bryqp")
+description = "Order cheap meat"
+title = "Bad meat"
+icon = ExtResource("4_441io")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
+
+[node name="InsidePhone" type="Control" unique_id=623244722]
+top_level = true
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yetcf")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1599997646]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_cx3bo")
+
+[node name="ItemIcon" parent="." unique_id=1078016639 instance=ExtResource("4_51xre")]
+material = SubResource("ShaderMaterial_y1fkb")
+layout_mode = 0
+offset_left = 455.0
+offset_top = 428.0
+offset_right = 794.0
+offset_bottom = 696.0
+scale = Vector2(0.8223583, 0.76550186)
+texture = ExtResource("3_i4owc")
+item = SubResource("Resource_bryqp")
+
+[node name="ItemIcon2" parent="." unique_id=1469221418 instance=ExtResource("4_51xre")]
+material = SubResource("ShaderMaterial_bryqp")
+layout_mode = 0
+offset_left = 899.0
+offset_top = 377.99997
+offset_right = 1315.0
+offset_bottom = 799.0
+scale = Vector2(0.6569755, 0.6121334)
+texture = ExtResource("4_441io")
+item = SubResource("Resource_51xre")
+
+[connection signal="selected" from="ItemIcon" to="." method="_on_buy_good_stock_pressed"]
+[connection signal="selected" from="ItemIcon2" to="." method="_on_buy_bad_stock_pressed"]

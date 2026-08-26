@@ -280,3 +280,6 @@ func check_dealer():
 	dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
 	take_deal.show()
 	cancel_deal.show()
+
+func _on_hover_component_selected() -> void:
+	pass # Replace with function body.

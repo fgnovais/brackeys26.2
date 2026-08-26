@@ -2,6 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://clcd1j1vfkvpc" path="res://Assets/Items/lupa.png" id="1_pxlly"]
 [ext_resource type="Script" uid="uid://dxsbfwx5rvy5l" path="res://UI/texture_rect.gd" id="2_umbco"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_n06vd"]
 [ext_resource type="AudioStream" uid="uid://dsng4lpuekalk" path="res://Assets/Audio/UI.wav" id="3_umbco"]
 
 [sub_resource type="Shader" id="Shader_pxlly"]
@@ -58,6 +59,7 @@ offset_top = -277.0
 offset_right = 857.7015
 offset_bottom = 28.0
 scale = Vector2(0.63270074, 0.6366692)
+theme_override_fonts/font = ExtResource("3_n06vd")
 text = "This item is AWESOME!!!"
 label_settings = SubResource("LabelSettings_7ta8d")
 autowrap_mode = 2
