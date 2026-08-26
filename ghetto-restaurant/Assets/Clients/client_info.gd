@@ -1,7 +1,7 @@
 extends Resource
 class_name Client_Info
 
-enum Type { NORMAL, ASAE, COP, FAKE_COP, FAKE_ASAE }
+enum Type { NORMAL, ASAE, COP, FAKE_COP, FAKE_ASAE, DEALER }
 
 var type: Type
 var client_texture: Texture2D = load("res://Assets/texture1.png")
@@ -11,6 +11,7 @@ var fake_cop_odd: float = 0.1
 var fake_asae_odd: float = 0.1
 var chance_to_complain : float = 0.3
 var dialog : Array[String] = ["Yo! Can i get a burger, please?","A burger would be good!"]
+var dealer_is_requested : bool = false
 
 func _init() -> void:
 	var textures = ["uid://bmh1fc8ur5fc3", "uid://bjtnndfbi3up8", "uid://wl75tsdp5frb", "res://Assets/texture1.png","res://Assets/texture2.png","res://Assets/texture3.png","res://Assets/texture4.png"]
@@ -22,6 +23,10 @@ func _init() -> void:
 	get_type()
 
 func get_type() -> void:
+	if dealer_is_requested == true:
+		type = Client_Info.Type.DEALER
+		print("Current client: ", Client_Info.Type.keys()[type])
+		return
 	var r = randf()
 	if r < cop_odd:
 		type = Client_Info.Type.COP
