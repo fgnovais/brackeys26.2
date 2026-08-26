@@ -56,7 +56,17 @@ func uberEats():
 	add_child(stock)
 	
 func bribe():
-	print("test")
+	if current_client.client_info.type == Client_Info.Type.ASAE:
+		var max_health : int = 5
+		total_health = max_health
+		current_client.leave()
+		next_event()
+		print("You rat ahrr... you can go!")
+		print(total_health)
+	elif current_client.client_info.type == Client_Info.Type.FAKE_ASAE:
+		print("Better Luck next time")
+	else:
+		print("Not Inspector, you missed your chance")
 
 func skip_customer():
 	current_client.leave()
@@ -69,8 +79,15 @@ func lupa():
 	current_client.percentage.show()
 
 func flipphone():
-	print("flipphone")
-	
+	if current_client.client_info.type == Client_Info.Type.COP:
+		current_client.leave()
+		next_event()
+		print("I'm actually leaving, have a good day")
+	elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
+		print("Not currently working, you are a lucky man")
+	else:
+		print("Not COP, you missed your chance")
+		
 #refresh labels every 0.3 seconds
 var delta_add : float = 0.3
 func _process(delta: float) -> void:
