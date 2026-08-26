@@ -82,6 +82,8 @@ func leave():
 
 func receive_good_food()->int:
 	dialog.text = "Thanks!"
+	
+	
 	return money
 
 func receive_bad_food():

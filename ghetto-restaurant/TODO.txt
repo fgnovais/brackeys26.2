@@ -1,15 +1,7 @@
 Dealer
-	spawn dealer
+	spawn dealer 
 	select items to buy / bad stock
 	can be a cop
-
-Cop
-	spawn cop
-	can be fake cop
-	
-Inspector
-	spawn inspector
-	can be fake inspector
 
 Items
 	implement bribe

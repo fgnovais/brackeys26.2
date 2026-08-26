@@ -96,11 +96,11 @@ func next_event():
 	
 	match event:			
 		EVENT.SPAWN_CLIENT:
-			next_client()
+			await next_client()
 		EVENT.SPAWN_COP:
-			next_client()
+			await next_client()
 		EVENT.SPAWN_DEALER:
-			next_client()
+			await next_client()
 		EVENT.GIVE_ITEM:
 			var item_name = "Coupon"
 			match item_name:
@@ -177,11 +177,13 @@ func next_day() -> void:
 		client_queue.push_back(client_spawner.spawn_client())
 
 func buy_good_stock_amount() -> void:
-	if coupon_is_active:
+	if coupon_is_active && total_money >= 5:
 		total_money -= 5
 		coupon_is_active = false
-	else:
+	elif total_money >= 10:
 		total_money -= 10
+	else:
+		print("You got no money!")
 		
 	add_to_queue_in(EVENT.STOCK_ARRIVING, 2)
 	
@@ -196,7 +198,7 @@ func _on_bell_bell_pressed() -> void:
 	if current_client != null:
 		current_client.leave()
 	next_event()
-		
+
 func show_game_over()-> void:
 	game_over.show()
 	Engine.time_scale = 0 
