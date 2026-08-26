@@ -6,7 +6,7 @@ var coupon_resource: Item = load("res://Assets/Items/Coupon.tres")
 var skip_resource: Item = load("res://Assets/Items/SkipCustomer.tres")
 var lupa_resource: Item = load("res://Assets/Items/Lupa.tres")
 var flip_phone_resource: Item = load("res://Assets/Items/Flipphone.tres")
-var uber_eats_resource: Item = load("res://Assets/Items/UberEats.tres")
+var uber_eats_resource: Item = load("res://Assets/Items/Order.tres")
 signal bribe
 signal skip_customer
 signal coupon
@@ -26,7 +26,7 @@ func apply(item_name : String) -> void:
 			lupa.emit()
 		"FlipPhone":
 			flipphone.emit()
-		"UberEats":
+		"Order":
 			uberEats.emit()
 		
 func give_bribe_item():

@@ -137,7 +137,6 @@ func next_event():
 			var stock = you_got_stock_scene.instantiate()
 			stock.connect("stock_accepted", increase_good_stock)
 			add_child(stock)
-			#good_stock_amount += 3
 		EVENT.CHEF_COMPLAINING:
 			pass
 		EVENT.CLIENT_COMPLAINING:

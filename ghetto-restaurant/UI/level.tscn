@@ -47,7 +47,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 script = ExtResource("5_8bcmq")
 
-[node name="Good" type="Button" parent="ServiceController" unique_id=1464754603]
+[node name="GiveGoodBurger" type="Button" parent="ServiceController" unique_id=1464754603]
 layout_mode = 0
 offset_left = 20.0
 offset_top = 871.0
@@ -58,7 +58,7 @@ theme_override_font_sizes/font_size = 180
 text = "Give Good Burger.
 "
 
-[node name="Bad" type="Button" parent="ServiceController" unique_id=2032489855]
+[node name="GiveBadBurger" type="Button" parent="ServiceController" unique_id=2032489855]
 layout_mode = 0
 offset_left = 437.00003
 offset_top = 873.9999
@@ -161,7 +161,7 @@ scale = Vector2(0.19482163, 0.18061364)
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]
 [connection signal="serve_good" from="ServiceController" to="." method="_on_service_controller_serve_good"]
-[connection signal="pressed" from="ServiceController/Good" to="ServiceController" method="_on_good_pressed"]
-[connection signal="pressed" from="ServiceController/Bad" to="ServiceController" method="_on_bad_pressed"]
+[connection signal="pressed" from="ServiceController/GiveGoodBurger" to="ServiceController" method="_on_good_pressed"]
+[connection signal="pressed" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_bad_pressed"]
 [connection signal="pressed" from="ServiceController/BuyGoodStock" to="." method="buy_good_stock_amount"]
 [connection signal="pressed" from="ServiceController/BuyBadStock" to="." method="buy_bad_stock_amount"]

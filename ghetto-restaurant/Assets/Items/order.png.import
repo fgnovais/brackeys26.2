@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2x7qqk8cef13"
-path="res://.godot/imported/ubereats.png-dee3d3c0942f43621dc479408818ea77.ctex"
+path="res://.godot/imported/order.png-dc34e302b524bf6f615b4b45e1e2b41d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Items/ubereats.png"
-dest_files=["res://.godot/imported/ubereats.png-dee3d3c0942f43621dc479408818ea77.ctex"]
+source_file="res://Assets/Items/order.png"
+dest_files=["res://.godot/imported/order.png-dc34e302b524bf6f615b4b45e1e2b41d.ctex"]
 
 [params]
 

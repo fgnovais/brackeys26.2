@@ -82,19 +82,17 @@ func leave():
 
 func receive_good_food()->int:
 	dialog.text = "Thanks!"
-	
-	
 	return money
 
 func receive_bad_food():
 	var chance_to_complain = 100
 	match client_info.type:
 		Client_Info.Type.NORMAL:
-			chance_to_complain = 20
+			chance_to_complain = 30
 		Client_Info.Type.ASAE:
 			chance_to_complain = 100
-		#Tipo.POLICIA:
-			#chance_to_complain = 50
+		_:
+			chance_to_complain = 10
 	
 	if chance_to_complain >= randi_range(0, 100):
 		return -1
