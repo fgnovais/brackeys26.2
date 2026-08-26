@@ -13,6 +13,9 @@ class_name Level
 @onready var preview: Preview = $Preview
 @onready var dialog_box: DialogBox = $DialogBox
 @onready var player_box: DialogBox = $PlayerBox
+@onready var deal_quantity : int = 0
+@onready var deal_price : int = 0
+
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
 var total_money : int = 15
@@ -154,6 +157,9 @@ func next_event():
 func increase_good_stock()-> void:
 	good_stock_amount += 3
 	next_event()
+
+func increase_bad_stock(deal_quantity)-> void:
+	bad_stock_amount += deal_quantity
 	
 func _on_service_controller_serve_bad() -> void:
 	if bad_stock_amount > 0 and current_client != null:
@@ -188,9 +194,7 @@ func next_client()->void:
 		player_box.show_dialog_box("I'll give you a....")
 		print(current_client.client_info.type)
 		if current_client.client_info.type == Client_Info.Type.DEALER:
-			dialog_box.show_dialog_box("What u wanna buy man?")
-			take_deal.show()
-			cancel_deal.show()	
+			check_dealer()
 	else:
 		next_day()
 
@@ -251,12 +255,28 @@ func add_to_queue_in(event: EVENT, pos: int):
 
 
 func _on_take_deal_pressed() -> void:
+	increase_bad_stock(deal_quantity)
+	total_money -= deal_price
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
+	
+	current_client.leave()
+	next_event()	
 
 
 func _on_cancel_deal_pressed() -> void:
 	print("deal cancelled")
 	take_deal.hide()
 	cancel_deal.hide()
+	current_client.leave()
+	next_event()
+	
+func check_dealer():
+	deal_quantity = [3, 5, 8, 10].pick_random()
+	deal_price = deal_quantity * [2, 3, 4].pick_random()
+	if deal_price > total_money: 
+			deal_price = total_money 
+	dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
+	take_deal.show()
+	cancel_deal.show()
