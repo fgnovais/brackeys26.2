@@ -7,6 +7,8 @@ class_name Level
 @onready var health_points: Label = $HealthPoints
 @onready var good_stock: Label = $ServiceController/GoodStock
 @onready var bad_stock: Label = $ServiceController/BadStock
+@onready var take_deal: Button = $ServiceController/TakeDeal
+@onready var cancel_deal: Button = $ServiceController/CancelDeal
 @onready var game_over: CanvasLayer = $GameOver
 @onready var preview: Preview = $Preview
 @onready var dialog_box: DialogBox = $DialogBox
@@ -121,6 +123,9 @@ func next_event():
 		EVENT.SPAWN_COP:
 			await next_client()
 		EVENT.SPAWN_DEALER:
+			if client_queue.size() > 0:
+				client_queue[0].client_info.dealer_is_requested = true
+				client_queue[0].client_info.get_type()
 			await next_client()
 		EVENT.GIVE_ITEM:
 			var item_name = "Coupon"
@@ -182,6 +187,10 @@ func next_client()->void:
 		dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
 		player_box.show_dialog_box("HUHHUH??")
 		print(current_client.client_info.type)
+		if current_client.client_info.type == Client_Info.Type.DEALER:
+			dialog_box.show_dialog_box("What u wanna buy man?")
+			take_deal.show()
+			cancel_deal.show()	
 	else:
 		next_day()
 
@@ -215,7 +224,8 @@ func buy_good_stock_amount() -> void:
 	add_to_queue_in(EVENT.STOCK_ARRIVING, 2)
 	
 func buy_bad_stock_amount() -> void:
-	add_to_queue_in(EVENT.SPAWN_DEALER, 5)
+	current_client.client_info.dealer_is_requested = true
+	add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 
 func _on_bell_bell_pressed() -> void:
 	total_health -= 1
@@ -238,3 +248,15 @@ func add_to_queue_in(event: EVENT, pos: int):
 			event_queue.insert(pos-1, event)
 		elif event_queue.size() <= i:
 			event_queue.push_back(EVENT.SPAWN_CLIENT)
+
+
+func _on_take_deal_pressed() -> void:
+	print("deal taken")
+	take_deal.hide()
+	cancel_deal.hide()
+
+
+func _on_cancel_deal_pressed() -> void:
+	print("deal cancelled")
+	take_deal.hide()
+	cancel_deal.hide()
