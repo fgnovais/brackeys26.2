@@ -6,7 +6,9 @@ var coupon_resource: Item = load("res://Assets/Items/Coupon.tres")
 var skip_resource: Item = load("res://Assets/Items/SkipCustomer.tres")
 var lupa_resource: Item = load("res://Assets/Items/Lupa.tres")
 var flip_phone_resource: Item = load("res://Assets/Items/Flipphone.tres")
-var uber_eats_resource: Item = load("res://Assets/Items/Order.tres")
+var order_resource: Item = load("res://Assets/Items/Order.tres")
+var get_item: PackedScene = load("res://UI/get_item.tscn")
+
 signal bribe
 signal skip_customer
 signal coupon
@@ -14,35 +16,50 @@ signal lupa
 signal flipphone
 signal uberEats
 
-func apply(item_name : String) -> void:
+enum Items {
+	BRIBE,
+	SKIP_CUSTOMER,
+	COUPON,
+	LUPA,
+	FLIP_PHONE,
+	ORDER
+}
+
+func apply(item_name : Items) -> void:
 	match item_name:
-		"Bribe":
+		Items.BRIBE:
 			bribe.emit()
-		"SkipCustomer":
+		Items.SKIP_CUSTOMER:
 			skip_customer.emit()
-		"Coupon":
+		Items.COUPON:
 			coupon.emit()
-		"Lupa":
+		Items.LUPA:
 			lupa.emit()
-		"FlipPhone":
+		Items.FLIP_PHONE:
 			flipphone.emit()
-		"Order":
+		Items.ORDER:
 			uberEats.emit()
 		
-func give_bribe_item():
-	current_items.push_back(bribe_resource)
+func give_item(item : Items):
+	var inst = get_item.instantiate()
+	add_child(inst)
 	
-func give_coupon_item():
-	current_items.push_back(coupon_resource)
+	match item:
+		Items.BRIBE:
+			inst.item_icon.item = bribe_resource
+		Items.SKIP_CUSTOMER:
+			inst.item_icon.item = skip_resource
+		Items.COUPON:
+			inst.item_icon.item = coupon_resource
+		Items.LUPA:
+			inst.item_icon.item = lupa_resource
+		Items.FLIP_PHONE:
+			inst.item_icon.item = flip_phone_resource
+		Items.ORDER:
+			inst.item_icon.item = order_resource
+			
+	inst.item_icon._ready()
+
+func give_random_item():
+	give_item(randi_range(0, 5))
 	
-func give_skip_item():
-	current_items.push_back(skip_resource)
-	
-func give_flipphone_item():
-	current_items.push_back(flip_phone_resource)
-	
-func give_ubereats_item():
-	current_items.push_back(uber_eats_resource)
-	
-func give_lupa_item():
-	current_items.push_back(lupa_resource)

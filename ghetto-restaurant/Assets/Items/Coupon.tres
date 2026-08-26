@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("2_blc6q")
 description = "Gain 50% discount at the groceries for 3 rounds."
-title = "Coupon"
+title = 2
 icon = ExtResource("1_6cj0b")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

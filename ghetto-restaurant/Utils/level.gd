@@ -44,12 +44,12 @@ func _ready() -> void:
 	next_day() 
 	next_client()
 	# DEBUG
-	ItemManager.give_bribe_item()
-	ItemManager.give_flipphone_item()
-	ItemManager.give_coupon_item()
-	ItemManager.give_skip_item()
-	ItemManager.give_ubereats_item()
-	ItemManager.give_lupa_item()
+	#ItemManager.give_item(ItemManager.Items.BRIBE)
+	#ItemManager.give_item(ItemManager.Items.FLIP_PHONE)
+	#ItemManager.give_item(ItemManager.Items.COUPON)
+	#ItemManager.give_item(ItemManager.Items.SKIP_CUSTOMER)
+	#ItemManager.give_item(ItemManager.Items.ORDER)
+	ItemManager.give_random_item()
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
@@ -253,7 +253,6 @@ func add_to_queue_in(event: EVENT, pos: int):
 		elif event_queue.size() <= i:
 			event_queue.push_back(EVENT.SPAWN_CLIENT)
 
-
 func _on_take_deal_pressed() -> void:
 	increase_bad_stock(deal_quantity)
 	total_money -= deal_price
@@ -263,7 +262,6 @@ func _on_take_deal_pressed() -> void:
 	
 	current_client.leave()
 	next_event()	
-
 
 func _on_cancel_deal_pressed() -> void:
 	print("deal cancelled")
@@ -280,6 +278,3 @@ func check_dealer():
 	dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
 	take_deal.show()
 	cancel_deal.show()
-
-func _on_hover_component_selected() -> void:
-	pass # Replace with function body.

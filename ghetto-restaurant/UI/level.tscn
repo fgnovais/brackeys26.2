@@ -21,7 +21,46 @@
 [ext_resource type="Script" uid="uid://ljqndfu5n8tt" path="res://UI/phone.gd" id="19_3na28"]
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="20_c5r36"]
 
+[sub_resource type="Animation" id="Animation_gjcv7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_3na28"]
+resource_name = "flies"
+length = 1.1666666
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.33333334, 0.6333333, 0.93333334),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-15.325, -5), Vector2(0, 5), Vector2(5, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_c5r36"]
+_data = {
+&"RESET": SubResource("Animation_gjcv7"),
+&"flies": SubResource("Animation_3na28")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font = ExtResource("14_jnhw6")
 font_size = 144
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
@@ -56,10 +95,6 @@ modulate = Color(0.45840496, 0.45840508, 0.4584049, 1)
 texture = ExtResource("2_6svg6")
 centered = false
 
-[node name="Flies" type="Sprite2D" parent="Background/L3" unique_id=1268521945]
-texture = ExtResource("3_rr11h")
-centered = false
-
 [node name="LayerLines" type="Sprite2D" parent="Background/L3" unique_id=270244238]
 texture = ExtResource("4_yn5ry")
 centered = false
@@ -67,6 +102,14 @@ centered = false
 [node name="WallStuff" type="Sprite2D" parent="Background/L3" unique_id=1688309686]
 texture = ExtResource("5_22qjf")
 centered = false
+
+[node name="Flies" type="Sprite2D" parent="Background/L3" unique_id=1268521945]
+texture = ExtResource("3_rr11h")
+centered = false
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background/L3/Flies" unique_id=541924791]
+libraries/ = SubResource("AnimationLibrary_c5r36")
+autoplay = &"flies"
 
 [node name="L2" type="Node2D" parent="Background" unique_id=1500446090]
 modulate = Color(0.67481464, 0.67481464, 0.6748146, 1)
@@ -77,6 +120,7 @@ texture = ExtResource("6_22qjf")
 
 [node name="L1" type="Node2D" parent="Background" unique_id=712091468]
 modulate = Color(0.74558026, 0.7455802, 0.7455802, 1)
+z_index = 1
 
 [node name="Counter" type="Sprite2D" parent="Background/L1" unique_id=898485371]
 position = Vector2(960, 539)
@@ -87,10 +131,12 @@ position = Vector2(957, 549)
 texture = ExtResource("8_mcco3")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
+z_index = 2
 position = Vector2(711.00006, 806)
 scale = Vector2(1.1109103, 1.1212252)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
+z_index = 2
 material = null
 position = Vector2(1501.0001, 1055)
 scale = Vector2(1.0624378, 0.9862308)
@@ -148,28 +194,27 @@ text = "Bad Burger.
 "
 
 [node name="TakeDeal" type="Button" parent="ServiceController" unique_id=469102990]
-visible = false
 layout_mode = 0
-offset_left = 987.0
-offset_top = 828.0
-offset_right = 2573.0
-offset_bottom = 1082.0
+offset_left = 937.9999
+offset_top = 652.0
+offset_right = 2524.0
+offset_bottom = 906.0
 scale = Vector2(0.10561331, 0.18486848)
 theme_override_font_sizes/font_size = 180
 text = "Take Deal"
 
 [node name="CancelDeal" type="Button" parent="ServiceController" unique_id=17242521]
-visible = false
 layout_mode = 0
-offset_left = 1180.9999
-offset_top = 828.0
-offset_right = 2767.0
-offset_bottom = 1082.0
+offset_left = 1380.0
+offset_top = 649.0
+offset_right = 2966.0
+offset_bottom = 903.0
 scale = Vector2(0.10561331, 0.18486848)
 theme_override_font_sizes/font_size = 180
 text = "Cancel Deal"
 
 [node name="Money" type="Label" parent="ServiceController" unique_id=993466695]
+z_index = 1
 layout_mode = 0
 offset_left = 357.0
 offset_top = 581.0
@@ -179,7 +224,6 @@ scale = Vector2(0.43296888, 0.23683104)
 label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="Day" type="Label" parent="ServiceController" unique_id=2137333337]
-visible = false
 layout_mode = 0
 offset_right = 332.0
 offset_bottom = 202.0
@@ -255,6 +299,7 @@ offset_bottom = 185.00002
 scale = Vector2(0.19482163, 0.18061364)
 
 [node name="Phone" type="Sprite2D" parent="." unique_id=1429021722]
+z_index = 2
 position = Vector2(1453, 814.00006)
 scale = Vector2(0.9815793, 0.7207937)
 texture = ExtResource("18_gjcv7")
@@ -280,8 +325,8 @@ label_settings = SubResource("LabelSettings_gjcv7")
 [connection signal="pressed" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_bad_pressed"]
 [connection signal="pressed" from="ServiceController/TakeDeal" to="." method="_on_take_deal_pressed"]
 [connection signal="pressed" from="ServiceController/CancelDeal" to="." method="_on_cancel_deal_pressed"]
-[connection signal="buy_bad" from="Phone" to="." method="buy_good_stock_amount"]
-[connection signal="buy_good" from="Phone" to="." method="buy_bad_stock_amount"]
+[connection signal="buy_bad" from="Phone" to="." method="buy_bad_stock_amount"]
+[connection signal="buy_good" from="Phone" to="." method="buy_good_stock_amount"]
 [connection signal="pressed" from="Phone/HoverComponent" to="Phone" method="_on_hover_component_pressed"]
 [connection signal="selected" from="Phone/HoverComponent" to="Phone" method="_on_hover_component_selected"]
 

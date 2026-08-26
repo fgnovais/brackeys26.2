@@ -6,6 +6,6 @@
 [resource]
 script = ExtResource("1_3wgfi")
 description = "See their exact percentage"
-title = "Lupa"
+title = 3
 icon = ExtResource("1_pbnl0")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
