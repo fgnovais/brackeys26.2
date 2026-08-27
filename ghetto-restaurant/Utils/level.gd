@@ -9,6 +9,8 @@ class_name Level
 @onready var bad_stock: Label = $ServiceController/BadStock
 @onready var take_deal: Button = $ServiceController/TakeDeal
 @onready var cancel_deal: Button = $ServiceController/CancelDeal
+@onready var serve_good_button: Button = $ServiceController/GiveGoodBurger
+@onready var serve_bad_button: Button = $ServiceController/GiveBadBurger
 @onready var game_over: CanvasLayer = $GameOver
 @onready var preview: Preview = $Preview
 @onready var dialog_box: DialogBox = $DialogBox
@@ -25,12 +27,18 @@ var current_day : int = 0
 var good_stock_amount = 1
 var bad_stock_amount = 1
 
+var bad_stock_purchases : int = 0
+var cop_chance_max : float = 0.3
+var cop_chance_step : float = 0.03
+
+var is_processing_action : bool = false
+var is_spawning : bool = false
+
 var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
 
 ## EVENT SYSTEM
 enum EVENT {
-	SPAWN_COP,
 	SPAWN_DEALER,
 	SPAWN_CLIENT,
 	GIVE_ITEM,
@@ -41,6 +49,8 @@ enum EVENT {
 
 func _ready() -> void:
 	game_over.hide()
+	serve_good_button.hide()
+	serve_bad_button.hide()
 	next_day() 
 	next_client()
 	# DEBUG
@@ -62,12 +72,35 @@ func uberEats():
 	stock.connect("stock_accepted", increase_stock)
 	add_child(stock)
 	
+func skip_customer():
+	if is_processing_action:
+		return
+	is_processing_action = true
+	
+	await hide_dialogs_and_buttons()
+	if current_client != null and is_instance_valid(current_client):
+		current_client.leave()
+		current_client = null
+	next_event()
+	is_processing_action = false
+	
+func coupon():
+	coupon_count = 3
+
 func bribe():
+	if is_processing_action:
+		return
+	if current_client == null or not is_instance_valid(current_client):
+		return
+	
 	if current_client.client_info.type == Client_Info.Type.ASAE:
+		is_processing_action = true
 		var max_health : int = 5
 		total_health = max_health
 		current_client.leave()
+		current_client = null
 		next_event()
+		is_processing_action = false
 		print("You rat ahrr... you can go!")
 		print(total_health)
 	elif current_client.client_info.type == Client_Info.Type.FAKE_ASAE:
@@ -75,27 +108,28 @@ func bribe():
 	else:
 		print("Not Inspector, you missed your chance")
 
-func skip_customer():
-	await dialog_box.hide_dialog_box()
-	await player_box.hide_dialog_box()
-	current_client.leave()
-	next_event()
-	
-func coupon():
-	coupon_count = 3
-
-func lupa():
-	current_client.percentage.show()
-
 func flipphone():
+	if is_processing_action:
+		return
+	if current_client == null or not is_instance_valid(current_client):
+		return
+	
 	if current_client.client_info.type == Client_Info.Type.COP:
+		is_processing_action = true
 		current_client.leave()
+		current_client = null
 		next_event()
+		is_processing_action = false
 		print("I'm actually leaving, have a good day")
 	elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
 		print("Not currently working, you are a lucky man")
 	else:
 		print("Not COP, you missed your chance")
+
+func lupa():
+	if current_client == null or not is_instance_valid(current_client):
+		return
+	current_client.percentage.show()
 		
 #refresh labels every 0.3 seconds
 var delta_add : float = 0.3
@@ -123,12 +157,14 @@ func next_event():
 	match event:			
 		EVENT.SPAWN_CLIENT:
 			await next_client()
-		EVENT.SPAWN_COP:
-			await next_client()
 		EVENT.SPAWN_DEALER:
 			if client_queue.size() > 0:
-				client_queue[0].client_info.dealer_is_requested = true
-				client_queue[0].client_info.get_type()
+				var cop_chance = min(cop_chance_max, bad_stock_purchases * cop_chance_step)
+				if randf() < cop_chance:
+					client_queue[0].client_info.request_cop()
+				else:
+					client_queue[0].client_info.dealer_is_requested = true
+					client_queue[0].client_info.get_type()
 			await next_client()
 		EVENT.GIVE_ITEM:
 			var item_name = "Coupon"
@@ -166,37 +202,56 @@ func increase_good_stock()-> void:
 	next_event()
 
 func increase_bad_stock(deal_quantity)-> void:
+	if current_client == null or not is_instance_valid(current_client):
+		is_processing_action = false
+		return
 	bad_stock_amount += deal_quantity
 	total_money -= deal_price
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
-	#current_client.leave()
-	next_event()	
+	current_client.leave()
+	current_client = null
+	next_event()
+	is_processing_action = false
 	
 func _on_service_controller_serve_bad() -> void:
-	if bad_stock_amount > 0 and current_client != null:
+	if is_processing_action:
+		return
+	if bad_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
+		is_processing_action = true
 		bad_stock_amount -= 1
 		var paid_money = current_client.receive_bad_food()
-		await dialog_box.hide_dialog_box()
-		await player_box.hide_dialog_box()
-		current_client.leave()
+		await hide_dialogs_and_buttons()
+		if current_client != null and is_instance_valid(current_client):
+			current_client.leave()
+			current_client = null
 		if paid_money == -1:
 			event_queue.push_back(EVENT.CLIENT_COMPLAINING)
 		else:
 			total_money += paid_money
 		next_event()
+		is_processing_action = false
 		
 func _on_service_controller_serve_good() -> void:
-	if good_stock_amount > 0 and current_client != null:
+	if is_processing_action:
+		return
+	if good_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
+		is_processing_action = true
 		good_stock_amount -= 1
 		total_money += current_client.receive_good_food()
-		await dialog_box.hide_dialog_box()
-		await player_box.hide_dialog_box()
-		current_client.leave()
+		await hide_dialogs_and_buttons()
+		if current_client != null and is_instance_valid(current_client):
+			current_client.leave()
+			current_client = null
 		next_event()
+		is_processing_action = false
 		
-func next_client()->void:
+func next_client() -> void:
+	if is_spawning:
+		return
+	is_spawning = true
+	
 	await get_tree().create_timer(1.5).timeout
 	if client_queue.size() > 0:
 		var client_scene = client_queue.get(0)
@@ -205,29 +260,32 @@ func next_client()->void:
 		current_client = client_scene
 		dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
 		player_box.show_dialog_box("I'll give you a....")
-		print(current_client.client_info.type)
+		serve_good_button.show()
+		serve_bad_button.show()
 		if current_client.client_info.type == Client_Info.Type.DEALER:
 			check_dealer()
 	else:
 		next_day()
+	
+	is_spawning = false
 
 func next_day() -> void:
 	current_day += 1
-	var client_count = 500
-	#match current_day:
-		#1:
-			#client_count = 6
-		#2:
-			#client_count = 8
-		#3:
-			#client_count = 10
-		#4:
-			#client_count = 15
-		#_:
-			#client_count = 500
+	var client_count: int
+	match current_day:
+		1:
+			client_count = 6
+		2:
+			client_count = 8
+		3:
+			client_count = 10
+		4:
+			client_count = 20
+		_:
+			client_count = 500
 			
 	for i in client_count:
-		client_queue.push_back(client_spawner.spawn_client())
+		client_queue.push_back(client_spawner.spawn_client(current_day))
 
 func buy_good_stock_amount() -> void:
 	if coupon_count > 0 && total_money >= 5:
@@ -241,19 +299,32 @@ func buy_good_stock_amount() -> void:
 		print("You got no money!")
 		
 func buy_bad_stock_amount() -> void:
+	if is_processing_action:
+		return
+	if current_client == null or not is_instance_valid(current_client):
+		return
 	current_client.client_info.dealer_is_requested = true
 	add_to_queue_in(EVENT.SPAWN_DEALER, 1)
-
+	
 func _on_bell_bell_pressed() -> void:
+	if is_processing_action:
+		return
+	is_processing_action = true
+	
 	total_health -= 1
 	if total_health == 0:
 		show_game_over()
+		is_processing_action = false
 		return
-	if current_client != null:
-		await dialog_box.hide_dialog_box()
-		await player_box.hide_dialog_box()
-		current_client.leave()
+	
+	if current_client != null and is_instance_valid(current_client):
+		await hide_dialogs_and_buttons()
+		if current_client != null and is_instance_valid(current_client):
+			current_client.leave()
+			current_client = null
+	
 	next_event()
+	is_processing_action = false
 
 func show_game_over()-> void:
 	game_over.show()
@@ -267,17 +338,27 @@ func add_to_queue_in(event: EVENT, pos: int):
 			event_queue.push_back(EVENT.SPAWN_CLIENT)
 
 func _on_take_deal_pressed() -> void:
+	if is_processing_action:
+		return
+	is_processing_action = true
 	var stock = you_got_stock_scene.instantiate()
 	stock.connect("stock_accepted", increase_stock)
 	stock.is_good_meat = false
 	add_child(stock)
-	
+	is_processing_action = false
+
 func _on_cancel_deal_pressed() -> void:
+	if is_processing_action:
+		return
+	is_processing_action = true
 	print("deal cancelled")
 	take_deal.hide()
 	cancel_deal.hide()
-	current_client.leave()
+	if current_client != null and is_instance_valid(current_client):
+		current_client.leave()
+		current_client = null
 	next_event()
+	is_processing_action = false
 	
 func check_dealer():
 	deal_quantity = [3, 5, 8, 10].pick_random()
@@ -287,3 +368,9 @@ func check_dealer():
 	dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
 	take_deal.show()
 	cancel_deal.show()
+	
+func hide_dialogs_and_buttons() -> void:
+	await dialog_box.hide_dialog_box()
+	await player_box.hide_dialog_box()
+	serve_good_button.hide()
+	serve_bad_button.hide()
