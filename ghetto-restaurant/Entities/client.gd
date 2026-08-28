@@ -11,6 +11,8 @@ var money
 @onready var complain_sound: AudioStreamPlayer = $ComplainSound
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dialog_system: DialogSystem = $DialogSystem
+const COMPLAIN = preload("uid://btsqleifxyl8b")
+const LAUGH = preload("uid://bkjyu0dftbd1a")
 
 
 func _ready() -> void:
@@ -24,6 +26,7 @@ func _ready() -> void:
 	dialog_system.client_dialog = client_info.dialog
 	dialog_system.face = client_info.get_face()
 	dialog_system.spawn()
+	leave_sound.stream = COMPLAIN
 
 func transition_animations(anim_name : String):
 	if anim_name == "arrive":
@@ -38,6 +41,7 @@ func leave():
 
 func receive_good_food()->int:
 	dialog.text = "Thanks!"
+	leave_sound.stream = LAUGH
 	return money
 
 func receive_bad_food():
@@ -49,11 +53,9 @@ func receive_bad_food():
 			chance_to_complain = 0
 	
 	if chance_to_complain >= randi_range(0, 100):
-		complain_sound.play()
 		return -1
 	else:
 		return money
-
 
 func refresh_dialog() -> void:
 	dialog_system.client_dialog = client_info.dialog

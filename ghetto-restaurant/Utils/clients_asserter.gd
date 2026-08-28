@@ -81,9 +81,9 @@ func play_animation(entities_array : Array[Client_Info]):
 		if info.type == Client_Info.Type.ASAE:
 			square.material = ShaderMaterial.new()
 			square.material = INSPECTOR_HIGHLIGHT
-			await get_tree().create_timer(1).timeout
+			await get_tree().create_timer(0.5).timeout
 	
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(2).timeout
 	
 	#get positions
 	var positions: Array[Vector2] = []
@@ -95,7 +95,7 @@ func play_animation(entities_array : Array[Client_Info]):
 	for child in h_box_container.get_children():
 		var offset_needed = target_position - (child.global_position*2) + Vector2(randf_range(-100, 100), randf_range(-100, 100))
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(child, "offset_transform_position", offset_needed, 1)
+		tween.tween_property(child, "offset_transform_position", offset_needed, 0.5)
 		#child.offset_position = offset_needed
 
 	await get_tree().create_timer(1).timeout
@@ -118,14 +118,14 @@ func play_animation(entities_array : Array[Client_Info]):
 	var idx = 0
 	for ent in h_box_container.get_children():
 		var tween = create_tween().set_parallel(true)
-		tween.tween_property(ent, "offset_transform_position", Vector2.ZERO, 2)
+		tween.tween_property(ent, "offset_transform_position", Vector2.ZERO, 1)
 		idx+= 1
 				
-	await get_tree().create_timer(3).timeout
+	await get_tree().create_timer(1).timeout
 	start.show()
 	
 func _on_start_pressed() -> void:
 	start_level.emit()
 	animation_player.play("kill")
-	await get_tree().create_timer(2).timeout
+	await get_tree().create_timer(1).timeout
 	queue_free()

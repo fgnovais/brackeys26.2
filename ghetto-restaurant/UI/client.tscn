@@ -4,7 +4,6 @@
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_55wjg"]
 [ext_resource type="Texture2D" uid="uid://dddnisudwu527" path="res://Assets/texture2.png" id="3_bi6ty"]
 [ext_resource type="AudioStream" uid="uid://byg4fqb04jbp8" path="res://Assets/Audio/Footstep.wav" id="5_b07cc"]
-[ext_resource type="AudioStream" uid="uid://bkjyu0dftbd1a" path="res://Assets/Audio/Laugh.wav" id="6_66y5m"]
 [ext_resource type="PackedScene" uid="uid://c742pnbykexpk" path="res://UI/dialog_system.tscn" id="7_b07cc"]
 [ext_resource type="AudioStream" uid="uid://btsqleifxyl8b" path="res://Assets/Audio/Complain.wav" id="7_tpe35"]
 
@@ -163,7 +162,7 @@ autoplay = &"idle"
 stream = ExtResource("5_b07cc")
 
 [node name="LeaveSound" type="AudioStreamPlayer" parent="." unique_id=305517918]
-stream = ExtResource("6_66y5m")
+stream = ExtResource("7_tpe35")
 
 [node name="ComplainSound" type="AudioStreamPlayer" parent="." unique_id=985776046]
 stream = ExtResource("7_tpe35")

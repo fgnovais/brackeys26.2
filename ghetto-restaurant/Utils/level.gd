@@ -69,7 +69,7 @@ func start_level():
 	# DEBUG
 	
 func _ready() -> void:
-	Engine.time_scale = 8
+	#Engine.time_scale = 8
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
@@ -266,7 +266,8 @@ func _on_service_controller_serve_bad() -> void:
 			current_client.leave()
 			current_client = null
 		if paid_money == -1:
-			event_queue.push_back(EVENT.CLIENT_COMPLAINING)
+			hurt()
+			#event_queue.push_back(EVENT.CLIENT_COMPLAINING)
 		else:
 			total_money += paid_money
 		next_event()
@@ -310,7 +311,6 @@ func next_client() -> void:
 
 func next_day() -> void:
 	current_day += 1
-	
 	await spawn_client_asserter()
 	
 	for client_info in client_infos:
@@ -352,11 +352,6 @@ func _on_bell_bell_pressed() -> void:
 	is_processing_action = true
 	
 	hurt()
-	
-	if total_health == 0:
-		show_game_over()
-		is_processing_action = false
-		return
 	
 	if current_client != null and is_instance_valid(current_client):
 		await hide_dialogs_and_buttons()
@@ -443,6 +438,10 @@ func hide_dialogs_and_buttons() -> void:
 func hurt():
 	total_health -= 1
 	animation_player.play("hurt")
+	if total_health <= 0:
+		show_game_over()
+		is_processing_action = false
+		return
 
 func get_caught() -> void:
 	take_deal.hide()

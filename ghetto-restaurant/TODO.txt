@@ -3,15 +3,11 @@ Cop
 	fake cop (refinar/dialog/animation specific)
 	
 Dealer
-	can only have dealer sprite
 	if is cop -> change sprite to cop
 	
 Client
 	can be inspector (animation to change to inspector texture)
 
-Items
-	receive a new one every round (give choice to player or random?)
-	
 Dialog System
 	inspectors / cops have specific dialog
 
