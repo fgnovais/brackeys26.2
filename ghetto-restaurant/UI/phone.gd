@@ -5,11 +5,12 @@ var is_menu_spawned : bool = false
 signal buy_good
 signal buy_bad
 @onready var order: Label = $Order
-
+signal hide_dialog
 func _ready() -> void:
 	order.hide()
 	
 func spawn_menu():
+	hide_dialog.emit()
 	var menu = menu_scene.instantiate()
 	menu.connect("buy_good", good)
 	menu.connect("buy_bad", bad)

@@ -12,6 +12,7 @@ signal no_more_dialog
 func spawn():
 	var inst : DialogBox = dialog_scene.instantiate()
 	inst.face = face
+	inst.global_position = Vector2(0,0)
 	client_dialogs.add_child(inst)
 	inst.show_dialog_box(client_dialog[idx])
 	if idx > 1:

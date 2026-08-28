@@ -13,6 +13,7 @@ offset_left = 688.0
 offset_top = 67.0
 offset_right = 1221.0
 offset_bottom = 275.0
+mouse_filter = 2
 texture = ExtResource("1_wc47m")
 script = ExtResource("2_diy2i")
 

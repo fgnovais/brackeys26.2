@@ -15,6 +15,8 @@ signal coupon
 signal lupa
 signal flipphone
 signal uberEats
+signal hide_dialogs
+signal show_dialogs
 
 enum Items {
 	BRIBE,
@@ -44,6 +46,7 @@ func apply(item_name : Items) -> void:
 func give_item(item : Items):
 	var inst = get_item.instantiate()
 	add_child(inst)
+	inst.connect("show_dialogs", _show_dialogs)
 	
 	match item:
 		Items.BRIBE:
@@ -62,6 +65,10 @@ func give_item(item : Items):
 	inst.item_icon._ready()
 
 func give_random_item(amount: int = 1):
+	hide_dialogs.emit()
 	for i in amount:
 		give_item(randi_range(0, 5))
 	
+func _show_dialogs():
+	if get_child_count() == 1:
+		show_dialogs.emit()

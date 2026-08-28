@@ -8,7 +8,7 @@ const INSPECTOR_HIGHLIGHT = preload("uid://dspccllwrqw0k")
 @onready var start: Button = $Start
 
 signal start_level
-var label_text = "%s clients
+var label_text = "%s Clients
 %s Inspectors
 
 Feed a bad burger to an inspector if you want to lose.

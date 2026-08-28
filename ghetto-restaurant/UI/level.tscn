@@ -461,6 +461,7 @@ label_settings = SubResource("LabelSettings_gjcv7")
 [connection signal="pressed" from="ServiceController/CancelDeal" to="." method="_on_cancel_deal_pressed"]
 [connection signal="buy_bad" from="Phone" to="." method="buy_bad_stock_amount"]
 [connection signal="buy_good" from="Phone" to="." method="buy_good_stock_amount"]
+[connection signal="hide_dialog" from="Phone" to="." method="_on_phone_hide_dialog"]
 [connection signal="pressed" from="Phone/HoverComponent" to="Phone" method="_on_hover_component_pressed"]
 [connection signal="selected" from="Phone/HoverComponent" to="Phone" method="_on_hover_component_selected"]
 

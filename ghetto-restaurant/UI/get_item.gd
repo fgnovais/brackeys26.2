@@ -1,6 +1,7 @@
 extends Control
 
 signal give_meat
+signal show_dialogs
 @onready var item_icon: ItemIcon = $ItemIcon
 
 func _ready() -> void:
@@ -11,4 +12,6 @@ func _on_item_icon_selected(item: ItemIcon) -> void:
 		give_meat.emit()
 	else:
 		ItemManager.current_items.push_back(item.item)
+	show_dialogs.emit()
 	queue_free()
+	

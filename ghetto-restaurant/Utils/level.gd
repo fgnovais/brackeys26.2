@@ -18,6 +18,7 @@ class_name Level
 @onready var deal_price : int = 0
 @onready var clients_asserter_scene: PackedScene = load("res://Utils/clients_asserter.tscn")
 @onready var animation_player: AnimationPlayer = $HealthPoints/AnimationPlayer
+@onready var service_controller: Control = $ServiceController
 const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
 const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
 
@@ -74,6 +75,9 @@ func _ready() -> void:
 	ItemManager.connect("coupon", coupon)
 	ItemManager.connect("lupa", lupa)
 	ItemManager.connect("flipphone", flipphone)
+	ItemManager.connect("hide_dialogs", _on_phone_hide_dialog)
+	ItemManager.connect("show_dialogs", _on_phone_show_dialog)
+	
 	game_over.hide()
 	serve_good_button.hide()
 	serve_bad_button.hide()
@@ -83,6 +87,7 @@ func _ready() -> void:
 
 func uberEats():
 	var stock = you_got_stock_scene.instantiate()
+	_on_phone_hide_dialog()
 	stock.connect("give_meat", increase_stock_uber_eats)
 	add_child(stock)
 	stock.item_icon.item = GOOD_MEAT_RESOURCE
@@ -204,10 +209,12 @@ func next_event():
 			add_child(stock)
 			stock.item_icon.item = GOOD_MEAT_RESOURCE
 			stock.item_icon._ready()
+			_on_phone_hide_dialog()
 		EVENT.CLIENT_COMPLAINING:
 			pass
 
 func increase_stock(is_good_meat : bool):
+	_on_phone_show_dialog()
 	if is_good_meat:
 		increase_good_stock()
 	else:
@@ -219,6 +226,7 @@ func increase_good_stock()-> void:
 
 func increase_stock_uber_eats():
 	good_stock_amount += 3
+	_on_phone_show_dialog()
 
 func increase_bad_stock(deal_quantity)-> void:
 	if current_client == null or not is_instance_valid(current_client):
@@ -308,6 +316,7 @@ func buy_good_stock_amount() -> void:
 		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
 	else:
 		print("You got no money!")
+	_on_phone_show_dialog()
 		
 func buy_bad_stock_amount() -> void:
 	if is_processing_action:
@@ -316,6 +325,7 @@ func buy_bad_stock_amount() -> void:
 		return
 	current_client.client_info.dealer_is_requested = true
 	add_to_queue_in(EVENT.SPAWN_DEALER, 1)
+	_on_phone_show_dialog()
 	
 func _on_bell_bell_pressed() -> void:
 	if is_processing_action:
@@ -430,3 +440,16 @@ func get_lucky_fake_cop() -> void:
 	
 	await next_event()
 	is_processing_action = false
+
+func _on_phone_hide_dialog() -> void:
+	if current_client != null:
+		current_client.dialog_system.hide()
+	player_box.hide()
+	service_controller.hide()
+	
+func _on_phone_show_dialog() -> void:
+	if current_client != null:
+		current_client.dialog_system.show()
+	player_box.show()
+	service_controller.show()
+	
