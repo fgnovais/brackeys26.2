@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c468wne2xcvtm"]
 
 [ext_resource type="Script" uid="uid://cgqtm4xdmohjm" path="res://UI/preview.gd" id="1_nc0gc"]
-[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_yl5qo"]
+[ext_resource type="Texture2D" uid="uid://bj0rsnewblmkv" path="res://UI/Queue.png" id="2_2mhgs"]
 [ext_resource type="Texture2D" uid="uid://bi67mdeyk0rab" path="res://UI/bell.png" id="2_nc0gc"]
 
 [node name="Preview" type="Control" unique_id=1857883474]
@@ -14,18 +14,22 @@ grow_vertical = 2
 script = ExtResource("1_nc0gc")
 
 [node name="TextureRect" type="TextureRect" parent="." unique_id=568734952]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_yl5qo")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_2mhgs")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect" unique_id=2011020892]
+top_level = true
 layout_mode = 0
-offset_left = 352.0
-offset_top = 277.00003
-offset_right = 2004.3086
-offset_bottom = 594.0
-scale = Vector2(0.6020731, 0.89666957)
+offset_left = 134.0
+offset_top = 261.00003
+offset_right = 1786.3086
+offset_bottom = 578.0
+scale = Vector2(0.5633651, 0.32317102)
 theme_override_constants/separation = 112
 
 [node name="TextureRect" type="TextureRect" parent="TextureRect/HBoxContainer" unique_id=1756272066]

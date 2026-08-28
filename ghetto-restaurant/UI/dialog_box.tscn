@@ -5,7 +5,7 @@
 [ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_6co6m"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pncti"]
-font_size = 36
+font_size = 28
 
 [node name="DialogBox" type="TextureRect" unique_id=1505121633]
 offset_left = 688.0
@@ -18,10 +18,10 @@ script = ExtResource("2_diy2i")
 [node name="Label" type="Label" parent="." unique_id=60028819]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_left = 26.0
-offset_top = 49.0
-offset_right = 517.0
-offset_bottom = 192.0
+offset_left = 31.0
+offset_top = 80.0
+offset_right = 495.0
+offset_bottom = 208.0
 theme_override_fonts/font = ExtResource("3_6co6m")
 text = "Can i get a burger please"
 label_settings = SubResource("LabelSettings_pncti")

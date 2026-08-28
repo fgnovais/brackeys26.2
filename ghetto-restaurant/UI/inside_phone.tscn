@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://h4ats8hdkpyi" path="res://UI/bad_meat.png" id="4_441io"]
 [ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="5_bryqp"]
 
-[sub_resource type="Shader" id="Shader_xi4sj"]
+[sub_resource type="Shader" id="Shader_441io"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -33,9 +33,9 @@ void fragment() {
 	COLOR = mix(color, line_color, outline - color.a); 
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_y1fkb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_51xre"]
 resource_local_to_scene = true
-shader = SubResource("Shader_xi4sj")
+shader = SubResource("Shader_441io")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2
@@ -43,11 +43,10 @@ shader_parameter/onoff = 0.2
 [sub_resource type="Resource" id="Resource_bryqp"]
 script = ExtResource("5_bryqp")
 description = "Order expensive meat"
-title = "Good Meat"
 icon = ExtResource("3_i4owc")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
 
-[sub_resource type="Shader" id="Shader_51xre"]
+[sub_resource type="Shader" id="Shader_bryqp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -73,9 +72,9 @@ void fragment() {
 	COLOR = mix(color, line_color, outline - color.a); 
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bryqp"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xi4sj"]
 resource_local_to_scene = true
-shader = SubResource("Shader_51xre")
+shader = SubResource("Shader_bryqp")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2
@@ -83,7 +82,6 @@ shader_parameter/onoff = 0.2
 [sub_resource type="Resource" id="Resource_51xre"]
 script = ExtResource("5_bryqp")
 description = "Order cheap meat"
-title = "Bad meat"
 icon = ExtResource("4_441io")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
 
@@ -104,26 +102,45 @@ offset_bottom = 40.0
 texture = ExtResource("1_cx3bo")
 
 [node name="ItemIcon" parent="." unique_id=1078016639 instance=ExtResource("4_51xre")]
-material = SubResource("ShaderMaterial_y1fkb")
+material = SubResource("ShaderMaterial_51xre")
 layout_mode = 0
-offset_left = 455.0
-offset_top = 428.0
-offset_right = 794.0
-offset_bottom = 696.0
-scale = Vector2(0.8223583, 0.76550186)
+offset_left = 445.0
+offset_top = 333.0
+offset_right = 610.0
+offset_bottom = 462.0
+scale = Vector2(2, 2)
 texture = ExtResource("3_i4owc")
 item = SubResource("Resource_bryqp")
 
+[node name="Label" parent="ItemIcon" index="0" unique_id=1389996503]
+offset_left = -12.500008
+offset_top = -57.0
+offset_right = 953.2015
+offset_bottom = 248.0
+scale = Vector2(0.16177607, 0.17014419)
+text = "Order expensive meat"
+
 [node name="ItemIcon2" parent="." unique_id=1469221418 instance=ExtResource("4_51xre")]
-material = SubResource("ShaderMaterial_bryqp")
+material = SubResource("ShaderMaterial_xi4sj")
 layout_mode = 0
-offset_left = 899.0
-offset_top = 377.99997
-offset_right = 1315.0
-offset_bottom = 799.0
-scale = Vector2(0.6569755, 0.6121334)
+offset_left = 928.0
+offset_top = 331.0
+offset_right = 1084.0
+offset_bottom = 463.0
+scale = Vector2(2, 2)
 texture = ExtResource("4_441io")
 item = SubResource("Resource_51xre")
 
+[node name="Label" parent="ItemIcon2" index="0" unique_id=1389996503]
+offset_left = 25.999992
+offset_top = -53.5
+offset_right = 991.7015
+offset_bottom = 251.5
+scale = Vector2(0.17609125, 0.17042005)
+text = "Order cheap meat"
+
 [connection signal="selected" from="ItemIcon" to="." method="_on_buy_good_stock_pressed"]
 [connection signal="selected" from="ItemIcon2" to="." method="_on_buy_bad_stock_pressed"]
+
+[editable path="ItemIcon"]
+[editable path="ItemIcon2"]

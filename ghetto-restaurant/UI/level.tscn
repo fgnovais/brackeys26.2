@@ -17,9 +17,19 @@
 [ext_resource type="PackedScene" uid="uid://tvnrhe63rnis" path="res://UI/dialog_box.tscn" id="9_2im43"]
 [ext_resource type="Texture2D" uid="uid://cuqor4c18sm8a" path="res://Assets/player_box.png" id="10_7j0cy"]
 [ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="14_jnhw6"]
+[ext_resource type="Texture2D" uid="uid://ck7trxt0c1yt1" path="res://UI/hp/0.5.png" id="16_ck4dv"]
+[ext_resource type="Texture2D" uid="uid://cbxjlh5rvtat1" path="res://UI/hp/1.png" id="17_inh4j"]
+[ext_resource type="Texture2D" uid="uid://doubuc8372enn" path="res://UI/hp/1.5.png" id="18_1rd7f"]
 [ext_resource type="Texture2D" uid="uid://co8qjvd1msp84" path="res://UI/phone.png" id="18_gjcv7"]
+[ext_resource type="Texture2D" uid="uid://bm81mk1yovq5a" path="res://UI/hp/2.png" id="19_3mdya"]
 [ext_resource type="Script" uid="uid://ljqndfu5n8tt" path="res://UI/phone.gd" id="19_3na28"]
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="20_c5r36"]
+[ext_resource type="Texture2D" uid="uid://cwlbpduwp85o7" path="res://UI/hp/2.5.png" id="20_sn240"]
+[ext_resource type="Texture2D" uid="uid://bnfeswgjvstlr" path="res://UI/hp/3.png" id="21_a8jji"]
+[ext_resource type="Texture2D" uid="uid://d2ycxolt46bq7" path="res://UI/hp/3.5.png" id="22_nxgci"]
+[ext_resource type="Texture2D" uid="uid://tlqapk87wvvf" path="res://UI/hp/4.png" id="23_y2i1u"]
+[ext_resource type="Texture2D" uid="uid://q38td8i5smqa" path="res://UI/hp/4.5.png" id="24_8k21o"]
+[ext_resource type="Texture2D" uid="uid://b7kj0nw3gl1aj" path="res://UI/hp/5.png" id="25_ng07t"]
 
 [sub_resource type="Animation" id="Animation_gjcv7"]
 length = 0.001
@@ -59,6 +69,11 @@ _data = {
 &"flies": SubResource("Animation_3na28")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_hwoix"]
+font = ExtResource("14_jnhw6")
+font_size = 73
+font_color = Color(0, 1, 1, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font = ExtResource("14_jnhw6")
 font_size = 144
@@ -66,13 +81,43 @@ font_size = 144
 [sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
 font_size = 147
 
-[sub_resource type="LabelSettings" id="LabelSettings_hwoix"]
-font = ExtResource("14_jnhw6")
-font_size = 73
-font_color = Color(0, 1, 1, 1)
-
-[sub_resource type="LabelSettings" id="LabelSettings_twa8r"]
-font_size = 38
+[sub_resource type="SpriteFrames" id="SpriteFrames_7ta8d"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_ck4dv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_inh4j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_1rd7f")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_3mdya")
+}, {
+"duration": 1.0,
+"texture": ExtResource("20_sn240")
+}, {
+"duration": 1.0,
+"texture": ExtResource("21_a8jji")
+}, {
+"duration": 1.0,
+"texture": ExtResource("22_nxgci")
+}, {
+"duration": 1.0,
+"texture": ExtResource("23_y2i1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("24_8k21o")
+}, {
+"duration": 1.0,
+"texture": ExtResource("25_ng07t")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="LabelSettings" id="LabelSettings_wnmnv"]
 font_size = 301
@@ -142,25 +187,25 @@ position = Vector2(1501.0001, 1055)
 scale = Vector2(1.0624378, 0.9862308)
 
 [node name="DialogBox" parent="." unique_id=1505121633 instance=ExtResource("9_2im43")]
-offset_left = 930.0
-offset_top = 6.0
-offset_right = 1463.0
-offset_bottom = 214.0
-scale = Vector2(0.7342372, 0.7672112)
+offset_left = 791.0
+offset_top = 22.0
+offset_right = 1324.0
+offset_bottom = 230.0
+scale = Vector2(1.0288228, 0.9032063)
 
 [node name="PlayerBox" parent="." unique_id=309634947 instance=ExtResource("9_2im43")]
-offset_left = 344.00003
-offset_top = 93.0
-offset_right = 1001.0
-offset_bottom = 348.0
-scale = Vector2(1.1036621, 1.2346843)
+offset_left = 30.0
+offset_top = 233.00002
+offset_right = 687.0
+offset_bottom = 488.0
+scale = Vector2(0.980143, 0.9909052)
 texture = ExtResource("10_7j0cy")
 
 [node name="Label" parent="PlayerBox" index="0" unique_id=60028819]
-offset_left = 156.0
-offset_top = 64.0
-offset_right = 647.0
-offset_bottom = 207.0
+offset_left = 157.11992
+offset_top = 79.72508
+offset_right = 648.11993
+offset_bottom = 222.72508
 
 [node name="ServiceController" type="Control" parent="." unique_id=1547221562]
 layout_mode = 3
@@ -171,27 +216,47 @@ script = ExtResource("5_8bcmq")
 
 [node name="GiveGoodBurger" type="Button" parent="ServiceController" unique_id=1464754603]
 layout_mode = 0
-offset_left = 509.0
-offset_top = 300.0
-offset_right = 1679.5205
-offset_bottom = 554.0
+offset_left = 186.0
+offset_top = 378.0
+offset_right = 1530.0
+offset_bottom = 632.0
 scale = Vector2(0.16449213, 0.20953861)
 theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
 text = "Good Burger.
 "
 
+[node name="GoodStock" type="Label" parent="ServiceController/GiveGoodBurger" unique_id=677769474]
+layout_mode = 0
+offset_left = 1033.4841
+offset_top = -133.62697
+offset_right = 1116.4841
+offset_bottom = -32.62697
+scale = Vector2(4.521559, 1.8394984)
+text = "10"
+label_settings = SubResource("LabelSettings_hwoix")
+
 [node name="GiveBadBurger" type="Button" parent="ServiceController" unique_id=2032489855]
 layout_mode = 0
-offset_left = 820.0
-offset_top = 304.0
-offset_right = 1851.0
-offset_bottom = 558.0002
+offset_left = 440.0
+offset_top = 382.0
+offset_right = 1656.0
+offset_bottom = 636.0002
 scale = Vector2(0.18579613, 0.20403814)
 theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
 text = "Bad Burger.
 "
+
+[node name="BadStock" type="Label" parent="ServiceController/GiveBadBurger" unique_id=972599840]
+layout_mode = 0
+offset_left = 801.9544
+offset_top = -127.427185
+offset_right = 884.9544
+offset_bottom = -26.427185
+scale = Vector2(5.2210464, 1.8616925)
+text = "10"
+label_settings = SubResource("LabelSettings_hwoix")
 
 [node name="TakeDeal" type="Button" parent="ServiceController" unique_id=469102990]
 visible = false
@@ -233,26 +298,6 @@ offset_bottom = 202.0
 text = "DAY:"
 label_settings = SubResource("LabelSettings_bp5er")
 
-[node name="GoodStock" type="Label" parent="ServiceController" unique_id=677769474]
-layout_mode = 0
-offset_left = 641.0
-offset_top = 239.0
-offset_right = 724.0
-offset_bottom = 340.0
-scale = Vector2(0.80996597, 0.8307092)
-text = "10"
-label_settings = SubResource("LabelSettings_hwoix")
-
-[node name="BadStock" type="Label" parent="ServiceController" unique_id=972599840]
-layout_mode = 0
-offset_left = 950.0
-offset_top = 240.0
-offset_right = 1033.0
-offset_bottom = 341.0
-scale = Vector2(0.80996597, 0.8307092)
-text = "10"
-label_settings = SubResource("LabelSettings_hwoix")
-
 [node name="HoverAudio" type="AudioStreamPlayer" parent="ServiceController" unique_id=1515059205]
 stream = ExtResource("6_1xvvo")
 volume_db = -20.0
@@ -262,15 +307,12 @@ pitch_scale = 0.3
 stream = ExtResource("6_1xvvo")
 volume_db = -20.0
 
-[node name="HealthPoints" type="Label" parent="." unique_id=1675634253]
-offset_left = 12.000122
-offset_top = 13.0
-offset_right = 200.00012
-offset_bottom = 66.0
-scale = Vector2(1.5898782, 1.4127605)
-theme_override_fonts/font = ExtResource("14_jnhw6")
-text = "HEALTH: 5"
-label_settings = SubResource("LabelSettings_twa8r")
+[node name="HealthPoints" type="AnimatedSprite2D" parent="." unique_id=1985340818]
+position = Vector2(165, 61.999996)
+scale = Vector2(0.9395474, 0.92807823)
+sprite_frames = SubResource("SpriteFrames_7ta8d")
+frame = 2
+frame_progress = 0.719768
 
 [node name="ClientSpawner" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
 
@@ -295,26 +337,27 @@ label_settings = SubResource("LabelSettings_wnmnv")
 
 [node name="Preview" parent="." unique_id=1857883474 instance=ExtResource("7_thgdw")]
 visible = false
-offset_left = -61.0
-offset_top = 185.00002
-offset_right = -61.0
-offset_bottom = 185.00002
-scale = Vector2(0.19482163, 0.18061364)
+offset_left = 448.0
+offset_top = 277.0
+offset_right = 448.0
+offset_bottom = 277.0
+scale = Vector2(0.6350607, 0.5247549)
 
 [node name="Phone" type="Sprite2D" parent="." unique_id=1429021722]
 z_index = 2
-position = Vector2(1453, 814.00006)
+position = Vector2(899, 646.00006)
 scale = Vector2(0.9815793, 0.7207937)
 texture = ExtResource("18_gjcv7")
 script = ExtResource("19_3na28")
 
 [node name="HoverComponent" parent="Phone" unique_id=1123238874 instance=ExtResource("20_c5r36")]
+position = Vector2(508.3644, 277.4718)
 
 [node name="Order" type="Label" parent="Phone" unique_id=1641676396]
-offset_left = -34.638058
-offset_top = -159.54643
-offset_right = 73.36194
-offset_bottom = -136.54643
+offset_left = 363.69962
+offset_top = 98.502426
+offset_right = 692.6996
+offset_bottom = 147.50243
 text = "Order Meat."
 label_settings = SubResource("LabelSettings_gjcv7")
 

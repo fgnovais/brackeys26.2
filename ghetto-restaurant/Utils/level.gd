@@ -4,9 +4,9 @@ class_name Level
 @onready var client_spawner: ClientSpawner = $ClientSpawner
 @onready var money: Label = $ServiceController/Money
 @onready var day: Label = $ServiceController/Day
-@onready var health_points: Label = $HealthPoints
-@onready var good_stock: Label = $ServiceController/GoodStock
-@onready var bad_stock: Label = $ServiceController/BadStock
+@onready var health_points: AnimatedSprite2D = $HealthPoints
+@onready var good_stock: Label = $ServiceController/GiveGoodBurger/GoodStock
+@onready var bad_stock: Label = $ServiceController/GiveBadBurger/BadStock
 @onready var take_deal: Button = $ServiceController/TakeDeal
 @onready var cancel_deal: Button = $ServiceController/CancelDeal
 @onready var serve_good_button: Button = $ServiceController/GiveGoodBurger
@@ -37,7 +37,7 @@ var is_spawning : bool = false
 
 var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
-
+var client_infos: Array[Client_Info] = []
 const GOOD_BURGER_COST = 30
 
 ## EVENT SYSTEM
@@ -54,31 +54,33 @@ func spawn_client_asserter():
 	var clients_asserter = clients_asserter_scene.instantiate()
 	clients_asserter.connect("start_level", start_level)
 	add_child(clients_asserter)
-	client_queue = await clients_asserter.populate_day(current_day)
+	await get_tree().create_timer(1).timeout
+	client_infos = await clients_asserter.populate_day(current_day)
 
 func start_level():
-func _ready() -> void:
-	game_over.hide()
-	serve_good_button.hide()
-	serve_bad_button.hide()
-	next_day() 
 	next_client()
 	# DEBUG
 	ItemManager.give_random_item()
+	
+	
+func _ready() -> void:
+	Engine.time_scale = 8
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
 	ItemManager.connect("coupon", coupon)
 	ItemManager.connect("lupa", lupa)
 	ItemManager.connect("flipphone", flipphone)
-	
-func _ready() -> void:
 	game_over.hide()
-	next_day() 
+	serve_good_button.hide()
+	serve_bad_button.hide()
+	
+	# start the day
+	next_day()
 
 func uberEats():
 	var stock = you_got_stock_scene.instantiate()
-	stock.connect("stock_accepted", increase_stock)
+	stock.connect("stock_accepted", increase_stock_uber_eats)
 	add_child(stock)
 	
 func skip_customer():
@@ -153,7 +155,7 @@ func refresh_labels():
 	good_stock.text = str(good_stock_amount)
 	bad_stock.text = str(bad_stock_amount)
 	day.text = "DAY: " + str(current_day)
-	health_points.text = "HEALTH: " + str(total_health)
+	health_points.frame = (total_health*2) -1
 			
 func next_event():
 	preview.next_queue = event_queue.slice(0,3)
@@ -200,6 +202,7 @@ func next_event():
 		EVENT.CLIENT_COMPLAINING:
 			pass
 
+	
 func increase_stock(is_good_meat : bool):
 	if is_good_meat:
 		increase_good_stock()
@@ -209,6 +212,9 @@ func increase_stock(is_good_meat : bool):
 func increase_good_stock()-> void:
 	good_stock_amount += 3
 	next_event()
+
+func increase_stock_uber_eats():
+	good_stock_amount += 3
 
 func increase_bad_stock(deal_quantity)-> void:
 	if current_client == null or not is_instance_valid(current_client):
@@ -280,36 +286,13 @@ func next_client() -> void:
 
 func next_day() -> void:
 	current_day += 1
-	spawn_client_asserter()
+	await spawn_client_asserter()
 	
-	var client_count = 500
-	#match current_day:
-		#1:
-			#client_count = 6
-		#2:
-			#client_count = 8
-		#3:
-			#client_count = 10
-		#4:
-			#client_count = 15
-		#_:
-			#client_count = 500
-		
-	var client_count: int
-	match current_day:
-		1:
-			client_count = 6
-		2:
-			client_count = 8
-		3:
-			client_count = 10
-		4:
-			client_count = 20
-		_:
-			client_count = 500
-			
-	for i in client_count:
-		client_queue.push_back(client_spawner.spawn_client(current_day))
+	for client_info in client_infos:
+		var client = client_spawner.spawn_client(current_day)
+		client.client_info = client_info
+		client_queue.push_back(client)
+	client_queue.shuffle()
 
 func buy_good_stock_amount() -> void:
 	if coupon_count > 0 && total_money >= 5:

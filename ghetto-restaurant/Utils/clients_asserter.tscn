@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8ji040lkcmgj" path="res://Utils/clients_asserter.gd" id="1_f6fsj"]
 [ext_resource type="Texture2D" uid="uid://digwcvks4smit" path="res://Assets/client_box.png" id="2_07cqi"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_f6fsj"]
 
 [sub_resource type="Animation" id="Animation_qx3qn"]
 length = 0.001
@@ -91,6 +92,10 @@ _data = {
 &"spawn": SubResource("Animation_f6fsj")
 }
 
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font = ExtResource("3_f6fsj")
+font_size = 51
+
 [node name="ClientsAsserter" type="Control" unique_id=1217629449]
 top_level = true
 z_index = 6
@@ -111,32 +116,43 @@ color = Color(0, 0, 0, 0.8156863)
 
 [node name="Box" type="TextureRect" parent="." unique_id=211498813]
 layout_mode = 0
-offset_left = 172.00002
-offset_top = 358.0
-offset_right = 705.0
-offset_bottom = 566.0
-scale = Vector2(2.9374483, 1.3265024)
+offset_left = 138.0
+offset_top = 189.0
+offset_right = 671.0
+offset_bottom = 397.0
+scale = Vector2(3.233742, 2.2938035)
 texture = ExtResource("2_07cqi")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Box" unique_id=804378707]
+[node name="HBoxContainer" type="GridContainer" parent="Box" unique_id=720925488]
 layout_mode = 0
-offset_left = 27.574951
-offset_top = 67.09375
-offset_right = 3466.575
-offset_bottom = 485.09372
+offset_left = 27.522291
+offset_top = 47.955284
+offset_right = 3222.887
+offset_bottom = 465.95526
 scale = Vector2(0.15173058, 0.17981128)
 offset_transform_enabled = true
+columns = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1676340400]
 libraries/ = SubResource("AnimationLibrary_07cqi")
 
 [node name="Start" type="Button" parent="." unique_id=1883052980]
 layout_mode = 0
-offset_left = 1322.0
-offset_top = 514.0
-offset_right = 1414.0
-offset_bottom = 545.0
-theme_override_colors/font_color = Color(0.70493007, 2.945602e-05, 0.5253379, 1)
+offset_left = 1451.0001
+offset_top = 501.0
+offset_right = 1562.0001
+offset_bottom = 532.0
+scale = Vector2(3.1374452, 3.3601208)
+theme_override_colors/font_color = Color(1, 1, 0, 1)
+theme_override_fonts/font = ExtResource("3_f6fsj")
 text = "START DAY"
+
+[node name="Label" type="Label" parent="." unique_id=1875006915]
+layout_mode = 0
+offset_left = 193.0
+offset_top = 692.0
+offset_right = 1738.0
+offset_bottom = 905.0
+label_settings = SubResource("LabelSettings_7ta8d")
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

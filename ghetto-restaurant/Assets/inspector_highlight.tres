@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://dspccllwrqw0k"]
+
+[ext_resource type="Shader" uid="uid://d25a46rib4y4v" path="res://Assets/highlight.gdshader" id="1_4bd6i"]
+
+[resource]
+shader = ExtResource("1_4bd6i")
+shader_parameter/line_color = Color(1, 0, 0, 1)
+shader_parameter/line_thickness = 20.0
+shader_parameter/onoff = 1.0
