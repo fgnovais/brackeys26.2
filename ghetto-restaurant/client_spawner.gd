@@ -6,8 +6,8 @@ class_name ClientSpawner
 
 @onready var spawn_point: Marker2D = $SpawnPoint
 
-func spawn_client() -> Client:
+func spawn_client(day: int) -> Client:
 	var c: Client = client_scene.instantiate()
-	c.client_info = Client_Info.new()
+	c.client_info = Client_Info.new(day)
 	c.global_position = spawn_point.global_position
 	return c 

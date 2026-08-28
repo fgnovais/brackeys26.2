@@ -16,8 +16,6 @@ func update_textures():
 		match event:
 			Level.EVENT.SPAWN_CLIENT:
 				h_box_container.get_child(i).texture = spawn_client_texture
-			Level.EVENT.SPAWN_COP:
-				h_box_container.get_child(i).texture = spawn_cop_texture
 			Level.EVENT.SPAWN_DEALER:
 				h_box_container.get_child(i).texture = spawn_dealer_texture
 			Level.EVENT.STOCK_ARRIVING:
