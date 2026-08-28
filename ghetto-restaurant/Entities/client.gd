@@ -86,4 +86,7 @@ func get_face() -> Texture2D:
 		_:
 			return FORK_FACE
 
-	
+func refresh_dialog() -> void:
+	dialog_system.client_dialog = client_info.dialog
+	dialog_system.idx = 0
+	dialog_system.face = get_face()

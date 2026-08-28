@@ -33,6 +33,8 @@ var bad_stock_amount = 1
 var bad_stock_purchases : int = 0
 var cop_chance_max : float = 0.3
 var cop_chance_step : float = 0.03
+var fine_amount : int = 30
+
 
 var is_processing_action : bool = false
 var is_spawning : bool = false
@@ -179,7 +181,7 @@ func next_event():
 					client_queue[0].client_info.request_cop()
 				else:
 					client_queue[0].client_info.dealer_is_requested = true
-					client_queue[0].client_info.get_type()
+					await client_queue[0].client_info.get_type()
 			await next_client()
 		EVENT.GIVE_ITEM:
 			var item_name = "Coupon"
@@ -280,7 +282,7 @@ func next_client() -> void:
 		serve_good_button.show()
 		serve_bad_button.show()
 		if current_client.client_info.type == Client_Info.Type.DEALER:
-			check_dealer()
+			current_client.dialog_system.no_more_dialog.connect(check_dealer, CONNECT_ONE_SHOT)
 	else:
 		next_day()
 	
@@ -351,6 +353,14 @@ func _on_take_deal_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
+	
+	if current_client != null and is_instance_valid(current_client) and current_client.client_info.type == Client_Info.Type.COP:
+		get_caught()
+		return
+	elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
+			get_lucky_fake_cop()
+			return
+	
 	var stock = you_got_stock_scene.instantiate()
 	stock.connect("give_meat", increase_stock.bind(false))
 	add_child(stock)
@@ -376,7 +386,7 @@ func check_dealer():
 	deal_price = deal_quantity * [2, 3, 4].pick_random()
 	if deal_price > total_money: 
 			deal_price = total_money 
-	#dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
+	current_client.dialog_system.show_message("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
 	take_deal.show()
 	cancel_deal.show()
 	
@@ -389,3 +399,34 @@ func hide_dialogs_and_buttons() -> void:
 func hurt():
 	total_health -= 1
 	animation_player.play("hurt")
+
+func get_caught() -> void:
+	take_deal.hide()
+	cancel_deal.hide()
+	
+	dialog_box.show_dialog_box("You have been caught, you will have to pay a fine now!")
+	total_money -= fine_amount
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	if current_client != null and is_instance_valid(current_client):
+		current_client.leave()
+		current_client = null
+	
+	await next_event()
+	is_processing_action = false
+	
+func get_lucky_fake_cop() -> void:
+	take_deal.hide()
+	cancel_deal.hide()
+	
+	dialog_box.show_dialog_box("Oof, you're a lucky guy, I'm not on duty, but I'll be close by!")
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	if current_client != null and is_instance_valid(current_client):
+		current_client.leave()
+		current_client = null
+	
+	await next_event()
+	is_processing_action = false

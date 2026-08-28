@@ -25,3 +25,13 @@ func _unhandled_input(event: InputEvent) -> void:
 			spawn()
 	else:
 		no_more_dialog.emit()
+		
+func show_message(text: String) -> void:
+	var inst : DialogBox = dialog_scene.instantiate()
+	inst.face = face
+	client_dialogs.add_child(inst)
+	inst.show_dialog_box(text)
+	
+	if idx > 1:
+		var tween = create_tween()
+		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -200), 1)
