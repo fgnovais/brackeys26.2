@@ -15,6 +15,7 @@ class_name Level
 @onready var player_box: DialogBox = $PlayerBox
 @onready var deal_quantity : int = 0
 @onready var deal_price : int = 0
+@onready var clients_asserter_scene: PackedScene = load("res://Utils/clients_asserter.tscn")
 
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
@@ -24,9 +25,10 @@ var current_client : Client
 var current_day : int = 0
 var good_stock_amount = 1
 var bad_stock_amount = 1
-
 var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
+
+const GOOD_BURGER_COST = 30
 
 ## EVENT SYSTEM
 enum EVENT {
@@ -39,16 +41,15 @@ enum EVENT {
 	CLIENT_COMPLAINING
 }
 
-func _ready() -> void:
-	game_over.hide()
-	next_day() 
+func spawn_client_asserter():
+	var clients_asserter = clients_asserter_scene.instantiate()
+	clients_asserter.connect("start_level", start_level)
+	add_child(clients_asserter)
+	client_queue = await clients_asserter.populate_day(current_day)
+
+func start_level():
 	next_client()
 	# DEBUG
-	#ItemManager.give_item(ItemManager.Items.BRIBE)
-	#ItemManager.give_item(ItemManager.Items.FLIP_PHONE)
-	#ItemManager.give_item(ItemManager.Items.COUPON)
-	#ItemManager.give_item(ItemManager.Items.SKIP_CUSTOMER)
-	#ItemManager.give_item(ItemManager.Items.ORDER)
 	ItemManager.give_random_item()
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
@@ -56,6 +57,10 @@ func _ready() -> void:
 	ItemManager.connect("coupon", coupon)
 	ItemManager.connect("lupa", lupa)
 	ItemManager.connect("flipphone", flipphone)
+	
+func _ready() -> void:
+	game_over.hide()
+	next_day() 
 
 func uberEats():
 	var stock = you_got_stock_scene.instantiate()
@@ -213,6 +218,8 @@ func next_client()->void:
 
 func next_day() -> void:
 	current_day += 1
+	spawn_client_asserter()
+	
 	var client_count = 500
 	#match current_day:
 		#1:
@@ -225,17 +232,15 @@ func next_day() -> void:
 			#client_count = 15
 		#_:
 			#client_count = 500
-			
-	for i in client_count:
-		client_queue.push_back(client_spawner.spawn_client())
+		
 
 func buy_good_stock_amount() -> void:
 	if coupon_count > 0 && total_money >= 5:
 		total_money -= 10
 		coupon_count -= 1
 		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
-	elif total_money >= 20:
-		total_money -= 20
+	elif total_money >= GOOD_BURGER_COST:
+		total_money -= GOOD_BURGER_COST
 		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
 	else:
 		print("You got no money!")

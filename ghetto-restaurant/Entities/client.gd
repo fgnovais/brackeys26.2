@@ -10,15 +10,7 @@ var client_info : Client_Info
 @onready var leave_sound: AudioStreamPlayer = $LeaveSound
 @onready var complain_sound: AudioStreamPlayer = $ComplainSound
 
-#var recurso_penalizado: GameState.Recurso
-#var quantidade_penalidade: int
-#var balao_instancia: Node2D
 var money
-#const NOMES_PRATOS := {
-	#"prato_do_dia": "Prato do Dia",
-	#"sopa": "Sopa da Casa",
-	#"peixe": "Peixe Grelhado"
-#}
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 
 #signal satisfeito(cliente)
@@ -33,7 +25,7 @@ func _ready() -> void:
 	animation_player.play("arrive")
 	animation_player.animation_finished.connect(transition_animations)
 	dialog.text = client_info.dialog.pick_random()
-	percentage.text = str(client_info.asae_odd*100) + "%	"
+	#percentage.text = str(client_info.asae_odd*100) + "%	"
 	percentage.hide()
 	arrive_sound.play()
 
@@ -92,12 +84,10 @@ func receive_good_food()->int:
 func receive_bad_food():
 	var chance_to_complain = 100
 	match client_info.type:
-		Client_Info.Type.NORMAL:
-			chance_to_complain = 30
 		Client_Info.Type.ASAE:
 			chance_to_complain = 100
 		_:
-			chance_to_complain = 10
+			chance_to_complain = 0
 	
 	if chance_to_complain >= randi_range(0, 100):
 		complain_sound.play()
