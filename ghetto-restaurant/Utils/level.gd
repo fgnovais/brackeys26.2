@@ -62,7 +62,6 @@ func start_level():
 	# DEBUG
 	ItemManager.give_random_item()
 	
-	
 func _ready() -> void:
 	Engine.time_scale = 8
 	ItemManager.connect("uberEats", uberEats)
