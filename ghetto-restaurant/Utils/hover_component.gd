@@ -22,12 +22,14 @@ func _on_area_2d_mouse_entered() -> void:
 	is_selected = true
 	parent.modulate ='#d2dae2' 
 	parent.material.set_shader_parameter("onoff",1)
+	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
 	
 func _on_area_2d_mouse_exited() -> void:
 	selected.emit(false)
 	is_selected = false
 	parent.modulate = '#FFFFFF'
 	parent.material.set_shader_parameter("onoff",0)
+	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse1"):

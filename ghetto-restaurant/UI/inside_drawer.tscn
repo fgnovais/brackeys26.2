@@ -7,8 +7,10 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ufma1"]
 border_width_left = 1
 border_width_top = 3
-border_width_right = 1
+border_width_right = 3
 border_width_bottom = 1
+expand_margin_left = 2.0
+expand_margin_top = 1.0
 
 [sub_resource type="InputEventKey" id="InputEventKey_ufma1"]
 device = -1
@@ -77,6 +79,7 @@ offset_top = 954.00006
 offset_right = 1576.0
 offset_bottom = 1208.0
 scale = Vector2(0.8912864, 0.9165798)
+mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 180
 theme_override_styles/hover = SubResource("StyleBoxFlat_ufma1")
 shortcut = SubResource("Shortcut_hwoix")

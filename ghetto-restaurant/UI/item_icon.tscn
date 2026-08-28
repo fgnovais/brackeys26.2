@@ -39,14 +39,15 @@ shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2000000095
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
-font_size = 100
+font_size = 143
 font_color = Color(0, 0, 0, 1)
-outline_size = 64
+outline_size = 65
 
 [node name="ItemIcon" type="TextureRect" unique_id=1469221418]
 material = SubResource("ShaderMaterial_umbco")
 offset_right = 254.0
 offset_bottom = 268.0
+mouse_default_cursor_shape = 2
 texture = ExtResource("1_pxlly")
 script = ExtResource("2_umbco")
 
@@ -54,11 +55,11 @@ script = ExtResource("2_umbco")
 z_index = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_left = -88.00001
-offset_top = -108.0
-offset_right = 877.7015
-offset_bottom = 197.0
-scale = Vector2(0.51709825, 0.5059496)
+offset_left = -157.0
+offset_top = -101.0
+offset_right = 1539.9058
+offset_bottom = 204.0
+scale = Vector2(0.34710234, 0.35912538)
 theme_override_fonts/font = ExtResource("3_n06vd")
 text = "This item is AWESOME!!!"
 label_settings = SubResource("LabelSettings_7ta8d")

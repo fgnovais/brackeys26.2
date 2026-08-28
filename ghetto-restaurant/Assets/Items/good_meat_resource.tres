@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cffxeehgwieho"]
+
+[ext_resource type="Texture2D" uid="uid://coq84vnx05csr" path="res://UI/good_meat.png" id="1_xdkjr"]
+[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="2_4kho7"]
+
+[resource]
+script = ExtResource("2_4kho7")
+description = "Expensive meat"
+title = 6
+icon = ExtResource("1_xdkjr")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

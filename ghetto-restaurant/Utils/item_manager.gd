@@ -22,7 +22,8 @@ enum Items {
 	COUPON,
 	LUPA,
 	FLIP_PHONE,
-	ORDER
+	ORDER,
+	MEAT
 }
 
 func apply(item_name : Items) -> void:
@@ -60,6 +61,7 @@ func give_item(item : Items):
 			
 	inst.item_icon._ready()
 
-func give_random_item():
-	give_item(randi_range(0, 5))
+func give_random_item(amount: int = 1):
+	for i in amount:
+		give_item(randi_range(0, 5))
 	

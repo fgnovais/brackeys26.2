@@ -1,11 +1,13 @@
 [gd_scene format=3 uid="uid://ewpkm011sa7x"]
 
-[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_cx3bo"]
 [ext_resource type="Script" uid="uid://cug8ql2htt7j2" path="res://UI/inside_phone.gd" id="1_yetcf"]
+[ext_resource type="Texture2D" uid="uid://c1nuyvywtlhd5" path="res://UI/drawer_no_arrow.png" id="2_bryqp"]
 [ext_resource type="Texture2D" uid="uid://coq84vnx05csr" path="res://UI/good_meat.png" id="3_i4owc"]
 [ext_resource type="PackedScene" uid="uid://bjhkdoe56uyc6" path="res://UI/item_icon.tscn" id="4_51xre"]
 [ext_resource type="Texture2D" uid="uid://h4ats8hdkpyi" path="res://UI/bad_meat.png" id="4_441io"]
-[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="5_bryqp"]
+[ext_resource type="Resource" uid="uid://cffxeehgwieho" path="res://Assets/Items/good_meat_resource.tres" id="5_51xre"]
+[ext_resource type="Resource" uid="uid://phng332imj5i" path="res://Assets/Items/bad_meat_resource.tres" id="7_bryqp"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="8_bryqp"]
 
 [sub_resource type="Shader" id="Shader_441io"]
 resource_local_to_scene = true
@@ -40,12 +42,6 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2
 
-[sub_resource type="Resource" id="Resource_bryqp"]
-script = ExtResource("5_bryqp")
-description = "Order expensive meat"
-icon = ExtResource("3_i4owc")
-metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
-
 [sub_resource type="Shader" id="Shader_bryqp"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
@@ -79,11 +75,11 @@ shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2
 
-[sub_resource type="Resource" id="Resource_51xre"]
-script = ExtResource("5_bryqp")
-description = "Order cheap meat"
-icon = ExtResource("4_441io")
-metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font = ExtResource("8_bryqp")
+font_size = 84
+outline_size = 32
+outline_color = Color(0, 0, 0, 1)
 
 [node name="InsidePhone" type="Control" unique_id=623244722]
 top_level = true
@@ -96,51 +92,83 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_yetcf")
 
+[node name="Black" type="ColorRect" parent="." unique_id=1188943873]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.000004
+offset_top = -39.000004
+offset_right = 120.63159
+offset_bottom = -11.637573
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.95250404, 1.0312794)
+color = Color(0, 0, 0, 0.80784315)
+
 [node name="TextureRect" type="TextureRect" parent="." unique_id=1599997646]
+z_index = 2
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-texture = ExtResource("1_cx3bo")
+offset_left = 317.0
+offset_top = 68.0
+offset_right = 2098.0
+offset_bottom = 1051.0
+scale = Vector2(0.6995528, 0.6482693)
+texture = ExtResource("2_bryqp")
 
 [node name="ItemIcon" parent="." unique_id=1078016639 instance=ExtResource("4_51xre")]
+z_index = 2
 material = SubResource("ShaderMaterial_51xre")
 layout_mode = 0
-offset_left = 445.0
-offset_top = 333.0
-offset_right = 610.0
-offset_bottom = 462.0
-scale = Vector2(2, 2)
+offset_left = 620.0
+offset_top = 309.0
+offset_right = 785.0
+offset_bottom = 438.0
+scale = Vector2(1.442135, 1.3366902)
 texture = ExtResource("3_i4owc")
-item = SubResource("Resource_bryqp")
+item = ExtResource("5_51xre")
 
 [node name="Label" parent="ItemIcon" index="0" unique_id=1389996503]
-visible = false
-offset_left = -12.500008
-offset_top = -57.0
-offset_right = 953.2015
-offset_bottom = 248.0
-scale = Vector2(0.16177607, 0.17014419)
+z_index = 2
+offset_left = -36.751083
+offset_top = 148.12706
+offset_right = 2061.829
+offset_bottom = 453.12708
+scale = Vector2(0.12809534, 0.14334267)
 text = "Order expensive meat"
 
 [node name="ItemIcon2" parent="." unique_id=1469221418 instance=ExtResource("4_51xre")]
+z_index = 2
 material = SubResource("ShaderMaterial_xi4sj")
 layout_mode = 0
-offset_left = 928.0
-offset_top = 331.0
-offset_right = 1084.0
-offset_bottom = 463.0
-scale = Vector2(2, 2)
+offset_left = 967.9999
+offset_top = 305.00003
+offset_right = 1123.9999
+offset_bottom = 437.00003
+scale = Vector2(1.3078836, 1.3650005)
 texture = ExtResource("4_441io")
-item = SubResource("Resource_51xre")
+item = ExtResource("7_bryqp")
 
 [node name="Label" parent="ItemIcon2" index="0" unique_id=1389996503]
-visible = false
-offset_left = 25.999992
-offset_top = -53.5
-offset_right = 991.7015
-offset_bottom = 251.5
-scale = Vector2(0.17609125, 0.17042005)
+z_index = 2
+offset_left = 0.7647104
+offset_top = 144.32228
+offset_right = 1690.2296
+offset_bottom = 449.32227
+scale = Vector2(0.1432922, 0.15008344)
 text = "Order cheap meat"
+
+[node name="Label" type="Label" parent="." unique_id=970730162]
+z_index = 2
+layout_mode = 0
+offset_left = 739.0
+offset_top = 193.0
+offset_right = 1303.0
+offset_bottom = 277.0
+scale = Vector2(0.691138, 0.71423227)
+text = "I will order..."
+label_settings = SubResource("LabelSettings_7ta8d")
 
 [connection signal="selected" from="ItemIcon" to="." method="_on_buy_good_stock_pressed"]
 [connection signal="selected" from="ItemIcon2" to="." method="_on_buy_bad_stock_pressed"]

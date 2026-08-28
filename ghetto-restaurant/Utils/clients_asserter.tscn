@@ -143,6 +143,7 @@ offset_top = 501.0
 offset_right = 1562.0001
 offset_bottom = 532.0
 scale = Vector2(3.1374452, 3.3601208)
+mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(1, 1, 0, 1)
 theme_override_fonts/font = ExtResource("3_f6fsj")
 text = "START DAY"

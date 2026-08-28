@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://bbv6qu8067s5t"]
 
-[ext_resource type="Texture2D" uid="uid://cwxrcg2hr6fln" path="res://UI/drawer.png" id="1_jyx1a"]
 [ext_resource type="Script" uid="uid://d0olcywfrpxns" path="res://UI/get_item.gd" id="1_p432y"]
+[ext_resource type="Texture2D" uid="uid://c1nuyvywtlhd5" path="res://UI/drawer_no_arrow.png" id="2_d48o1"]
 [ext_resource type="PackedScene" uid="uid://bjhkdoe56uyc6" path="res://UI/item_icon.tscn" id="2_p432y"]
 [ext_resource type="Resource" uid="uid://cjbd5fkdnlw4a" path="res://Assets/Items/Lupa.tres" id="4_d48o1"]
 
-[sub_resource type="Shader" id="Shader_d48o1"]
+[sub_resource type="Shader" id="Shader_p432y"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -31,9 +31,9 @@ void fragment() {
 	COLOR = mix(color, line_color, outline - color.a); 
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_bu0nb"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_d48o1"]
 resource_local_to_scene = true
-shader = SubResource("Shader_d48o1")
+shader = SubResource("Shader_p432y")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2
@@ -48,22 +48,50 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_p432y")
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1923899222]
+[node name="Black" type="ColorRect" parent="." unique_id=492967421]
+z_index = 2
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -36.000004
+offset_top = -39.000004
+offset_right = 120.63159
+offset_bottom = -11.637573
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(0.95250404, 1.0312794)
+color = Color(0, 0, 0, 0.80784315)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=627868929]
+z_index = 2
 layout_mode = 0
-offset_left = 572.0
-offset_top = 183.0
-offset_right = 2353.0
-offset_bottom = 1166.0
-scale = Vector2(0.4761528, 0.50097585)
-texture = ExtResource("1_jyx1a")
+offset_left = 317.0
+offset_top = 68.0
+offset_right = 2098.0
+offset_bottom = 1051.0
+scale = Vector2(0.6995528, 0.6482693)
+texture = ExtResource("2_d48o1")
 
 [node name="ItemIcon" parent="." unique_id=1469221418 instance=ExtResource("2_p432y")]
-material = SubResource("ShaderMaterial_bu0nb")
+z_index = 2
+material = SubResource("ShaderMaterial_d48o1")
 layout_mode = 0
-offset_left = 854.0
-offset_top = 329.0
-offset_right = 1108.0
-offset_bottom = 597.0
+offset_left = 770.0
+offset_top = 284.0
+offset_right = 1024.0
+offset_bottom = 552.0
 item = ExtResource("4_d48o1")
 
+[node name="Label" parent="ItemIcon" index="0" unique_id=1389996503]
+visible = false
+offset_left = -168.0
+offset_top = 251.0
+offset_right = 2416.252
+offset_bottom = 556.0
+scale = Vector2(0.28387502, 0.2639334)
+text = "See their exact percentage"
+
 [connection signal="selected" from="ItemIcon" to="." method="_on_item_icon_selected"]
+
+[editable path="ItemIcon"]

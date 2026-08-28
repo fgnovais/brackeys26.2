@@ -27,10 +27,10 @@ texture = ExtResource("1_uhtvt")
 
 [node name="Meat" type="TextureRect" parent="." unique_id=280543287]
 layout_mode = 0
-offset_left = 842.99994
-offset_top = 302.00003
-offset_right = 2624.0
-offset_bottom = 1285.0
+offset_left = 836.99994
+offset_top = 342.00003
+offset_right = 2618.0
+offset_bottom = 1325.0
 scale = Vector2(0.1124257, 0.12795693)
 texture = ExtResource("3_pn0oq")
 
@@ -45,10 +45,11 @@ label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="Accept" type="Button" parent="." unique_id=1101300147]
 layout_mode = 0
-offset_left = 911.0
-offset_top = 512.0
-offset_right = 919.0
-offset_bottom = 520.0
+offset_left = 895.0
+offset_top = 359.0
+offset_right = 903.0
+offset_bottom = 367.0
 scale = Vector2(9.139412, 9.599194)
+mouse_default_cursor_shape = 2
 
 [connection signal="pressed" from="Accept" to="." method="_on_accept"]

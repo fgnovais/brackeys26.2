@@ -18,8 +18,10 @@ class_name Level
 @onready var deal_price : int = 0
 @onready var clients_asserter_scene: PackedScene = load("res://Utils/clients_asserter.tscn")
 @onready var animation_player: AnimationPlayer = $HealthPoints/AnimationPlayer
+const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
+const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
 
-var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
+var you_got_stock_scene : PackedScene = load("res://UI/get_item.tscn")
 var total_health : int = 5
 var total_money : int = 150
 var client_queue : Array[Client] = []
@@ -60,7 +62,7 @@ func spawn_client_asserter():
 func start_level():
 	next_client()
 	# DEBUG
-	ItemManager.give_random_item()
+	ItemManager.give_random_item(5)
 	
 func _ready() -> void:
 	Engine.time_scale = 8
@@ -79,8 +81,10 @@ func _ready() -> void:
 
 func uberEats():
 	var stock = you_got_stock_scene.instantiate()
-	stock.connect("stock_accepted", increase_stock_uber_eats)
+	stock.connect("give_meat", increase_stock_uber_eats)
 	add_child(stock)
+	stock.item_icon.item = GOOD_MEAT_RESOURCE
+	stock.item_icon._ready()
 	
 func skip_customer():
 	if is_processing_action:
@@ -194,15 +198,13 @@ func next_event():
 					ItemManager.give_ubereats_item()
 		EVENT.STOCK_ARRIVING:
 			var stock = you_got_stock_scene.instantiate()
-			stock.connect("stock_accepted", increase_stock)
-			stock.is_good_meat = true
+			stock.connect("give_meat", increase_stock.bind(true))
 			add_child(stock)
-		EVENT.CHEF_COMPLAINING:
-			pass
+			stock.item_icon.item = GOOD_MEAT_RESOURCE
+			stock.item_icon._ready()
 		EVENT.CLIENT_COMPLAINING:
 			pass
 
-	
 func increase_stock(is_good_meat : bool):
 	if is_good_meat:
 		increase_good_stock()
@@ -350,9 +352,10 @@ func _on_take_deal_pressed() -> void:
 		return
 	is_processing_action = true
 	var stock = you_got_stock_scene.instantiate()
-	stock.connect("stock_accepted", increase_stock)
-	stock.is_good_meat = false
+	stock.connect("give_meat", increase_stock.bind(false))
 	add_child(stock)
+	stock.item_icon.item = BAD_MEAT_RESOURCE
+	stock.item_icon._ready()
 	is_processing_action = false
 
 func _on_cancel_deal_pressed() -> void:
