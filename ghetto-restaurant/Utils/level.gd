@@ -13,7 +13,6 @@ class_name Level
 @onready var serve_bad_button: Button = $ServiceController/GiveBadBurger
 @onready var game_over: CanvasLayer = $GameOver
 @onready var preview: Preview = $Preview
-@onready var dialog_box: DialogBox = $DialogBox
 @onready var player_box: DialogBox = $PlayerBox
 @onready var deal_quantity : int = 0
 @onready var deal_price : int = 0
@@ -274,7 +273,7 @@ func next_client() -> void:
 		client_queue.remove_at(0)
 		add_child(client_scene)
 		current_client = client_scene
-		dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
+		#dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
 		player_box.show_dialog_box("I'll give you a....")
 		serve_good_button.show()
 		serve_bad_button.show()
@@ -374,12 +373,12 @@ func check_dealer():
 	deal_price = deal_quantity * [2, 3, 4].pick_random()
 	if deal_price > total_money: 
 			deal_price = total_money 
-	dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
+	#dialog_box.show_dialog_box("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
 	take_deal.show()
 	cancel_deal.show()
 	
 func hide_dialogs_and_buttons() -> void:
-	await dialog_box.hide_dialog_box()
+	#await dialog_box.hide_dialog_box()
 	await player_box.hide_dialog_box()
 	serve_good_button.hide()
 	serve_bad_button.hide()

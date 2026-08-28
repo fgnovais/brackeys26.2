@@ -264,8 +264,8 @@ position = Vector2(957, 549)
 texture = ExtResource("8_mcco3")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
-z_index = 2
-position = Vector2(711.00006, 806)
+z_index = 1
+position = Vector2(668.00006, 813)
 scale = Vector2(1.1109103, 1.1212252)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
@@ -273,14 +273,6 @@ z_index = 2
 material = null
 position = Vector2(1501.0001, 1055)
 scale = Vector2(1.0624378, 0.9862308)
-
-[node name="DialogBox" parent="." unique_id=1505121633 instance=ExtResource("9_2im43")]
-visible = false
-offset_left = 791.0
-offset_top = 22.0
-offset_right = 1324.0
-offset_bottom = 230.0
-scale = Vector2(1.0288228, 0.9032063)
 
 [node name="PlayerBox" parent="." unique_id=309634947 instance=ExtResource("9_2im43")]
 offset_left = 30.0
