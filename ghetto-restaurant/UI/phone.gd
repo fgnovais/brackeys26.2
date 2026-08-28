@@ -35,12 +35,17 @@ func bad():
 
 func _on_hover_component_selected(selected: bool) -> void:
 	if selected:
+		if hover_component.is_enabled:
+			order.text = "Order Meat. Wait 1 round."
+		else:
+			order.text = "Dealer is on the way."
 		order.show()
 	else:
 		order.hide()
 
 func disable():
 	hover_component.is_enabled = false
+	
 	modulate = Color.DARK_GRAY
 
 func enable():

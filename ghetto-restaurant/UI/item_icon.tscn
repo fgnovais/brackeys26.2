@@ -43,6 +43,12 @@ font_size = 143
 font_color = Color(0, 0, 0, 1)
 outline_size = 65
 
+[sub_resource type="LabelSettings" id="LabelSettings_n06vd"]
+font = ExtResource("3_n06vd")
+font_size = 29
+outline_size = 13
+outline_color = Color(0, 0, 0, 1)
+
 [node name="ItemIcon" type="TextureRect" unique_id=1469221418]
 material = SubResource("ShaderMaterial_umbco")
 offset_right = 254.0
@@ -51,19 +57,28 @@ mouse_default_cursor_shape = 2
 texture = ExtResource("1_pxlly")
 script = ExtResource("2_umbco")
 
-[node name="Label" type="Label" parent="." unique_id=1389996503]
+[node name="Description" type="Label" parent="." unique_id=1389996503]
 z_index = 1
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
-offset_left = -157.0
-offset_top = -101.0
-offset_right = 1539.9058
-offset_bottom = 204.0
-scale = Vector2(0.34710234, 0.35912538)
+offset_left = -28.999996
+offset_top = -86.0
+offset_right = 1667.9058
+offset_bottom = 219.0
+scale = Vector2(0.24555926, 0.22642022)
 theme_override_fonts/font = ExtResource("3_n06vd")
 text = "This item is AWESOME!!!"
 label_settings = SubResource("LabelSettings_7ta8d")
 autowrap_mode = 2
+
+[node name="Name" type="Label" parent="." unique_id=864228699]
+layout_mode = 0
+offset_left = 4.0
+offset_top = 172.0
+offset_right = 269.0
+offset_bottom = 201.0
+text = "Let's forget this"
+label_settings = SubResource("LabelSettings_n06vd")
 
 [node name="Hover" type="AudioStreamPlayer" parent="." unique_id=758157654]
 stream = ExtResource("3_umbco")

@@ -19,9 +19,9 @@ func _ready() -> void:
 	parent.material.set_shader_parameter("line_color", Color.WHITE)
 	
 func _on_area_2d_mouse_entered() -> void:
+	selected.emit(true)	
+	is_selected = true
 	if is_enabled:
-		selected.emit(true)	
-		is_selected = true
 		parent.modulate ='#d2dae2' 
 		parent.material.set_shader_parameter("onoff",1)
 		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
@@ -29,9 +29,9 @@ func _on_area_2d_mouse_entered() -> void:
 		Input.set_default_cursor_shape(Input.CURSOR_FORBIDDEN)
 	
 func _on_area_2d_mouse_exited() -> void:
+	selected.emit(false)
+	is_selected = false
 	if is_enabled:
-		selected.emit(false)
-		is_selected = false
 		parent.modulate = '#FFFFFF'
 		parent.material.set_shader_parameter("onoff",0)
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)

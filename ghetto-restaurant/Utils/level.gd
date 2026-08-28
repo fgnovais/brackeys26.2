@@ -69,7 +69,7 @@ func start_level():
 	# DEBUG
 	
 func _ready() -> void:
-	#Engine.time_scale = 8
+	Engine.time_scale = 8
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
@@ -93,6 +93,7 @@ func uberEats():
 	add_child(stock)
 	stock.item_icon.item = GOOD_MEAT_RESOURCE
 	stock.item_icon._ready()
+	stock._ready()
 	
 func skip_customer():
 	if is_processing_action:
@@ -211,6 +212,7 @@ func next_event():
 			add_child(stock)
 			stock.item_icon.item = GOOD_MEAT_RESOURCE
 			stock.item_icon._ready()
+			stock._ready()
 			_on_phone_hide_dialog()
 		EVENT.CLIENT_COMPLAINING:
 			pass
@@ -392,12 +394,14 @@ func _on_take_deal_pressed() -> void:
 		add_child(stock)
 		stock.item_icon.item = BAD_MEAT_RESOURCE
 		stock.item_icon._ready()
+		stock._ready()
 	else:
 		var stock = you_got_stock_scene.instantiate()
 		stock.connect("give_meat", increase_stock.bind(true))
 		add_child(stock)
 		stock.item_icon.item = GOOD_MEAT_RESOURCE
 		stock.item_icon._ready()
+		stock._ready()
 	is_processing_action = false
 
 func _on_cancel_deal_pressed() -> void:
@@ -419,13 +423,13 @@ func check_dealer():
 		deal_price = deal_quantity * [2, 3, 4].pick_random()
 		if deal_price > total_money: 
 				deal_price = total_money 
-		current_client.dialog_system.show_message("Here's the deal: These EXCELENT %d burgers for $%d, do you them take man?" % [deal_quantity, deal_price])
+		current_client.dialog_system.show_message("Here's the deal: These %d EXCELENT burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 	else:
 		deal_quantity = [2,3].pick_random()
 		deal_price = deal_quantity * [10,11].pick_random()
 		if deal_price > total_money: 
 				deal_price = total_money 
-		current_client.dialog_system.show_message("Here's the deal: These AFFORDABLE %d burgers for $%d, do you them take man?" % [deal_quantity, deal_price])
+		current_client.dialog_system.show_message("Here's the deal: These %d AFFORDABLE burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 	cancel_deal.show()
 	take_deal.show()
 	

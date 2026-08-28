@@ -212,8 +212,8 @@ font_size = 301
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjcv7"]
 font = ExtResource("14_jnhw6")
-font_size = 49
-outline_size = 28
+font_size = 34
+outline_size = 23
 outline_color = Color(0, 0, 0, 1)
 
 [node name="Level" type="Node2D" unique_id=1060693258]
@@ -442,10 +442,10 @@ script = ExtResource("19_3na28")
 position = Vector2(508.3644, 277.4718)
 
 [node name="Order" type="Label" parent="Phone" unique_id=1641676396]
-offset_left = 363.69962
-offset_top = 98.502426
-offset_right = 692.6996
-offset_bottom = 147.50243
+offset_left = 314.79883
+offset_top = 91.56563
+offset_right = 643.7988
+offset_bottom = 140.56563
 text = "Order Meat."
 label_settings = SubResource("LabelSettings_gjcv7")
 

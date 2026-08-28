@@ -4,6 +4,13 @@
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="2_fqbv2"]
 [ext_resource type="Texture2D" uid="uid://bi67mdeyk0rab" path="res://UI/bell.png" id="3_akgyd"]
 [ext_resource type="AudioStream" uid="uid://bmr8ni2ai5atl" path="res://Assets/ding.mp3" id="4_fqbv2"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="5_akgyd"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
+font = ExtResource("5_akgyd")
+font_size = 32
+outline_size = 17
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Bell" type="Node2D" unique_id=2098198925]
 script = ExtResource("1_ukktk")
@@ -17,4 +24,13 @@ scale = Vector2(0.7917795, 0.65540344)
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1367600675]
 stream = ExtResource("4_fqbv2")
 
+[node name="Label" type="Label" parent="." unique_id=1715014584]
+offset_left = -222.0
+offset_top = -109.0
+offset_right = 436.0
+offset_bottom = -63.0
+text = "Skip Client (Lose 1 Rating)"
+label_settings = SubResource("LabelSettings_7ta8d")
+
 [connection signal="pressed" from="Sprite2D/HoverComponent" to="." method="_on_hover_component_pressed"]
+[connection signal="selected" from="Sprite2D/HoverComponent" to="." method="_on_hover_component_selected"]

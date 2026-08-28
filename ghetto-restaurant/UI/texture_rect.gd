@@ -2,19 +2,27 @@
 extends TextureRect
 class_name ItemIcon
 
-@onready var label: Label = $Label
 @onready var hover: AudioStreamPlayer = $Hover
+@onready var description: Label = $Description
+@onready var name_label: Label = $Name
 @export var item : Item 
 signal selected
 
 func _ready() -> void:
-	label.text = item.description
-	label.hide()
+	description.text = item.description
+	item.get_item_name()
+	name_label.text = item.item_name
+	description.hide()
 	texture = item.icon
 	material.set_shader_parameter("onoff",0.2)
 	
+	if item.title == ItemManager.Items.GOOD_MEAT:
+		name_label.text = "3 = 30$"
+	elif item.title == ItemManager.Items.BAD_MEAT:
+		name_label.text = "? = ?$"
+		
 func _on_mouse_entered() -> void:
-	label.show()
+	description.show()
 	modulate ='#d2dae2' 
 	material.set_shader_parameter("onoff",1)
 	
@@ -23,7 +31,7 @@ func _on_mouse_entered() -> void:
 	
 func _on_mouse_exited() -> void:
 	hover.stop()
-	label.hide()
+	description.hide()
 	modulate ='#FFFFFF' 
 	material.set_shader_parameter("onoff",0.2)
 	

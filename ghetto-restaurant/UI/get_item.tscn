@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://cjbd5fkdnlw4a" path="res://Assets/Items/Lupa.tres" id="4_d48o1"]
 [ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="5_bu0nb"]
 
-[sub_resource type="Shader" id="Shader_u56wn"]
+[sub_resource type="Shader" id="Shader_bu0nb"]
 resource_local_to_scene = true
 code = "shader_type canvas_item;
 
@@ -32,9 +32,9 @@ void fragment() {
 	COLOR = mix(color, line_color, outline - color.a); 
 }"
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_kab7j"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_u56wn"]
 resource_local_to_scene = true
-shader = SubResource("Shader_u56wn")
+shader = SubResource("Shader_bu0nb")
 shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2
@@ -82,22 +82,27 @@ texture = ExtResource("2_d48o1")
 
 [node name="ItemIcon" parent="." unique_id=1469221418 instance=ExtResource("2_p432y")]
 z_index = 2
-material = SubResource("ShaderMaterial_kab7j")
+material = SubResource("ShaderMaterial_u56wn")
 layout_mode = 0
-offset_left = 789.0
+offset_left = 804.0
 offset_top = 340.0
-offset_right = 1043.0
+offset_right = 1058.0
 offset_bottom = 608.0
 item = ExtResource("4_d48o1")
 
-[node name="Label" parent="ItemIcon" index="0" unique_id=1389996503]
-visible = false
-offset_left = -168.0
-offset_top = 251.0
-offset_right = 2416.252
-offset_bottom = 556.0
+[node name="Description" parent="ItemIcon" index="0" unique_id=1389996503]
+offset_left = -191.0
+offset_top = -42.0
+offset_right = 2393.252
+offset_bottom = 263.0
 scale = Vector2(0.28387502, 0.2639334)
 text = "See their exact percentage"
+
+[node name="Name" parent="ItemIcon" index="1" unique_id=864228699]
+offset_left = -15.0
+offset_top = 281.0
+offset_right = 250.0
+offset_bottom = 310.0
 
 [node name="Label" type="Label" parent="." unique_id=500862777]
 z_index = 2

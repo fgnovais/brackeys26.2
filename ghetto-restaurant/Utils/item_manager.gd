@@ -25,7 +25,8 @@ enum Items {
 	LUPA,
 	FLIP_PHONE,
 	ORDER,
-	MEAT
+	GOOD_MEAT,
+	BAD_MEAT
 }
 
 func apply(item_name : Items) -> void:

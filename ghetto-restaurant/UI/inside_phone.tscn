@@ -39,7 +39,7 @@ void fragment() {
 resource_local_to_scene = true
 shader = SubResource("Shader_bryqp")
 shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 6.9230003288425
+shader_parameter/line_thickness = 2.5690001220275
 shader_parameter/onoff = 0.2
 
 [sub_resource type="Shader" id="Shader_y1fkb"]
@@ -72,7 +72,7 @@ void fragment() {
 resource_local_to_scene = true
 shader = SubResource("Shader_y1fkb")
 shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 6.9230003288425
+shader_parameter/line_thickness = 3.00800014288
 shader_parameter/onoff = 0.2
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
@@ -122,45 +122,58 @@ texture = ExtResource("2_bryqp")
 z_index = 2
 material = SubResource("ShaderMaterial_xi4sj")
 layout_mode = 0
-offset_left = 620.0
-offset_top = 309.0
-offset_right = 785.0
-offset_bottom = 438.0
+offset_left = 608.99994
+offset_top = 371.00003
+offset_right = 773.99994
+offset_bottom = 500.00003
 scale = Vector2(1.442135, 1.3366902)
 texture = ExtResource("3_i4owc")
 item = ExtResource("5_51xre")
 
-[node name="Label" parent="ItemIcon" index="0" unique_id=1389996503]
-visible = false
+[node name="Description" parent="ItemIcon" index="0" unique_id=1389996503]
 z_index = 2
-offset_left = -36.751083
-offset_top = 148.12706
-offset_right = 2061.829
-offset_bottom = 453.12708
+offset_left = -18.722214
+offset_top = -32.169033
+offset_right = 2079.858
+offset_bottom = 272.83096
 scale = Vector2(0.12809534, 0.14334267)
 text = "Expensive meat"
+
+[node name="Name" parent="ItemIcon" index="1" unique_id=864228699]
+offset_left = 22.189386
+offset_top = 135.40909
+offset_right = 287.1894
+offset_bottom = 164.40909
+scale = Vector2(0.87262356, 0.8509317)
+text = "3 = 30$"
 
 [node name="ItemIcon2" parent="." unique_id=1469221418 instance=ExtResource("4_51xre")]
 z_index = 2
 material = SubResource("ShaderMaterial_rjtvq")
 layout_mode = 0
-offset_left = 967.9999
-offset_top = 305.00003
-offset_right = 1123.9999
-offset_bottom = 437.00003
+offset_left = 966.99994
+offset_top = 366.00003
+offset_right = 1123.0
+offset_bottom = 498.00003
 scale = Vector2(1.3078836, 1.3650005)
 texture = ExtResource("4_441io")
 item = ExtResource("7_bryqp")
 
-[node name="Label" parent="ItemIcon2" index="0" unique_id=1389996503]
-visible = false
+[node name="Description" parent="ItemIcon2" index="0" unique_id=1389996503]
 z_index = 2
-offset_left = 0.7647104
-offset_top = 144.32228
-offset_right = 1690.2296
-offset_bottom = 449.32227
+offset_left = 22.937798
+offset_top = -29.304039
+offset_right = 1712.4026
+offset_bottom = 275.69595
 scale = Vector2(0.1432922, 0.15008344)
 text = "Cheap Meat"
+
+[node name="Name" parent="ItemIcon2" index="1" unique_id=864228699]
+offset_left = 42.052742
+offset_top = 135.53107
+offset_right = 307.05273
+offset_bottom = 164.53107
+text = "? = ?$"
 
 [node name="Label" type="Label" parent="." unique_id=970730162]
 z_index = 2
