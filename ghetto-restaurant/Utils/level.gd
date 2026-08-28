@@ -404,7 +404,7 @@ func get_caught() -> void:
 	take_deal.hide()
 	cancel_deal.hide()
 	
-	dialog_box.show_dialog_box("You have been caught, you will have to pay a fine now!")
+	current_client.dialog_system.show_message("You have been caught, you will have to pay a fine now!")
 	total_money -= fine_amount
 	
 	await get_tree().create_timer(2.0).timeout
@@ -420,7 +420,7 @@ func get_lucky_fake_cop() -> void:
 	take_deal.hide()
 	cancel_deal.hide()
 	
-	dialog_box.show_dialog_box("Oof, you're a lucky guy, I'm not on duty, but I'll be close by!")
+	current_client.dialog_system.show_message("Oof, you're a lucky guy, I'm not on duty, but I'll be close by!")
 	
 	await get_tree().create_timer(2.0).timeout
 	
