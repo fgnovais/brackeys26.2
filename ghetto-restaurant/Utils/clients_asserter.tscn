@@ -116,21 +116,23 @@ color = Color(0, 0, 0, 0.8156863)
 
 [node name="Box" type="TextureRect" parent="." unique_id=211498813]
 layout_mode = 0
-offset_left = 302.0
-offset_top = 169.00002
-offset_right = 835.0
-offset_bottom = 377.0
-scale = Vector2(2.319989, 1.5669847)
+offset_left = 242.0
+offset_top = 151.0
+offset_right = 775.0
+offset_bottom = 359.0
+scale = Vector2(2.6897812, 1.9967418)
 texture = ExtResource("2_07cqi")
 
 [node name="HBoxContainer" type="GridContainer" parent="Box" unique_id=720925488]
 layout_mode = 0
-offset_left = 27.522291
-offset_top = 47.955284
-offset_right = 3222.887
-offset_bottom = 465.95526
-scale = Vector2(0.15173058, 0.17981128)
+offset_left = 24.537312
+offset_top = 34.05548
+offset_right = 3855.5374
+offset_bottom = 960.0555
+scale = Vector2(0.19644845, 0.2521861)
 offset_transform_enabled = true
+theme_override_constants/h_separation = -49
+theme_override_constants/v_separation = -52
 columns = 10
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1676340400]
@@ -150,10 +152,10 @@ text = "START DAY"
 
 [node name="Label" type="Label" parent="." unique_id=1875006915]
 layout_mode = 0
-offset_left = 314.99997
-offset_top = 515.0
-offset_right = 1860.0
-offset_bottom = 728.0
+offset_left = 301.0
+offset_top = 616.0
+offset_right = 1846.0
+offset_bottom = 829.0
 scale = Vector2(0.8092432, 0.739522)
 label_settings = SubResource("LabelSettings_7ta8d")
 

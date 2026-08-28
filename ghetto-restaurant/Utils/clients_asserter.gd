@@ -27,7 +27,7 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 	
 	match current_day:
 		1:
-			clients_amount = 4
+			clients_amount = 20
 			inspectors_amount = 2
 		2:
 			clients_amount = 6
@@ -44,7 +44,7 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 		
 		var text_rec = TextureRect.new()
 		text_rec.offset_transform_enabled = true
-		text_rec.texture = client_info.client_texture
+		text_rec.texture = client_info.get_face()
 		h_box_container.add_child(text_rec)
 		await get_tree().create_timer(0.2).timeout
 	label.text = "%s Clients" % clients_amount
@@ -58,7 +58,7 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 		
 		var text_rec = TextureRect.new()
 		text_rec.offset_transform_enabled = true
-		text_rec.texture = client_info.client_texture
+		text_rec.texture = client_info.get_face()
 		h_box_container.add_child(text_rec)
 		await get_tree().create_timer(0.2).timeout
 	
@@ -110,7 +110,7 @@ func play_animation(entities_array : Array[Client_Info]):
 			info.give_normal_texture()
 			var square : TextureRect = h_box_container.get_children()[i]
 			square.material = null
-			square.texture = info.client_texture
+			square.texture = info.get_face()
 		await get_tree().create_timer(0.2).timeout
 			
 	await get_tree().create_timer(1).timeout
