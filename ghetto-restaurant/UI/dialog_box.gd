@@ -2,10 +2,13 @@ extends TextureRect
 class_name DialogBox
 
 @onready var label: Label = $Label
+var face : Texture2D
+@onready var face_card: TextureRect = $FaceCard
 
 func _ready() -> void:
 	modulate = Color.TRANSPARENT
 	label.visible_ratio = 0
+	face_card.texture = face
 	
 func show_dialog_box(dialog : String):
 	var tween = create_tween()

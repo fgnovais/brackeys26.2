@@ -6,6 +6,9 @@ Dealer
 	can only have dealer sprite
 	if is cop -> change sprite to cop
 	
+Client
+	can be inspector (animation to change to inspector texture)
+
 Items
 	receive a new one every round (give choice to player or random?)
 	
@@ -14,17 +17,10 @@ Dialog System
 	clients have multiple dialog(not random) 
 	inspectors / cops have specific dialog
 
-Client
-	can be inspector (animation to change to inspector texture)
-
 Audio
 	Import audio
 
-Dialog box
-	put client face
-	
 Good burger refactor prices
-
 
 --------------
 Item buyer

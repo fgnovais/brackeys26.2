@@ -119,6 +119,94 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="Animation" id="Animation_ck4dv"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.94, 0.94)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_1rd7f"]
+resource_name = "gain_hp"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.03, 0.4666667, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_inh4j"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.36666667, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(2, 2), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.03, 0.4666667, 0.99),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1rd7f"]
+_data = {
+&"RESET": SubResource("Animation_ck4dv"),
+&"gain_hp": SubResource("Animation_1rd7f"),
+&"hurt": SubResource("Animation_inh4j")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_wnmnv"]
 font_size = 301
 
@@ -187,6 +275,7 @@ position = Vector2(1501.0001, 1055)
 scale = Vector2(1.0624378, 0.9862308)
 
 [node name="DialogBox" parent="." unique_id=1505121633 instance=ExtResource("9_2im43")]
+visible = false
 offset_left = 791.0
 offset_top = 22.0
 offset_right = 1324.0
@@ -308,11 +397,14 @@ stream = ExtResource("6_1xvvo")
 volume_db = -20.0
 
 [node name="HealthPoints" type="AnimatedSprite2D" parent="." unique_id=1985340818]
-position = Vector2(165, 61.999996)
-scale = Vector2(0.9395474, 0.92807823)
+position = Vector2(201, 62)
+scale = Vector2(0.94, 0.94)
 sprite_frames = SubResource("SpriteFrames_7ta8d")
 frame = 2
 frame_progress = 0.719768
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="HealthPoints" unique_id=82853383]
+libraries/ = SubResource("AnimationLibrary_1rd7f")
 
 [node name="ClientSpawner" parent="." unique_id=473627930 instance=ExtResource("2_thgdw")]
 

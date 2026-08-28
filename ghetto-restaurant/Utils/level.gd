@@ -18,6 +18,7 @@ class_name Level
 @onready var deal_quantity : int = 0
 @onready var deal_price : int = 0
 @onready var clients_asserter_scene: PackedScene = load("res://Utils/clients_asserter.tscn")
+@onready var animation_player: AnimationPlayer = $HealthPoints/AnimationPlayer
 
 var you_got_stock_scene : PackedScene = load("res://UI/you_got_stock.tscn")
 var total_health : int = 5
@@ -107,6 +108,7 @@ func bribe():
 		is_processing_action = true
 		var max_health : int = 5
 		total_health = max_health
+		animation_player.play("gain_hp")
 		current_client.leave()
 		current_client = null
 		next_event()
@@ -317,7 +319,8 @@ func _on_bell_bell_pressed() -> void:
 		return
 	is_processing_action = true
 	
-	total_health -= 1
+	hurt()
+	
 	if total_health == 0:
 		show_game_over()
 		is_processing_action = false
@@ -380,3 +383,7 @@ func hide_dialogs_and_buttons() -> void:
 	await player_box.hide_dialog_box()
 	serve_good_button.hide()
 	serve_bad_button.hide()
+
+func hurt():
+	total_health -= 1
+	animation_player.play("hurt")

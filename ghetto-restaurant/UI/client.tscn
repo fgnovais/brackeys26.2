@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" uid="uid://i7ovvsvdrqob" path="res://Entities/client.gd" id="1_74uuh"]
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="3_55wjg"]
-[ext_resource type="PackedScene" uid="uid://bf5awjjm3bd6g" path="res://UI/balao_pedido.tscn" id="3_akvtx"]
 [ext_resource type="Texture2D" uid="uid://dddnisudwu527" path="res://Assets/texture2.png" id="3_bi6ty"]
 [ext_resource type="AudioStream" uid="uid://byg4fqb04jbp8" path="res://Assets/Audio/Footstep.wav" id="5_b07cc"]
 [ext_resource type="AudioStream" uid="uid://bkjyu0dftbd1a" path="res://Assets/Audio/Laugh.wav" id="6_66y5m"]
+[ext_resource type="PackedScene" uid="uid://c742pnbykexpk" path="res://UI/dialog_system.tscn" id="7_b07cc"]
 [ext_resource type="AudioStream" uid="uid://btsqleifxyl8b" path="res://Assets/Audio/Complain.wav" id="7_tpe35"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_74uuh"]
@@ -128,7 +128,6 @@ _data = {
 
 [node name="Client" type="Node2D" unique_id=1169049832]
 script = ExtResource("1_74uuh")
-balao_scene = ExtResource("3_akvtx")
 
 [node name="Client" type="Sprite2D" parent="." unique_id=437999518]
 modulate = Color(1, 1, 1, 0)
@@ -167,5 +166,9 @@ stream = ExtResource("6_66y5m")
 
 [node name="ComplainSound" type="AudioStreamPlayer" parent="." unique_id=985776046]
 stream = ExtResource("7_tpe35")
+
+[node name="DialogSystem" parent="." unique_id=282480536 instance=ExtResource("7_b07cc")]
+offset_left = 7.0
+offset_right = 7.0
 
 [connection signal="selected" from="Client/HoverComponent" to="." method="_on_hover_component_selected"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://g3nl5ivndsay"
-path="res://.godot/imported/Charactersheads2.png-c8599eeec0acb316241d71fe718ecf68.ctex"
+uid="uid://buaxippy17r40"
+path="res://.godot/imported/dealer_face.png-13b08c1be78ab1c643e54cc1475e3ac8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Charactersheads2.png"
-dest_files=["res://.godot/imported/Charactersheads2.png-c8599eeec0acb316241d71fe718ecf68.ctex"]
+source_file="res://Assets/faces/dealer_face.png"
+dest_files=["res://.godot/imported/dealer_face.png-13b08c1be78ab1c643e54cc1475e3ac8.ctex"]
 
 [params]
 

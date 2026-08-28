@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cg57ris1uk6yj" path="res://UI/dialog_system.gd" id="1_eya45"]
 
 [node name="DialogSystem" type="Control" unique_id=282480536]
+z_index = 8
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -12,11 +13,12 @@ grow_vertical = 2
 script = ExtResource("1_eya45")
 
 [node name="ClientDialogs" type="VBoxContainer" parent="." unique_id=1965849705]
+top_level = true
 layout_mode = 0
 offset_left = 870.0
 offset_top = -11.0
 offset_right = 1403.0
-offset_bottom = 833.0
+offset_bottom = 42.0
 offset_transform_enabled = true
 
 [node name="PlayerDialogs" type="VBoxContainer" parent="." unique_id=461258821]

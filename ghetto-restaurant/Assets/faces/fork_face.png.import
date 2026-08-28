@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dg4d7jhbiclil"
-path="res://.godot/imported/Characters_heads.png-c478c5926c3598a0fa4cd8605afb3c3e.ctex"
+uid="uid://csbkr38hfn3o5"
+path="res://.godot/imported/fork_face.png-a308fcb6d6516cb1183cc0a35b8a2fe3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Characters_heads.png"
-dest_files=["res://.godot/imported/Characters_heads.png-c478c5926c3598a0fa4cd8605afb3c3e.ctex"]
+source_file="res://Assets/faces/fork_face.png"
+dest_files=["res://.godot/imported/fork_face.png-a308fcb6d6516cb1183cc0a35b8a2fe3.ctex"]
 
 [params]
 

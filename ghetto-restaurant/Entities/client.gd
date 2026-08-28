@@ -1,33 +1,42 @@
 extends Node2D
 class_name Client
 
-@export var balao_scene: PackedScene
 var client_info : Client_Info
+var money
 @onready var sprite: Sprite2D = $Client
 @onready var dialog: Label = $Dialog
 @onready var percentage: Label = $Percentage
 @onready var arrive_sound: AudioStreamPlayer = $ArriveSound
 @onready var leave_sound: AudioStreamPlayer = $LeaveSound
 @onready var complain_sound: AudioStreamPlayer = $ComplainSound
-
-var money
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-
-#signal satisfeito(cliente)
-#signal reclamou(cliente)
+@onready var dialog_system: DialogSystem = $DialogSystem
+const COP = preload("uid://bmh1fc8ur5fc3")
+const DEALER = preload("uid://bjtnndfbi3up8")
+const INSPECTOR = preload("uid://wl75tsdp5frb")
+const SUNGLASSES = preload("uid://dmcwbxodhg4jk")
+const GHOST = preload("uid://dddnisudwu527")
+const FORK = preload("uid://dv8y8r2ioak0t")
+const KETCHUP = preload("uid://lon6poba18uy")
+const COP_FACE = preload("uid://oesd77fs1cu7")
+const DEALER_FACE = preload("uid://buaxippy17r40")
+const FORK_FACE = preload("uid://csbkr38hfn3o5")
+const GHOST_FACE = preload("uid://debtllxvajs1w")
+const INSPECTOR_FACE = preload("uid://bnk4twm8g0j4s")
+const KETCHUP_FACE = preload("uid://b8im052gipvq1")
+const SUNGLASSES_FACE = preload("uid://cprf3y783hr0x")
 
 func _ready() -> void:
-	#_configurar_por_tipo()
-	#_mostrar_balao()
 	money = 5
-	#client_info.spawn_aleatorio()
 	sprite.texture = client_info.client_texture
 	animation_player.play("arrive")
 	animation_player.animation_finished.connect(transition_animations)
 	dialog.text = client_info.dialog.pick_random()
-	#percentage.text = str(client_info.asae_odd*100) + "%	"
 	percentage.hide()
 	arrive_sound.play()
+	dialog_system.client_dialog = client_info.dialog
+	dialog_system.face = get_face()
+	dialog_system.spawn()
 
 func transition_animations(anim_name : String):
 	if anim_name == "arrive":
@@ -39,43 +48,6 @@ func leave():
 	animation_player.play("leave")
 	dialog.text = "I'm Leaving!"
 	leave_sound.play()
-	
-#func _configurar_por_tipo() -> void:
-	#match tipo:
-		#Tipo.NORMAL:
-			#recurso_penalizado = GameState.Recurso.DINHEIRO
-			#quantidade_penalidade = 10
-			#sprite.texture = textura_normal
-		#Tipo.ASAE:
-			#recurso_penalizado = GameState.Recurso.SAUDE_PUBLICA
-			#quantidade_penalidade = 15
-			#sprite.texture = textura_asae
-		#Tipo.POLICIA:
-			#recurso_penalizado = GameState.Recurso.SEGURANCA
-			#quantidade_penalidade = 15
-			#sprite.texture = textura_policia
-
-#func _mostrar_balao() -> void:
-	##if balao_scene == null:
-	#return
-	#balao_instancia = balao_scene.instantiate()
-	#add_child(balao_instancia)
-	#balao_instancia.position = Vector2(0, -100)  # ajusta consoante o tamanho do sprite
-	#var nome_bonito: String = NOMES_PRATOS.get(prato_pedido, prato_pedido)
-	#balao_instancia.mostrar_pedido(nome_bonito)
-
-#func pedir_prato() -> String:
-	#return prato_pedido
-#
-#func avaliar_prato(prato_servido: String) -> void:
-	#if balao_instancia:
-		#balao_instancia.esconder()
-#
-	#if prato_servido == prato_pedido:
-		#satisfeito.emit(self)
-	#else:
-		#reclamou.emit(self)
-		#GameState.aplicar_penalidade(recurso_penalizado, quantidade_penalidade)
 
 func receive_good_food()->int:
 	dialog.text = "Thanks!"
@@ -94,3 +66,24 @@ func receive_bad_food():
 		return -1
 	else:
 		return money
+
+func get_face() -> Texture2D:
+	match client_info.client_texture:
+		COP:
+			return COP_FACE
+		INSPECTOR:
+			return INSPECTOR_FACE
+		GHOST	:
+			return GHOST_FACE
+		FORK:
+			return FORK_FACE
+		KETCHUP:
+			return KETCHUP_FACE
+		DEALER:
+			return DEALER_FACE
+		SUNGLASSES:
+			return SUNGLASSES_FACE
+		_:
+			return FORK_FACE
+
+	

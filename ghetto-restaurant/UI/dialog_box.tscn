@@ -3,6 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://digwcvks4smit" path="res://Assets/client_box.png" id="1_wc47m"]
 [ext_resource type="Script" uid="uid://clkhlurtwx6wv" path="res://UI/dialog_box.gd" id="2_diy2i"]
 [ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_6co6m"]
+[ext_resource type="Texture2D" uid="uid://oesd77fs1cu7" path="res://Assets/faces/cop_face.png" id="4_7oaei"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pncti"]
 font_size = 28
@@ -26,3 +27,12 @@ theme_override_fonts/font = ExtResource("3_6co6m")
 text = "Can i get a burger please"
 label_settings = SubResource("LabelSettings_pncti")
 autowrap_mode = 3
+
+[node name="FaceCard" type="TextureRect" parent="." unique_id=137546937]
+layout_mode = 0
+offset_left = -119.0
+offset_top = 51.000008
+offset_right = 172.0
+offset_bottom = 358.0
+scale = Vector2(0.485, 0.485)
+texture = ExtResource("4_7oaei")
