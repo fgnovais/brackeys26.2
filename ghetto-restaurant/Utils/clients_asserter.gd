@@ -27,7 +27,7 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 	
 	match current_day:
 		1:
-			clients_amount = 20
+			clients_amount = 4
 			inspectors_amount = 2
 		2:
 			clients_amount = 6

@@ -134,6 +134,7 @@ modulate = Color(1, 1, 1, 0)
 texture = ExtResource("3_bi6ty")
 
 [node name="HoverComponent" parent="Client" unique_id=163342927 instance=ExtResource("3_55wjg")]
+visible = false
 
 [node name="Dialog" type="Label" parent="." unique_id=797437850]
 visible = false

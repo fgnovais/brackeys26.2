@@ -13,8 +13,6 @@ Items
 	receive a new one every round (give choice to player or random?)
 	
 Dialog System
-	incorporate into level
-	clients have multiple dialog(not random) 
 	inspectors / cops have specific dialog
 
 Audio

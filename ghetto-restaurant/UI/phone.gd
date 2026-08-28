@@ -5,6 +5,7 @@ var is_menu_spawned : bool = false
 signal buy_good
 signal buy_bad
 @onready var order: Label = $Order
+@onready var hover_component: Node2D = $HoverComponent
 signal hide_dialog
 func _ready() -> void:
 	order.hide()
@@ -37,3 +38,11 @@ func _on_hover_component_selected(selected: bool) -> void:
 		order.show()
 	else:
 		order.hide()
+
+func disable():
+	hover_component.is_enabled = false
+	modulate = Color.DARK_GRAY
+
+func enable():
+	hover_component.is_enabled = true
+	modulate = Color.WHITE

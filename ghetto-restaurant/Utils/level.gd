@@ -19,6 +19,7 @@ class_name Level
 @onready var clients_asserter_scene: PackedScene = load("res://Utils/clients_asserter.tscn")
 @onready var animation_player: AnimationPlayer = $HealthPoints/AnimationPlayer
 @onready var service_controller: Control = $ServiceController
+@onready var phone: Sprite2D = $Phone
 const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
 const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
 
@@ -63,9 +64,9 @@ func spawn_client_asserter():
 	client_infos = await clients_asserter.populate_day(current_day)
 
 func start_level():
-	next_client()
-	# DEBUG
+	is_first_item_clear = true
 	ItemManager.give_random_item(5)
+	# DEBUG
 	
 func _ready() -> void:
 	Engine.time_scale = 8
@@ -76,7 +77,7 @@ func _ready() -> void:
 	ItemManager.connect("lupa", lupa)
 	ItemManager.connect("flipphone", flipphone)
 	ItemManager.connect("hide_dialogs", _on_phone_hide_dialog)
-	ItemManager.connect("show_dialogs", _on_phone_show_dialog)
+	ItemManager.connect("show_dialogs", first_item_clear)
 	
 	game_over.hide()
 	serve_good_button.hide()
@@ -169,6 +170,7 @@ func refresh_labels():
 	health_points.frame = (total_health*2) -1
 			
 func next_event():
+	phone.enable()
 	preview.next_queue = event_queue.slice(0,3)
 	preview.update_textures()
 	if event_queue.size() == 0:
@@ -216,13 +218,23 @@ func next_event():
 func increase_stock(is_good_meat : bool):
 	_on_phone_show_dialog()
 	if is_good_meat:
-		increase_good_stock()
+		increase_good_stock(deal_quantity)
 	else:
 		increase_bad_stock(deal_quantity)
 		
-func increase_good_stock()-> void:
-	good_stock_amount += 3
+func increase_good_stock(deal_quantity)-> void:
+	if current_client == null or not is_instance_valid(current_client):
+		is_processing_action = false
+		return
+	good_stock_amount += deal_quantity
+	total_money -= deal_price
+	print("deal taken")
+	take_deal.hide()
+	cancel_deal.hide()
+	current_client.leave()
+	current_client = null
 	next_event()
+	is_processing_action = false
 
 func increase_stock_uber_eats():
 	good_stock_amount += 3
@@ -298,6 +310,7 @@ func next_client() -> void:
 
 func next_day() -> void:
 	current_day += 1
+	
 	await spawn_client_asserter()
 	
 	for client_info in client_infos:
@@ -310,10 +323,14 @@ func buy_good_stock_amount() -> void:
 	if coupon_count > 0 && total_money >= 5:
 		total_money -= 10
 		coupon_count -= 1
-		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
+		add_to_queue_in(EVENT.SPAWN_DEALER, 1)
+		phone.disable()
+		is_good_meat = true
 	elif total_money >= GOOD_BURGER_COST:
 		total_money -= GOOD_BURGER_COST
-		add_to_queue_in(EVENT.STOCK_ARRIVING, 1)
+		add_to_queue_in(EVENT.SPAWN_DEALER, 1)
+		phone.disable()
+		is_good_meat = true
 	else:
 		print("You got no money!")
 	_on_phone_show_dialog()
@@ -323,8 +340,10 @@ func buy_bad_stock_amount() -> void:
 		return
 	if current_client == null or not is_instance_valid(current_client):
 		return
+	is_good_meat = false
 	current_client.client_info.dealer_is_requested = true
 	add_to_queue_in(EVENT.SPAWN_DEALER, 1)
+	phone.disable()
 	_on_phone_show_dialog()
 	
 func _on_bell_bell_pressed() -> void:
@@ -359,23 +378,31 @@ func add_to_queue_in(event: EVENT, pos: int):
 		elif event_queue.size() <= i:
 			event_queue.push_back(EVENT.SPAWN_CLIENT)
 
+var is_good_meat = true
 func _on_take_deal_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
 	
-	if current_client != null and is_instance_valid(current_client) and current_client.client_info.type == Client_Info.Type.COP:
-		get_caught()
-		return
-	elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
-			get_lucky_fake_cop()
+	if !is_good_meat:
+		if current_client != null and is_instance_valid(current_client) and current_client.client_info.type == Client_Info.Type.COP:
+			get_caught()
 			return
+		elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
+				get_lucky_fake_cop()
+				return
 	
-	var stock = you_got_stock_scene.instantiate()
-	stock.connect("give_meat", increase_stock.bind(false))
-	add_child(stock)
-	stock.item_icon.item = BAD_MEAT_RESOURCE
-	stock.item_icon._ready()
+		var stock = you_got_stock_scene.instantiate()
+		stock.connect("give_meat", increase_stock.bind(false))
+		add_child(stock)
+		stock.item_icon.item = BAD_MEAT_RESOURCE
+		stock.item_icon._ready()
+	else:
+		var stock = you_got_stock_scene.instantiate()
+		stock.connect("give_meat", increase_stock.bind(true))
+		add_child(stock)
+		stock.item_icon.item = GOOD_MEAT_RESOURCE
+		stock.item_icon._ready()
 	is_processing_action = false
 
 func _on_cancel_deal_pressed() -> void:
@@ -392,13 +419,20 @@ func _on_cancel_deal_pressed() -> void:
 	is_processing_action = false
 	
 func check_dealer():
-	deal_quantity = [3, 5, 8, 10].pick_random()
-	deal_price = deal_quantity * [2, 3, 4].pick_random()
-	if deal_price > total_money: 
-			deal_price = total_money 
-	current_client.dialog_system.show_message("Here's the deal: These %d burgers for $%d, do you take man?" % [deal_quantity, deal_price])
-	take_deal.show()
+	if !is_good_meat:
+		deal_quantity = [3, 5, 8, 10].pick_random()
+		deal_price = deal_quantity * [2, 3, 4].pick_random()
+		if deal_price > total_money: 
+				deal_price = total_money 
+		current_client.dialog_system.show_message("Here's the deal: These EXCELENT %d burgers for $%d, do you them take man?" % [deal_quantity, deal_price])
+	else:
+		deal_quantity = [2,3].pick_random()
+		deal_price = deal_quantity * [10,11].pick_random()
+		if deal_price > total_money: 
+				deal_price = total_money 
+		current_client.dialog_system.show_message("Here's the deal: These AFFORDABLE %d burgers for $%d, do you them take man?" % [deal_quantity, deal_price])
 	cancel_deal.show()
+	take_deal.show()
 	
 func hide_dialogs_and_buttons() -> void:
 	#await dialog_box.hide_dialog_box()
@@ -452,4 +486,10 @@ func _on_phone_show_dialog() -> void:
 		current_client.dialog_system.show()
 	player_box.show()
 	service_controller.show()
-	
+
+var is_first_item_clear: bool = true
+func first_item_clear():
+	_on_phone_show_dialog()
+	if is_first_item_clear:
+		next_client()
+		is_first_item_clear = false

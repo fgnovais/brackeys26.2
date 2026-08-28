@@ -5,6 +5,7 @@ signal selected
 signal pressed
 var is_selected: bool = false
 const HIGHLIGHT = preload("uid://d25a46rib4y4v")
+var is_enabled :bool = true
 
 func _ready() -> void:
 	parent = get_parent()
@@ -18,20 +19,24 @@ func _ready() -> void:
 	parent.material.set_shader_parameter("line_color", Color.WHITE)
 	
 func _on_area_2d_mouse_entered() -> void:
-	selected.emit(true)	
-	is_selected = true
-	parent.modulate ='#d2dae2' 
-	parent.material.set_shader_parameter("onoff",1)
-	Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	if is_enabled:
+		selected.emit(true)	
+		is_selected = true
+		parent.modulate ='#d2dae2' 
+		parent.material.set_shader_parameter("onoff",1)
+		Input.set_default_cursor_shape(Input.CURSOR_POINTING_HAND)
+	else:
+		Input.set_default_cursor_shape(Input.CURSOR_FORBIDDEN)
 	
 func _on_area_2d_mouse_exited() -> void:
-	selected.emit(false)
-	is_selected = false
-	parent.modulate = '#FFFFFF'
-	parent.material.set_shader_parameter("onoff",0)
+	if is_enabled:
+		selected.emit(false)
+		is_selected = false
+		parent.modulate = '#FFFFFF'
+		parent.material.set_shader_parameter("onoff",0)
 	Input.set_default_cursor_shape(Input.CURSOR_ARROW)
-
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse1"):
-		if is_selected:
+		if is_selected and is_enabled:
 			pressed.emit()
