@@ -10,6 +10,7 @@ var face : Texture2D
 signal no_more_dialog
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var space_bar: TextureRect = $SpaceBar
+@onready var wait: Timer = $Wait
 
 func _ready() -> void:
 	space_bar.hide()
@@ -30,6 +31,7 @@ func spawn():
 func show_space_bar():
 	space_bar.show()
 	animation_player.play("bob")
+	wait.start()
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if idx < client_dialog.size():
@@ -54,3 +56,9 @@ func clear_dialogs() -> void:
 	for child in client_dialogs.get_children():
 		child.queue_free()
 	idx = 0
+
+func _on_wait_timeout() -> void:
+	spawn()
+	wait.stop()
+	no_more_dialog.emit()
+	space_bar.hide()

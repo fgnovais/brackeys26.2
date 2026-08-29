@@ -96,7 +96,7 @@ offset_top = -42.0
 offset_right = 2393.252
 offset_bottom = 263.0
 scale = Vector2(0.28387502, 0.2639334)
-text = "See their exact percentage"
+text = "See exactly who they are"
 
 [node name="Name" parent="ItemIcon" index="1" unique_id=864228699]
 offset_left = -15.0
@@ -107,10 +107,10 @@ offset_bottom = 310.0
 [node name="Label" type="Label" parent="." unique_id=500862777]
 z_index = 2
 layout_mode = 0
-offset_left = 684.0
-offset_top = 179.0
-offset_right = 1123.0
-offset_bottom = 227.0
+offset_left = 653.0
+offset_top = 193.0
+offset_right = 1169.0
+offset_bottom = 258.0
 text = "You were given:"
 label_settings = SubResource("LabelSettings_7ta8d")
 

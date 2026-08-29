@@ -107,3 +107,8 @@ texture = ExtResource("2_eya45")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1207256666]
 libraries/ = SubResource("AnimationLibrary_x5l6r")
+
+[node name="Wait" type="Timer" parent="." unique_id=221114776]
+wait_time = 5.0
+
+[connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]

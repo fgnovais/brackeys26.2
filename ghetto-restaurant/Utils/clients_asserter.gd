@@ -34,6 +34,9 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 		3:
 			clients_amount = 8
 			inspectors_amount = 6
+		4:
+			clients_amount = 8
+			inspectors_amount = 10
 	
 	for i in clients_amount:
 		var client_info = Client_Info.new()

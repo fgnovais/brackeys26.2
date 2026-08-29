@@ -41,11 +41,11 @@ shader_parameter/onoff = 0.2000000095
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font_size = 106
 font_color = Color(0, 0, 0, 1)
-outline_size = 131
+outline_size = 122
 
 [sub_resource type="LabelSettings" id="LabelSettings_n06vd"]
 font = ExtResource("3_n06vd")
-font_size = 31
+font_size = 27
 outline_size = 21
 outline_color = Color(0, 0, 0, 1)
 
@@ -73,10 +73,10 @@ autowrap_mode = 2
 
 [node name="Name" type="Label" parent="." unique_id=864228699]
 layout_mode = 0
-offset_left = 4.0
-offset_top = 171.0
-offset_right = 343.0
-offset_bottom = 211.0
+offset_left = -36.0
+offset_top = 175.0
+offset_right = 303.0
+offset_bottom = 215.0
 scale = Vector2(0.885, 0.885)
 text = "Let's forget this"
 label_settings = SubResource("LabelSettings_n06vd")

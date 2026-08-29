@@ -236,6 +236,43 @@ _data = {
 &"remove_money": SubResource("Animation_a8jji")
 }
 
+[sub_resource type="Animation" id="Animation_nxgci"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drawer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1.0624378, 0.9862308)]
+}
+
+[sub_resource type="Animation" id="Animation_y2i1u"]
+resource_name = "grow"
+length = 0.9
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Drawer:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.3, 0.8666667),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1.0624378, 0.9862308), Vector2(1.477, 1.374), Vector2(1.0624378, 0.9862308)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8k21o"]
+_data = {
+&"RESET": SubResource("Animation_nxgci"),
+&"grow": SubResource("Animation_y2i1u")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_hwoix"]
 font = ExtResource("14_jnhw6")
 font_size = 73
@@ -379,7 +416,7 @@ font_size = 301
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjcv7"]
 font = ExtResource("14_jnhw6")
-font_size = 27
+font_size = 31
 outline_size = 23
 outline_color = Color(0, 0, 0, 1)
 
@@ -389,7 +426,7 @@ script = ExtResource("1_hwoix")
 [node name="Background" type="Node2D" parent="." unique_id=1925613727]
 
 [node name="L3" type="Node2D" parent="Background" unique_id=1392235716]
-modulate = Color(0.45840496, 0.45840508, 0.4584049, 1)
+modulate = Color(0.34407577, 0.34407574, 0.34407574, 1)
 
 [node name="background" type="Sprite2D" parent="Background/L3" unique_id=1633670877]
 texture = ExtResource("2_6svg6")
@@ -412,14 +449,14 @@ libraries/ = SubResource("AnimationLibrary_c5r36")
 autoplay = &"flies"
 
 [node name="L2" type="Node2D" parent="Background" unique_id=1500446090]
-modulate = Color(0.67481464, 0.67481464, 0.6748146, 1)
+modulate = Color(0.288518, 0.288518, 0.2885179, 1)
 
 [node name="TablesAndDetails" type="Sprite2D" parent="Background/L2" unique_id=900115201]
 position = Vector2(969, 537)
 texture = ExtResource("6_22qjf")
 
 [node name="L1" type="Node2D" parent="Background" unique_id=712091468]
-modulate = Color(0.74558026, 0.7455802, 0.7455802, 1)
+modulate = Color(0.45064795, 0.45064837, 0.45064825, 1)
 z_index = 1
 
 [node name="Counter" type="Sprite2D" parent="Background/L1" unique_id=898485371]
@@ -444,10 +481,15 @@ position = Vector2(590, 848)
 scale = Vector2(1.1109103, 1.1212252)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
+modulate = Color(1.0153453, 1.0153453, 1.0153453, 1)
 z_index = 2
 material = null
 position = Vector2(1371.0001, 1048)
 scale = Vector2(1.0624378, 0.9862308)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Drawer" unique_id=1434334370]
+root_node = NodePath("../..")
+libraries/ = SubResource("AnimationLibrary_8k21o")
 
 [node name="PlayerBox" parent="." unique_id=309634947 instance=ExtResource("9_2im43")]
 offset_left = 30.0
@@ -522,10 +564,10 @@ script = ExtResource("5_8bcmq")
 visible = false
 z_index = 10
 layout_mode = 0
-offset_left = 903.0
-offset_top = 650.00006
-offset_right = 2489.0
-offset_bottom = 904.00006
+offset_left = 602.0
+offset_top = 640.00006
+offset_right = 2188.0
+offset_bottom = 894.00006
 scale = Vector2(0.2, 0.20082791)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
@@ -535,10 +577,10 @@ text = "Take Deal"
 [node name="CancelDeal" type="Button" parent="ServiceController" unique_id=17242521]
 visible = false
 layout_mode = 0
-offset_left = 1380.0
-offset_top = 649.0
-offset_right = 2966.0
-offset_bottom = 903.0
+offset_left = 1151.0
+offset_top = 645.0
+offset_right = 2737.0
+offset_bottom = 899.0
 scale = Vector2(0.2, 0.20082791)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
@@ -636,11 +678,11 @@ script = ExtResource("19_3na28")
 position = Vector2(508.3644, 277.4718)
 
 [node name="Order" type="Label" parent="Phone" unique_id=1641676396]
-offset_left = 281.1795
-offset_top = 126.24961
-offset_right = 806.1795
-offset_bottom = 175.2496
-scale = Vector2(0.915, 0.915)
+offset_left = 240.42886
+offset_top = 109.60138
+offset_right = 843.42883
+offset_bottom = 158.60138
+scale = Vector2(0.96, 0.96)
 text = "Order Meat. Wait for dealer."
 label_settings = SubResource("LabelSettings_gjcv7")
 
@@ -651,17 +693,21 @@ offset_top = 906.00006
 offset_right = 1844.0
 offset_bottom = 1085.0
 scale = Vector2(0.39717132, 0.3932691)
+mouse_filter = 2
 
 [node name="TextureRect" type="TextureRect" parent="Coupons" unique_id=1167554215]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("31_inh4j")
 
 [node name="TextureRect2" type="TextureRect" parent="Coupons" unique_id=1368610137]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("31_inh4j")
 
 [node name="TextureRect3" type="TextureRect" parent="Coupons" unique_id=123354601]
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("31_inh4j")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1968365781]

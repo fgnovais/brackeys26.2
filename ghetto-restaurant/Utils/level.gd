@@ -25,6 +25,7 @@ class_name Level
 @onready var register_audio: AudioStreamPlayer = $Background/L1/Register/RegisterAudio
 @onready var serve: AudioStreamPlayer = $Serve
 @onready var coupons: HBoxContainer = $Coupons
+@onready var drawer_animation_player: AnimationPlayer = $Drawer/AnimationPlayer
 const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
 const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
 const CASH_REGISTER_2 = preload("uid://dtrfksvgsu1wx")
@@ -608,6 +609,7 @@ func first_item_clear():
 	if is_first_item_clear:
 		next_client()
 		is_first_item_clear = false
+	drawer_animation_player.play("grow")
 
 func _on_pay_fine_pressed() -> void:
 	pay_fine.hide()

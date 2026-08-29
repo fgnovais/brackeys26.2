@@ -140,10 +140,10 @@ libraries/ = SubResource("AnimationLibrary_07cqi")
 
 [node name="Start" type="Button" parent="." unique_id=1883052980]
 layout_mode = 0
-offset_left = 1284.0
-offset_top = 910.0
-offset_right = 2152.0
-offset_bottom = 1094.0
+offset_left = 1274.0
+offset_top = 872.0
+offset_right = 2142.0
+offset_bottom = 1056.0
 scale = Vector2(0.5, 0.5)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_f6fsj")
@@ -157,6 +157,7 @@ offset_top = 600.0
 offset_right = 2066.6316
 offset_bottom = 1041.5383
 scale = Vector2(0.77182466, 0.7813592)
+mouse_filter = 2
 theme_override_fonts/normal_font = ExtResource("3_f6fsj")
 theme_override_fonts/bold_font = SubResource("FontVariation_f6fsj")
 theme_override_font_sizes/normal_font_size = 41
