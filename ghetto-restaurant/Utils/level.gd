@@ -197,7 +197,7 @@ func refresh_labels():
 			
 func next_event():
 	phone.enable()
-	preview.next_queue = event_queue.slice(0,3)
+	#preview.next_queue = event_queue.slice(0,3)
 	preview.update_textures()
 	if event_queue.size() == 0:
 		event_queue.push_front(EVENT.SPAWN_CLIENT)
@@ -425,10 +425,8 @@ func _on_take_deal_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
-<<<<<<< Updated upstream
 	take_deal.hide()
 	cancel_deal.hide()
->>>>>>> Stashed changes
 	if !is_good_meat:
 		if current_client != null and is_instance_valid(current_client) and current_client.client_info.type == Client_Info.Type.COP:
 			get_caught()
