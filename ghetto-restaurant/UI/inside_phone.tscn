@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://h4ats8hdkpyi" path="res://UI/bad_meat.png" id="4_441io"]
 [ext_resource type="Resource" uid="uid://cffxeehgwieho" path="res://Assets/Items/good_meat_resource.tres" id="5_51xre"]
 [ext_resource type="Resource" uid="uid://phng332imj5i" path="res://Assets/Items/bad_meat_resource.tres" id="7_bryqp"]
-[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="8_bryqp"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="8_bryqp"]
 
 [sub_resource type="Shader" id="Shader_bryqp"]
 resource_local_to_scene = true
@@ -132,19 +132,18 @@ item = ExtResource("5_51xre")
 
 [node name="Description" parent="ItemIcon" index="0" unique_id=1389996503]
 z_index = 2
-offset_left = -18.722214
-offset_top = -32.169033
-offset_right = 2079.858
-offset_bottom = 272.83096
-scale = Vector2(0.12809534, 0.14334267)
+offset_left = -1.3868027
+offset_top = -20.19917
+offset_right = 2097.1934
+offset_bottom = 284.80084
+scale = Vector2(0.15, 0.15)
 text = "Expensive meat"
 
 [node name="Name" parent="ItemIcon" index="1" unique_id=864228699]
-offset_left = 27.0433
-offset_top = 129.42416
-offset_right = 170.07742
-offset_bottom = 217.34149
-scale = Vector2(0.87262356, 0.8509317)
+offset_left = 28.430134
+offset_top = 128.67595
+offset_right = 171.46425
+offset_bottom = 216.59328
 text = "3 = 30$"
 
 [node name="ItemIcon2" parent="." unique_id=1469221418 instance=ExtResource("4_51xre")]
@@ -161,18 +160,18 @@ item = ExtResource("7_bryqp")
 
 [node name="Description" parent="ItemIcon2" index="0" unique_id=1389996503]
 z_index = 2
-offset_left = 22.937798
-offset_top = -29.304039
-offset_right = 1712.4026
-offset_bottom = 275.69595
-scale = Vector2(0.1432922, 0.15008344)
+offset_left = 21.408703
+offset_top = -19.780231
+offset_right = 1710.8735
+offset_bottom = 285.21976
+scale = Vector2(0.15, 0.15)
 text = "Cheap Meat"
 
 [node name="Name" parent="ItemIcon2" index="1" unique_id=864228699]
-offset_left = 42.052742
-offset_top = 135.53107
-offset_right = 307.05273
-offset_bottom = 164.53107
+offset_left = 51.22787
+offset_top = 127.47246
+offset_right = 316.22787
+offset_bottom = 163.47246
 text = "? = ?$"
 
 [node name="Label" type="Label" parent="." unique_id=970730162]

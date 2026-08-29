@@ -37,7 +37,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			spawn()
 	else:
 		no_more_dialog.emit()
-		
+		space_bar.hide()
+
 func show_message(text: String) -> void:
 	var inst : DialogBox = dialog_scene.instantiate()
 	inst.face = face

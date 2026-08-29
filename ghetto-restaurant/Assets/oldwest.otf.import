@@ -3,12 +3,12 @@
 importer="font_data_dynamic"
 type="FontFile"
 uid="uid://jiffeyp7pgb"
-path="res://.godot/imported/aseprite.otf-9a3ab6b435d0b5e4c00b34c7d18a7caf.fontdata"
+path="res://.godot/imported/oldwest.otf-a9fd4c1914db168ddd139efbb25671f2.fontdata"
 
 [deps]
 
-source_file="res://Assets/aseprite.otf"
-dest_files=["res://.godot/imported/aseprite.otf-9a3ab6b435d0b5e4c00b34c7d18a7caf.fontdata"]
+source_file="res://Assets/oldwest.otf"
+dest_files=["res://.godot/imported/oldwest.otf-a9fd4c1914db168ddd139efbb25671f2.fontdata"]
 
 [params]
 

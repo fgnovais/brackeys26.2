@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://digwcvks4smit" path="res://Assets/client_box.png" id="1_wc47m"]
 [ext_resource type="Script" uid="uid://clkhlurtwx6wv" path="res://UI/dialog_box.gd" id="2_diy2i"]
-[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_6co6m"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="3_6co6m"]
 [ext_resource type="Texture2D" uid="uid://oesd77fs1cu7" path="res://Assets/faces/cop_face.png" id="4_7oaei"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_pncti"]
@@ -21,9 +21,10 @@ script = ExtResource("2_diy2i")
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
 offset_left = 31.0
-offset_top = 80.0
-offset_right = 495.0
-offset_bottom = 208.0
+offset_top = 51.0
+offset_right = 599.9441
+offset_bottom = 179.0
+scale = Vector2(0.805, 0.805)
 theme_override_fonts/font = ExtResource("3_6co6m")
 text = "Can i get a burger please"
 label_settings = SubResource("LabelSettings_pncti")

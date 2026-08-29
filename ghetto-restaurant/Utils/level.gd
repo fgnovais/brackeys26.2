@@ -76,7 +76,7 @@ func start_level():
 func _ready() -> void:
 	for i in 3:
 			coupons.get_child(i).hide()
-	Engine.time_scale = 8
+	Engine.time_scale = 1
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
@@ -175,7 +175,7 @@ func _process(delta: float) -> void:
 		refresh_labels()
 
 func refresh_labels():
-	money.text = str(total_money)
+	money.text = str(total_money) + "$"
 	good_stock.text = str(good_stock_amount)
 	bad_stock.text = str(bad_stock_amount)
 	day.text = "DAY: " + str(current_day)
@@ -458,6 +458,8 @@ func check_dealer():
 			current_client.dialog_system.show_message("Here's the deal: These %d AFFORDABLE burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 			cancel_deal.show()
 			take_deal.show()
+		
+	current_client.dialog_system.space_bar.hide()
 	
 func hide_dialogs_and_buttons() -> void:
 	#await dialog_box.hide_dialog_box()
@@ -484,6 +486,7 @@ func get_caught() -> void:
 		current_client.dialog_system.clear_dialogs()
 		current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
 		current_client.dialog_system.show_message("You have been caught, you will have to pay a 30$ fine now!")
+		current_client.dialog_system.space_bar.hide()
 	
 	update_money(fine_amount, false)
 	await get_tree().create_timer(2.0).timeout
@@ -500,11 +503,12 @@ func update_money(amount: int, is_to_add: bool):
 		total_money += amount
 		register_audio.stream = CASH_REGISTER_2
 		register_audio.pitch_scale = 1
+		register_player.play("add_money")
 	else:
 		total_money -= amount
 		register_audio.stream = COINS_2
-		register_audio.pitch_scale = 0.7
-	register_player.play("add_money")
+		register_audio.pitch_scale = 0.5
+		register_player.play("remove_money")
 			
 	pay_fine.show()
 	

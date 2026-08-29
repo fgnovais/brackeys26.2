@@ -9,12 +9,11 @@ const INSPECTOR_HIGHLIGHT = preload("uid://dspccllwrqw0k")
 
 signal start_level
 var label_text = "%s Clients
-%s Inspectors
+%s [color=yellow] Inspectors[/color]
 
-Feed a bad burger to an inspector if you want to lose.
+Feed a [color=maroon]bad[/color] burger to an [color=yellow]inspector[/color] if you want to [b] lose [/b].
 Can you guess who is who?"
-@onready var label: Label = $Label
-
+@onready var label: RichTextLabel = $Label
 
 func _ready() -> void:
 	start.hide()
@@ -63,18 +62,12 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 		await get_tree().create_timer(0.2).timeout
 	
 	label.text = "%s Clients" % clients_amount + "
-	%s Inspectors" % inspectors_amount
-	await get_tree().create_timer(1).timeout
-	
-	label.text = label_text % [str(clients_amount), str(inspectors_amount)]
-		
-	for ent in entities_array:
-		print("Current client: ", Client_Info.Type.keys()[ent.type])
-	await play_animation(entities_array)
+%s[color=yellow] Inspectors[/color]" % inspectors_amount
+	await play_animation(entities_array, clients_amount, inspectors_amount)
 	
 	return entities_array
 	
-func play_animation(entities_array : Array[Client_Info]):
+func play_animation(entities_array : Array[Client_Info], clients_amount : int, inspectors_amount: int):
 	for i in entities_array.size():
 		var info : Client_Info = entities_array[i]
 		var square : TextureRect = h_box_container.get_children()[i]
@@ -82,9 +75,11 @@ func play_animation(entities_array : Array[Client_Info]):
 			square.material = ShaderMaterial.new()
 			square.material = INSPECTOR_HIGHLIGHT
 			await get_tree().create_timer(0.5).timeout
+	await get_tree().create_timer(1).timeout
+	
+	label.text = label_text % [str(clients_amount), str(inspectors_amount)]
 	
 	await get_tree().create_timer(2).timeout
-	
 	#get positions
 	var positions: Array[Vector2] = []
 	for ent in h_box_container.get_children():

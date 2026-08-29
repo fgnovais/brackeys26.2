@@ -17,7 +17,7 @@
 [ext_resource type="AudioStream" uid="uid://dtrfksvgsu1wx" path="res://Assets/Audio/Cash Register 2.wav" id="9_1rd7f"]
 [ext_resource type="PackedScene" uid="uid://tvnrhe63rnis" path="res://UI/dialog_box.tscn" id="9_2im43"]
 [ext_resource type="Texture2D" uid="uid://cuqor4c18sm8a" path="res://Assets/player_box.png" id="10_7j0cy"]
-[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="14_jnhw6"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="14_jnhw6"]
 [ext_resource type="Texture2D" uid="uid://ck7trxt0c1yt1" path="res://UI/hp/0.5.png" id="16_ck4dv"]
 [ext_resource type="Texture2D" uid="uid://cbxjlh5rvtat1" path="res://UI/hp/1.png" id="17_inh4j"]
 [ext_resource type="Texture2D" uid="uid://doubuc8372enn" path="res://UI/hp/1.5.png" id="18_1rd7f"]
@@ -32,6 +32,7 @@
 [ext_resource type="Texture2D" uid="uid://q38td8i5smqa" path="res://UI/hp/4.5.png" id="24_8k21o"]
 [ext_resource type="Texture2D" uid="uid://b7kj0nw3gl1aj" path="res://UI/hp/5.png" id="25_ng07t"]
 [ext_resource type="Texture2D" uid="uid://cf4c0dgx26t30" path="res://Assets/Items/coupon.png" id="31_inh4j"]
+[ext_resource type="AudioStream" uid="uid://bk8yetx121xda" path="res://Assets/Audio/BackGround.wav" id="33_3mdya"]
 
 [sub_resource type="Animation" id="Animation_gjcv7"]
 length = 0.001
@@ -109,6 +110,18 @@ tracks/2/keys = {
 "update": 0,
 "values": [Vector2(0.43296888, 0.23683104)]
 }
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../ServiceController/Money:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
 
 [sub_resource type="Animation" id="Animation_sn240"]
 resource_name = "add_money"
@@ -147,7 +160,19 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.6333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.43296888, 0.23683104), Vector2(1.598, 0.917), Vector2(0.43296888, 0.23683104)]
+"values": [Vector2(0.3, 0.3), Vector2(1.598, 0.917), Vector2(0.3, 0.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../ServiceController/Money:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 1.02),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="Animation" id="Animation_a8jji"]
@@ -187,7 +212,19 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.6333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.43296888, 0.23683104), Vector2(1.598, 0.917), Vector2(0.43296888, 0.23683104)]
+"values": [Vector2(0.3, 0.3), Vector2(0.928, 0.518), Vector2(0.3, 0.3)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("../../../ServiceController/Money:label_settings:font_color")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.33, 0.92),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(1, 1, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_a8jji"]
@@ -340,7 +377,7 @@ font_size = 301
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjcv7"]
 font = ExtResource("14_jnhw6")
-font_size = 34
+font_size = 27
 outline_size = 23
 outline_color = Color(0, 0, 0, 1)
 
@@ -431,11 +468,11 @@ script = ExtResource("5_8bcmq")
 
 [node name="GiveGoodBurger" type="Button" parent="ServiceController" unique_id=1464754603]
 layout_mode = 0
-offset_left = 186.0
-offset_top = 378.0
-offset_right = 1530.0
-offset_bottom = 632.0
-scale = Vector2(0.16449213, 0.20953861)
+offset_left = 174.0
+offset_top = 402.0
+offset_right = 1831.0
+offset_bottom = 656.0
+scale = Vector2(0.13, 0.13)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
@@ -444,21 +481,21 @@ text = "Good Burger.
 
 [node name="GoodStock" type="Label" parent="ServiceController/GiveGoodBurger" unique_id=677769474]
 layout_mode = 0
-offset_left = 1033.4841
-offset_top = -133.62697
-offset_right = 1116.4841
-offset_bottom = -32.62697
-scale = Vector2(4.521559, 1.8394984)
+offset_left = 1369.2308
+offset_top = -253.84604
+offset_right = 1471.2308
+offset_bottom = -152.84604
+scale = Vector2(3, 3)
 text = "10"
 label_settings = SubResource("LabelSettings_hwoix")
 
 [node name="GiveBadBurger" type="Button" parent="ServiceController" unique_id=2032489855]
 layout_mode = 0
-offset_left = 440.0
-offset_top = 382.0
-offset_right = 1656.0
-offset_bottom = 636.0002
-scale = Vector2(0.18579613, 0.20403814)
+offset_left = 464.0
+offset_top = 402.0
+offset_right = 1932.0
+offset_bottom = 656.0002
+scale = Vector2(0.13, 0.13)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
@@ -467,11 +504,11 @@ text = "Bad Burger.
 
 [node name="BadStock" type="Label" parent="ServiceController/GiveBadBurger" unique_id=972599840]
 layout_mode = 0
-offset_left = 801.9544
-offset_top = -127.427185
-offset_right = 884.9544
-offset_bottom = -26.427185
-scale = Vector2(5.2210464, 1.8616925)
+offset_left = 1169.2307
+offset_top = -246.15395
+offset_right = 1271.2307
+offset_bottom = -145.15395
+scale = Vector2(3, 3)
 text = "10"
 label_settings = SubResource("LabelSettings_hwoix")
 
@@ -513,12 +550,12 @@ text = "Pay Fine"
 [node name="Money" type="Label" parent="ServiceController" unique_id=993466695]
 z_index = 1
 layout_mode = 0
-offset_left = 355.00003
-offset_top = 596.0
-offset_right = 622.0
-offset_bottom = 793.0
+offset_left = 341.0
+offset_top = 583.0
+offset_right = 680.0
+offset_bottom = 780.0
 scale = Vector2(0.43296888, 0.23683104)
-text = "154"
+text = "154$"
 label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="Day" type="Label" parent="ServiceController" unique_id=2137333337]
@@ -588,11 +625,12 @@ script = ExtResource("19_3na28")
 position = Vector2(508.3644, 277.4718)
 
 [node name="Order" type="Label" parent="Phone" unique_id=1641676396]
-offset_left = 314.79883
-offset_top = 91.56563
-offset_right = 643.7988
-offset_bottom = 140.56563
-text = "Order Meat."
+offset_left = 281.1795
+offset_top = 126.24961
+offset_right = 806.1795
+offset_bottom = 175.2496
+scale = Vector2(0.915, 0.915)
+text = "Order Meat. Wait for dealer."
 label_settings = SubResource("LabelSettings_gjcv7")
 
 [node name="Coupons" type="HBoxContainer" parent="." unique_id=1677973775]
@@ -614,6 +652,11 @@ texture = ExtResource("31_inh4j")
 [node name="TextureRect3" type="TextureRect" parent="Coupons" unique_id=123354601]
 layout_mode = 2
 texture = ExtResource("31_inh4j")
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1968365781]
+stream = ExtResource("33_3mdya")
+volume_db = -15.0
+autoplay = true
 
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]

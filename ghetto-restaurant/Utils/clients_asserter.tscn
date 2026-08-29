@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://8ji040lkcmgj" path="res://Utils/clients_asserter.gd" id="1_f6fsj"]
 [ext_resource type="Texture2D" uid="uid://digwcvks4smit" path="res://Assets/client_box.png" id="2_07cqi"]
-[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="3_f6fsj"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="3_f6fsj"]
 
 [sub_resource type="Animation" id="Animation_qx3qn"]
 length = 0.001
@@ -92,9 +92,9 @@ _data = {
 &"spawn": SubResource("Animation_f6fsj")
 }
 
-[sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
-font = ExtResource("3_f6fsj")
-font_size = 51
+[sub_resource type="FontVariation" id="FontVariation_f6fsj"]
+base_font = ExtResource("3_f6fsj")
+variation_embolden = 1.6
 
 [node name="ClientsAsserter" type="Control" unique_id=1217629449]
 top_level = true
@@ -140,23 +140,27 @@ libraries/ = SubResource("AnimationLibrary_07cqi")
 
 [node name="Start" type="Button" parent="." unique_id=1883052980]
 layout_mode = 0
-offset_left = 1164.0001
-offset_top = 831.0
-offset_right = 2007.0001
-offset_bottom = 969.0
-scale = Vector2(0.43257946, 0.5073014)
+offset_left = 1284.0
+offset_top = 910.0
+offset_right = 2152.0
+offset_bottom = 1094.0
+scale = Vector2(0.5, 0.5)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("3_f6fsj")
 theme_override_font_sizes/font_size = 130
 text = "START DAY"
 
-[node name="Label" type="Label" parent="." unique_id=1875006915]
+[node name="Label" type="RichTextLabel" parent="." unique_id=1389792453]
 layout_mode = 0
-offset_left = 301.0
-offset_top = 616.0
-offset_right = 1846.0
-offset_bottom = 829.0
-scale = Vector2(0.8092432, 0.739522)
-label_settings = SubResource("LabelSettings_7ta8d")
+offset_left = 267.0
+offset_top = 600.0
+offset_right = 2066.6316
+offset_bottom = 1041.5383
+scale = Vector2(0.77182466, 0.7813592)
+theme_override_fonts/normal_font = ExtResource("3_f6fsj")
+theme_override_fonts/bold_font = SubResource("FontVariation_f6fsj")
+theme_override_font_sizes/normal_font_size = 41
+theme_override_font_sizes/bold_font_size = 47
+bbcode_enabled = true
 
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]

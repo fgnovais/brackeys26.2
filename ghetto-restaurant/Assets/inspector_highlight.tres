@@ -4,6 +4,6 @@
 
 [resource]
 shader = ExtResource("1_4bd6i")
-shader_parameter/line_color = Color(1, 0, 0, 1)
+shader_parameter/line_color = Color(1, 0.84313726, 0, 1)
 shader_parameter/line_thickness = 20.0
 shader_parameter/onoff = 1.0

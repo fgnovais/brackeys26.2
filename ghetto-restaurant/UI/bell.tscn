@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dnnwt5r5gbtot" path="res://UI/hover_component.tscn" id="2_fqbv2"]
 [ext_resource type="Texture2D" uid="uid://bi67mdeyk0rab" path="res://UI/bell.png" id="3_akgyd"]
 [ext_resource type="AudioStream" uid="uid://bmr8ni2ai5atl" path="res://Assets/ding.mp3" id="4_fqbv2"]
-[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="5_akgyd"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="5_akgyd"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font = ExtResource("5_akgyd")
@@ -25,10 +25,11 @@ scale = Vector2(0.7917795, 0.65540344)
 stream = ExtResource("4_fqbv2")
 
 [node name="Label" type="Label" parent="." unique_id=1715014584]
-offset_left = -222.0
-offset_top = -109.0
-offset_right = 436.0
-offset_bottom = -63.0
+offset_left = -230.00002
+offset_top = -94.0
+offset_right = 428.0
+offset_bottom = -48.0
+scale = Vector2(0.795, 0.795)
 text = "Skip Client (Lose 1 Rating)"
 label_settings = SubResource("LabelSettings_7ta8d")
 

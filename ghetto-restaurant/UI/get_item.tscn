@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c1nuyvywtlhd5" path="res://UI/drawer_no_arrow.png" id="2_d48o1"]
 [ext_resource type="PackedScene" uid="uid://bjhkdoe56uyc6" path="res://UI/item_icon.tscn" id="2_p432y"]
 [ext_resource type="Resource" uid="uid://cjbd5fkdnlw4a" path="res://Assets/Items/Lupa.tres" id="4_d48o1"]
-[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="5_bu0nb"]
+[ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="5_bu0nb"]
 
 [sub_resource type="Shader" id="Shader_bu0nb"]
 resource_local_to_scene = true
