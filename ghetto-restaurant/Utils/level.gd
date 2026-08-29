@@ -155,7 +155,7 @@ func flipphone():
 		is_processing_action = true
 		current_client.leave()
 		current_client = null
-		next_event()
+		await next_event()
 		is_processing_action = false
 		print("I'm actually leaving, have a good day")
 	elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
@@ -245,10 +245,11 @@ func increase_good_stock(deal_quantity)-> void:
 		is_processing_action = false
 		return
 	good_stock_amount += deal_quantity
-	update_money(deal_price, false)
+	total_money -= deal_price
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
+	await player_box.hide_dialog_box()
 	current_client.leave()
 	current_client = null
 	next_event()
@@ -263,10 +264,11 @@ func increase_bad_stock(deal_quantity)-> void:
 		is_processing_action = false
 		return
 	bad_stock_amount += deal_quantity
-	update_money(deal_price, false)
+	total_money -= deal_price
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
+	await player_box.hide_dialog_box()
 	current_client.leave()
 	current_client = null
 	next_event()
@@ -449,11 +451,21 @@ func check_dealer():
 	if !is_good_meat:
 		deal_quantity = [3, 5, 8, 10].pick_random()
 		deal_price = deal_quantity * [2, 3, 4].pick_random()
-		if deal_price > total_money: 
-			deal_price = total_money 
+		
+		if total_money == 0:
+			var inst = dealer_called.instantiate()
+			inst.text = "No money!"
+			add_child(inst)
+			_on_phone_show_dialog()
+			return
+		elif deal_price > total_money:
+			deal_price = total_money
+		
 		current_client.dialog_system.show_message("Here's the deal: These %d EXCELENT burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 		cancel_deal.show()
 		take_deal.show()
+		
+			
 	else:
 		deal_quantity = [2,3].pick_random()
 		deal_price = deal_quantity * 10
@@ -501,16 +513,6 @@ func get_caught() -> void:
 		current_client.dialog_system.space_bar.hide()
 		pay_fine.show()
 	
-	update_money(fine_amount, false)
-	await get_tree().create_timer(2.0).timeout
-	
-	if current_client != null and is_instance_valid(current_client):
-		current_client.leave()
-		current_client = null
-	
-	await next_event()
-	is_processing_action = false
-
 func update_money(amount: int, is_to_add: bool):
 	if is_to_add:
 		total_money += amount
@@ -560,7 +562,7 @@ func first_item_clear():
 
 func _on_pay_fine_pressed() -> void:
 	pay_fine.hide()
-	total_money -= fine_amount
+	update_money(fine_amount, false)
 	
 	await get_tree().create_timer(2.0).timeout
 	
