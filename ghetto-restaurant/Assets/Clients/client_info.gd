@@ -98,8 +98,8 @@ func request_cop() -> void:
 	if r_fake < fake_cop_odd:
 		type = Client_Info.Type.FAKE_COP
 	print("Current client: ", Client_Info.Type.keys()[type])
-	update_texture_to_type()
-	update_dialog_to_type()
+	client_texture = DEALER
+	dialog = dealer_dialog
 
 func update_texture_to_type() -> void:
 	if type == Type.DEALER:

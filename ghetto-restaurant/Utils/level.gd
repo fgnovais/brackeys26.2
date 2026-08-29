@@ -37,7 +37,6 @@ var cop_chance_max : float = 0.3
 var cop_chance_step : float = 0.03
 var fine_amount : int = 30
 
-
 var is_processing_action : bool = false
 var is_spawning : bool = false
 
@@ -189,8 +188,11 @@ func next_event():
 					client_queue[0].client_info.request_cop()
 				else:
 					client_queue[0].client_info.dealer_is_requested = true
-					await client_queue[0].client_info.get_type()
+					client_queue[0].client_info.get_type()
+					client_queue[0].client_info.update_texture_to_type()
+					client_queue[0].client_info.update_dialog_to_type()
 			await next_client()
+	
 		EVENT.GIVE_ITEM:
 			var item_name = "Coupon"
 			match item_name:
@@ -300,15 +302,16 @@ func next_client() -> void:
 		client_queue.remove_at(0)
 		add_child(client_scene)
 		current_client = client_scene
-		#dialog_box.show_dialog_box(current_client.client_info.dialog.pick_random())
 		player_box.show_dialog_box("I'll give you a....")
 		serve_good_button.show()
 		serve_bad_button.show()
-		if current_client.client_info.type == Client_Info.Type.DEALER:
+		
+		if current_client.client_info.type == Client_Info.Type.DEALER \
+		or current_client.client_info.type == Client_Info.Type.COP \
+		or current_client.client_info.type == Client_Info.Type.FAKE_COP:
 			current_client.dialog_system.no_more_dialog.connect(check_dealer, CONNECT_ONE_SHOT)
 	else:
-		next_day()
-	
+		await next_day()
 	is_spawning = false
 
 func next_day() -> void:
@@ -344,6 +347,7 @@ func buy_bad_stock_amount() -> void:
 		return
 	is_good_meat = false
 	current_client.client_info.dealer_is_requested = true
+	bad_stock_purchases += 1
 	add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 	phone.disable()
 	_on_phone_show_dialog()
@@ -451,7 +455,13 @@ func get_caught() -> void:
 	take_deal.hide()
 	cancel_deal.hide()
 	
-	current_client.dialog_system.show_message("You have been caught, you will have to pay a fine now!")
+	if current_client != null and is_instance_valid(current_client):
+		current_client.client_info.update_texture_to_type()
+		current_client.sprite.texture = current_client.client_info.client_texture
+		current_client.dialog_system.face = current_client.client_info.get_face()
+		current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
+		current_client.dialog_system.show_message("You have been caught, you will have to pay a fine now!")
+	
 	total_money -= fine_amount
 	
 	await get_tree().create_timer(2.0).timeout
@@ -467,7 +477,8 @@ func get_lucky_fake_cop() -> void:
 	take_deal.hide()
 	cancel_deal.hide()
 	
-	current_client.dialog_system.show_message("Oof, you're a lucky guy, I'm not on duty, but I'll be close by!")
+	if current_client != null and is_instance_valid(current_client):
+		current_client.dialog_system.show_message("Oof, you're a lucky guy, I'm not on duty, but I'll be close by!")
 	
 	await get_tree().create_timer(2.0).timeout
 	
