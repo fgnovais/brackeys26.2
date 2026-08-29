@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cpeuav6od8gkw"
+path="res://.godot/imported/Suspiro.wav-b86aa78f1db5213221fa8cb549f752d8.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Vozes Clientes/Suspiro.wav"
+dest_files=["res://.godot/imported/Suspiro.wav-b86aa78f1db5213221fa8cb549f752d8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

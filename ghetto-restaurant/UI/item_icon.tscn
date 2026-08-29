@@ -39,9 +39,9 @@ shader_parameter/line_thickness = 6.9230003288425
 shader_parameter/onoff = 0.2000000095
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
-font_size = 101
+font_size = 153
 font_color = Color(0, 0, 0, 1)
-outline_size = 27
+outline_size = 148
 
 [sub_resource type="LabelSettings" id="LabelSettings_n06vd"]
 font = ExtResource("3_n06vd")
@@ -63,8 +63,8 @@ custom_minimum_size = Vector2(128, 128)
 layout_mode = 0
 offset_left = -35.0
 offset_top = -43.000004
-offset_right = 1661.9058
-offset_bottom = 348.0
+offset_right = 2474.9998
+offset_bottom = 418.0
 scale = Vector2(0.2, 0.2)
 theme_override_fonts/font = ExtResource("3_n06vd")
 text = "This item is AWESOME!!!"

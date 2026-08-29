@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://vxka5tk66n4v"
+path="res://.godot/imported/Female Cough 2.wav-8043a94dc266d9cd80b1536f5eb3fc8d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Coughs/Female Cough 2.wav"
+dest_files=["res://.godot/imported/Female Cough 2.wav-8043a94dc266d9cd80b1536f5eb3fc8d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

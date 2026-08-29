@@ -132,11 +132,11 @@ item = ExtResource("5_51xre")
 
 [node name="Description" parent="ItemIcon" index="0" unique_id=1389996503]
 z_index = 2
-offset_left = -1.3868027
-offset_top = -20.19917
-offset_right = 2097.1934
-offset_bottom = 284.80084
-scale = Vector2(0.15, 0.15)
+offset_left = -15.948547
+offset_top = -35.909615
+offset_right = 2082.6316
+offset_bottom = 269.0904
+scale = Vector2(0.175, 0.175)
 text = "Expensive meat"
 
 [node name="Name" parent="ItemIcon" index="1" unique_id=864228699]
@@ -160,11 +160,11 @@ item = ExtResource("7_bryqp")
 
 [node name="Description" parent="ItemIcon2" index="0" unique_id=1389996503]
 z_index = 2
-offset_left = 21.408703
-offset_top = -19.780231
-offset_right = 1710.8735
-offset_bottom = 285.21976
-scale = Vector2(0.15, 0.15)
+offset_left = 3.058447
+offset_top = -33.69964
+offset_right = 1692.5233
+offset_bottom = 271.30035
+scale = Vector2(0.215, 0.215)
 text = "Cheap Meat"
 
 [node name="Name" parent="ItemIcon2" index="1" unique_id=864228699]
@@ -177,11 +177,11 @@ text = "? = ?$"
 [node name="Label" type="Label" parent="." unique_id=970730162]
 z_index = 2
 layout_mode = 0
-offset_left = 739.0
-offset_top = 193.0
-offset_right = 1303.0
-offset_bottom = 277.0
-scale = Vector2(0.691138, 0.71423227)
+offset_left = 684.0
+offset_top = 176.0
+offset_right = 1436.0
+offset_bottom = 290.0
+scale = Vector2(0.6, 0.6)
 text = "I will order..."
 label_settings = SubResource("LabelSettings_7ta8d")
 

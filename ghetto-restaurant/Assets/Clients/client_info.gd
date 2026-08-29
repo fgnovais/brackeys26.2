@@ -154,3 +154,46 @@ func get_face() -> Texture2D:
 			return SUNGLASSES_FACE
 		_:
 			return FORK_FACE
+			
+const FELIZ_1 = preload("uid://dqqog65vuvptf")
+const FELIZ_2 = preload("uid://cuokpltc00u7h")
+const FELIZ_3 = preload("uid://b5vyljieuqien")
+const FELIZ_4 = preload("uid://dkvd6be4mf4fi")
+const FELIZ_5 = preload("uid://t688afk8sjor")
+const SUSPIRO = preload("uid://cpeuav6od8gkw")
+
+func get_happy_voice():
+	match client_texture:
+		INSPECTOR:
+			return FELIZ_4
+		GHOST	:
+			return FELIZ_5
+		FORK:
+			return FELIZ_2
+		KETCHUP:
+			return FELIZ_3
+		SUNGLASSES:
+			return FELIZ_1
+		_:
+			return FELIZ_4
+
+const VOZ_TRISTE_1 = preload("uid://bl1dwyi182e0v")
+const VOZ_TRISTE_2 = preload("uid://hevrwqajyucs")
+const VOZ_TRISTE_3 = preload("uid://ba456sjje0plm")
+const VOZ_TRISTE_4 = preload("uid://u1yjdvn2t3kd")
+const VOZ_TRISTE_5 = preload("uid://d0h8upsaq1lil")
+
+func get_sad_voice():
+	match client_texture:
+		INSPECTOR:
+			return VOZ_TRISTE_1
+		GHOST	:
+			return VOZ_TRISTE_2
+		FORK:
+			return VOZ_TRISTE_5
+		KETCHUP:
+			return VOZ_TRISTE_4
+		SUNGLASSES:
+			return VOZ_TRISTE_3
+		_:
+			return VOZ_TRISTE_1

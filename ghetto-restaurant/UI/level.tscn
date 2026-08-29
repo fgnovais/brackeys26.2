@@ -33,6 +33,7 @@
 [ext_resource type="Texture2D" uid="uid://b7kj0nw3gl1aj" path="res://UI/hp/5.png" id="25_ng07t"]
 [ext_resource type="Texture2D" uid="uid://cf4c0dgx26t30" path="res://Assets/Items/coupon.png" id="31_inh4j"]
 [ext_resource type="AudioStream" uid="uid://bk8yetx121xda" path="res://Assets/Audio/BackGround.wav" id="33_3mdya"]
+[ext_resource type="AudioStream" uid="uid://b7dg47oh87j0f" path="res://Assets/Audio/Serve.wav" id="34_sn240"]
 
 [sub_resource type="Animation" id="Animation_gjcv7"]
 length = 0.001
@@ -657,6 +658,9 @@ texture = ExtResource("31_inh4j")
 stream = ExtResource("33_3mdya")
 volume_db = -15.0
 autoplay = true
+
+[node name="Serve" type="AudioStreamPlayer" parent="." unique_id=625834251]
+stream = ExtResource("34_sn240")
 
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]

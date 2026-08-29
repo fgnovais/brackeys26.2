@@ -22,7 +22,7 @@ func spawn():
 	inst.show_dialog_box(client_dialog[idx])
 	if idx > 1:
 		var tween = create_tween()
-		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -200), 1)
+		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -240), 1)
 	idx+= 1
 	#if idx < client_dialogs.get_child_count():
 	show_space_bar()
@@ -47,7 +47,7 @@ func show_message(text: String) -> void:
 	
 	if idx > 1:
 		var tween = create_tween()
-		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -200), 1)
+		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -240), 1)
 
 func clear_dialogs() -> void:
 	client_dialogs.offset_transform_position = Vector2(0,0)

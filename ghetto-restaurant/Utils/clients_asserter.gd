@@ -9,7 +9,7 @@ const INSPECTOR_HIGHLIGHT = preload("uid://dspccllwrqw0k")
 
 signal start_level
 var label_text = "%s Clients
-%s [color=yellow] Inspectors[/color]
+%s[color=yellow] Inspectors[/color]
 
 Feed a [color=maroon]bad[/color] burger to an [color=yellow]inspector[/color] if you want to [b] lose [/b].
 Can you guess who is who?"

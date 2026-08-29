@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cuokpltc00u7h"
+path="res://.godot/imported/feliz_1.wav-2f4a8586e55326902fcee5b3b70c4eb1.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Vozes Clientes/feliz_1.wav"
+dest_files=["res://.godot/imported/feliz_1.wav-2f4a8586e55326902fcee5b3b70c4eb1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

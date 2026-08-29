@@ -14,7 +14,6 @@ var money
 const COMPLAIN = preload("uid://btsqleifxyl8b")
 const LAUGH = preload("uid://bkjyu0dftbd1a")
 
-
 func _ready() -> void:
 	money = 5
 	sprite.texture = client_info.client_texture
@@ -26,7 +25,7 @@ func _ready() -> void:
 	dialog_system.client_dialog = client_info.dialog
 	dialog_system.face = client_info.get_face()
 	dialog_system.spawn()
-	leave_sound.stream = COMPLAIN
+	leave_sound.stream = client_info.get_sad_voice()
 
 func transition_animations(anim_name : String):
 	if anim_name == "arrive":
@@ -37,11 +36,13 @@ func transition_animations(anim_name : String):
 func leave():
 	animation_player.play("leave")
 	dialog.text = "I'm Leaving!"
+	if Client_Info.Type.DEALER == client_info.type:
+		leave_sound.stream = client_info.get_happy_voice()
 	leave_sound.play()
 
 func receive_good_food()->int:
 	dialog.text = "Thanks!"
-	leave_sound.stream = LAUGH
+	leave_sound.stream = client_info.get_happy_voice()
 	return money
 
 func receive_bad_food():
@@ -53,8 +54,10 @@ func receive_bad_food():
 			chance_to_complain = 0
 	
 	if chance_to_complain >= randi_range(0, 100):
+		leave_sound.stream = client_info.get_sad_voice()
 		return -1
 	else:
+		leave_sound.stream = client_info.get_happy_voice()
 		return money
 
 func refresh_dialog() -> void:

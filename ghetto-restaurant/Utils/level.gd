@@ -23,10 +23,12 @@ class_name Level
 @onready var phone: Sprite2D = $Phone
 @onready var register_player: AnimationPlayer = $Background/L1/Register/RegisterPlayer
 @onready var register_audio: AudioStreamPlayer = $Background/L1/Register/RegisterAudio
+@onready var serve: AudioStreamPlayer = $Serve
 const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
 const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
 const CASH_REGISTER_2 = preload("uid://dtrfksvgsu1wx")
 const COINS_2 = preload("uid://dl5j1xdx1ne1e")
+var dealer_called : PackedScene = load("res://UI/dealer_called.tscn")
 
 var you_got_stock_scene : PackedScene = load("res://UI/get_item.tscn")
 var total_health : int = 5
@@ -274,6 +276,7 @@ func _on_service_controller_serve_bad() -> void:
 	if is_processing_action:
 		return
 	if bad_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
+		serve.play()
 		is_processing_action = true
 		bad_stock_amount -= 1
 		var paid_money = current_client.receive_bad_food()
@@ -293,6 +296,7 @@ func _on_service_controller_serve_good() -> void:
 	if is_processing_action:
 		return
 	if good_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
+		serve.play()
 		is_processing_action = true
 		good_stock_amount -= 1
 		update_money(current_client.receive_good_food(), true)
@@ -337,6 +341,7 @@ func next_day() -> void:
 	client_queue.shuffle()
 
 func buy_good_stock_amount() -> void:
+	var inst = dealer_called.instantiate()
 	if coupon_count > 0 && total_money >= GOOD_BURGER_COST/2:
 		add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 		phone.disable()
@@ -345,6 +350,9 @@ func buy_good_stock_amount() -> void:
 		add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 		phone.disable()
 		is_good_meat = true
+	else:
+		inst.text = "No money!"
+	add_child(inst)
 	_on_phone_show_dialog()
 		
 func buy_bad_stock_amount() -> void:
@@ -357,6 +365,8 @@ func buy_bad_stock_amount() -> void:
 	bad_stock_purchases += 1
 	add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 	phone.disable()
+	var inst = dealer_called.instantiate()
+	add_child(inst)
 	_on_phone_show_dialog()
 	
 func _on_bell_bell_pressed() -> void:

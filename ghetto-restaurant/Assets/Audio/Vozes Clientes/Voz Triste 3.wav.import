@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://ba456sjje0plm"
+path="res://.godot/imported/Voz Triste 3.wav-4cc51aa92f209d23ee4f596908c5dd59.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Vozes Clientes/Voz Triste 3.wav"
+dest_files=["res://.godot/imported/Voz Triste 3.wav-4cc51aa92f209d23ee4f596908c5dd59.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

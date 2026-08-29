@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://chvr4j44jponj"
+path="res://.godot/imported/Male Cough 3.wav-c0a8ef9bbc8128303cd5b68928767094.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Coughs/Male Cough 3.wav"
+dest_files=["res://.godot/imported/Male Cough 3.wav-c0a8ef9bbc8128303cd5b68928767094.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

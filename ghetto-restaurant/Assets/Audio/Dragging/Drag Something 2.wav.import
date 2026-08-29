@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://wlqrlf0yxhbv"
+path="res://.godot/imported/Drag Something 2.wav-d59f506f1b46eccc312e81f964831ab6.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Dragging/Drag Something 2.wav"
+dest_files=["res://.godot/imported/Drag Something 2.wav-d59f506f1b46eccc312e81f964831ab6.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

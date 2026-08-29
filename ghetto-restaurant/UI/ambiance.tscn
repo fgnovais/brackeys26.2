@@ -1,0 +1,44 @@
+[gd_scene format=3 uid="uid://bstfvy4en8td"]
+
+[ext_resource type="Script" uid="uid://b5e3emee3vdmu" path="res://Utils/ambiance.gd" id="1_a6hux"]
+[ext_resource type="AudioStream" uid="uid://t5d4twuxewoe" path="res://Assets/Audio/Flies.wav" id="2_4j2cg"]
+
+[node name="Ambiance" type="Node" unique_id=531084822]
+script = ExtResource("1_a6hux")
+
+[node name="Burps" type="AudioStreamPlayer" parent="." unique_id=31917919]
+volume_db = -30.0
+
+[node name="BurpsTimer" type="Timer" parent="Burps" unique_id=1238649987]
+wait_time = 10.0
+
+[node name="Cleaning" type="AudioStreamPlayer" parent="." unique_id=120970898]
+volume_db = -30.0
+
+[node name="CleaningTimer" type="Timer" parent="Cleaning" unique_id=838197852]
+
+[node name="Coughs" type="AudioStreamPlayer" parent="." unique_id=1401640828]
+volume_db = -30.0
+
+[node name="CoughsTimer" type="Timer" parent="Coughs" unique_id=427835603]
+
+[node name="Chairs" type="AudioStreamPlayer" parent="." unique_id=1367576978]
+volume_db = -30.0
+
+[node name="ChairTimer" type="Timer" parent="Chairs" unique_id=1213665493]
+
+[node name="Sneeze" type="AudioStreamPlayer" parent="." unique_id=1957519714]
+volume_db = -30.0
+
+[node name="SneezeTimer" type="Timer" parent="Sneeze" unique_id=1928362164]
+
+[node name="Flies" type="AudioStreamPlayer" parent="." unique_id=2013970468]
+stream = ExtResource("2_4j2cg")
+volume_db = -30.0
+autoplay = true
+
+[connection signal="timeout" from="Burps/BurpsTimer" to="." method="_on_burps_timer_timeout"]
+[connection signal="timeout" from="Cleaning/CleaningTimer" to="." method="_on_cleaning_timer_timeout"]
+[connection signal="timeout" from="Coughs/CoughsTimer" to="." method="_on_coughs_timer_timeout"]
+[connection signal="timeout" from="Chairs/ChairTimer" to="." method="_on_chair_timer_timeout"]
+[connection signal="timeout" from="Sneeze/SneezeTimer" to="." method="_on_sneeze_timer_timeout"]
