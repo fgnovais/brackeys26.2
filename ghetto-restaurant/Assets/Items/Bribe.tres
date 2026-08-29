@@ -6,6 +6,5 @@
 [resource]
 script = ExtResource("2_vyl0s")
 description = "Bribe a Health Inspector (-20$)"
-title = "Bribe"
 icon = ExtResource("1_v5t2f")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

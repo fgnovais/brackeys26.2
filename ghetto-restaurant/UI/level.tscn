@@ -86,7 +86,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(1, 1)]
+"values": [Vector2(0.8, 0.8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -110,7 +110,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(0.43296888, 0.23683104)]
+"values": [Vector2(0.3, 0.3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -127,7 +127,7 @@ tracks/3/keys = {
 
 [sub_resource type="Animation" id="Animation_sn240"]
 resource_name = "add_money"
-length = 1.0333333
+length = 0.8333333
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -138,7 +138,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0, 0.13333334, 0.43333334, 0.6666667),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1.05, 1.05), Vector2(1, 1)]
+"values": [Vector2(0.8, 0.8), Vector2(0.7, 0.7), Vector2(0.85, 0.85), Vector2(0.8, 0.8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -162,7 +162,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.6333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.3, 0.3), Vector2(1.598, 0.917), Vector2(0.3, 0.3)]
+"values": [Vector2(0.3, 0.3), Vector2(1, 1), Vector2(0.3, 0.3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -171,7 +171,7 @@ tracks/3/path = NodePath("../../../ServiceController/Money:label_settings:font_c
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.26666668, 1.02),
+"times": PackedFloat32Array(0, 0.26666668, 0.73333335),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(0, 1, 0, 1), Color(1, 1, 1, 1)]
@@ -187,10 +187,10 @@ tracks/0/path = NodePath(".:scale")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.13333334, 0.43333334, 0.6666667),
-"transitions": PackedFloat32Array(1, 1, 1, 1),
+"times": PackedFloat32Array(0, 0.13333334, 0.43333334, 0.6666667, 0.96666664),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1.05, 1.05), Vector2(1, 1)]
+"values": [Vector2(0.8, 0.8), Vector2(0.7, 0.7), Vector2(0.9, 0.9), Vector2(0.85, 0.85), Vector2(0.8, 0.8)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -214,7 +214,7 @@ tracks/2/keys = {
 "times": PackedFloat32Array(0, 0.26666668, 0.6333333),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 0,
-"values": [Vector2(0.3, 0.3), Vector2(0.928, 0.518), Vector2(0.3, 0.3)]
+"values": [Vector2(0.3, 0.3), Vector2(1, 1), Vector2(0.3, 0.3)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
@@ -243,7 +243,7 @@ font_color = Color(0, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font = ExtResource("14_jnhw6")
-font_size = 127
+font_size = 88
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
 font_size = 147
@@ -423,11 +423,13 @@ modulate = Color(0.74558026, 0.7455802, 0.7455802, 1)
 z_index = 1
 
 [node name="Counter" type="Sprite2D" parent="Background/L1" unique_id=898485371]
-position = Vector2(960, 539)
+position = Vector2(940, 658)
+scale = Vector2(0.77, 0.77)
 texture = ExtResource("7_jnhw6")
 
-[node name="Register" type="Sprite2D" parent="Background/L1" unique_id=2096194727]
-position = Vector2(957, 549)
+[node name="Register" type="Sprite2D" parent="Background/L1" unique_id=1299979952]
+position = Vector2(780, 601.00006)
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("8_mcco3")
 
 [node name="RegisterPlayer" type="AnimationPlayer" parent="Background/L1/Register" unique_id=1419889740]
@@ -438,13 +440,13 @@ stream = ExtResource("9_1rd7f")
 
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
 z_index = 1
-position = Vector2(668.00006, 813)
+position = Vector2(590, 848)
 scale = Vector2(1.1109103, 1.1212252)
 
 [node name="Drawer" parent="." unique_id=276778585 instance=ExtResource("4_k753c")]
 z_index = 2
 material = null
-position = Vector2(1501.0001, 1055)
+position = Vector2(1371.0001, 1048)
 scale = Vector2(1.0624378, 0.9862308)
 
 [node name="PlayerBox" parent="." unique_id=309634947 instance=ExtResource("9_2im43")]
@@ -455,7 +457,7 @@ offset_bottom = 488.0
 scale = Vector2(0.980143, 0.9909052)
 texture = ExtResource("10_7j0cy")
 
-[node name="Label" parent="PlayerBox" index="0" unique_id=60028819]
+[node name="Label" parent="PlayerBox" index="0" unique_id=227248970]
 offset_left = 157.11992
 offset_top = 79.72508
 offset_right = 648.11993
@@ -559,11 +561,11 @@ text = "Pay Fine"
 [node name="Money" type="Label" parent="ServiceController" unique_id=993466695]
 z_index = 1
 layout_mode = 0
-offset_left = 341.0
-offset_top = 583.0
-offset_right = 680.0
-offset_bottom = 780.0
-scale = Vector2(0.43296888, 0.23683104)
+offset_left = 295.0
+offset_top = 632.0
+offset_right = 634.0
+offset_bottom = 829.0
+scale = Vector2(0.3, 0.3)
 text = "154$"
 label_settings = SubResource("LabelSettings_7ta8d")
 
@@ -625,7 +627,7 @@ scale = Vector2(0.6350607, 0.5247549)
 
 [node name="Phone" type="Sprite2D" parent="." unique_id=1429021722]
 z_index = 2
-position = Vector2(899, 646.00006)
+position = Vector2(771, 650)
 scale = Vector2(0.9815793, 0.7207937)
 texture = ExtResource("18_gjcv7")
 script = ExtResource("19_3na28")
@@ -644,10 +646,10 @@ label_settings = SubResource("LabelSettings_gjcv7")
 
 [node name="Coupons" type="HBoxContainer" parent="." unique_id=1677973775]
 z_index = 3
-offset_left = 1277.9999
-offset_top = 899.00006
-offset_right = 1975.9999
-offset_bottom = 1078.0
+offset_left = 1146.0
+offset_top = 906.00006
+offset_right = 1844.0
+offset_bottom = 1085.0
 scale = Vector2(0.39717132, 0.3932691)
 
 [node name="TextureRect" type="TextureRect" parent="Coupons" unique_id=1167554215]

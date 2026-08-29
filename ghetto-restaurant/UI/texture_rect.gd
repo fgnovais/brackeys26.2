@@ -17,7 +17,7 @@ func _ready() -> void:
 	material.set_shader_parameter("onoff",0.2)
 	
 	if item.title == ItemManager.Items.GOOD_MEAT:
-		name_label.text = "3 = 50$"
+		name_label.text = "3 = 30$"
 	elif item.title == ItemManager.Items.BAD_MEAT:
 		name_label.text = "? = ?$"
 	

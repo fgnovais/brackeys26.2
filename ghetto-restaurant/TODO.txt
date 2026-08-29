@@ -1,21 +1,2 @@
-Cop
-	Coima
-	fake cop (refinar/dialog/animation specific)
-	
-Dealer
-	if is cop -> change sprite to cop
-	
 Client
 	can be inspector (animation to change to inspector texture)
-
-Dialog System
-	inspectors / cops have specific dialog
-
-Audio
-	Import audio
-
-Good burger refactor prices
-
---------------
-Item buyer
-Refactor files

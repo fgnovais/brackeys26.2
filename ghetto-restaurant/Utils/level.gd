@@ -51,7 +51,7 @@ var is_spawning : bool = false
 var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
 var client_infos: Array[Client_Info] = []
-const GOOD_BURGER_COST = 50
+const GOOD_BURGER_COST = 30
 
 ## EVENT SYSTEM
 enum EVENT {
@@ -73,7 +73,8 @@ func spawn_client_asserter():
 
 func start_level():
 	is_first_item_clear = true
-	ItemManager.give_random_item(5)
+	ItemManager.give_random_item(current_day+1)
+	ItemManager.give_item(0)
 	ambiance.start()
 	# DEBUG
 	
@@ -131,6 +132,7 @@ func bribe():
 	if current_client == null or not is_instance_valid(current_client):
 		return
 	
+	var inst = dealer_called.instantiate()
 	if current_client.client_info.type == Client_Info.Type.ASAE:
 		is_processing_action = true
 		var max_health : int = 5
@@ -140,16 +142,19 @@ func bribe():
 		current_client = null
 		next_event()
 		is_processing_action = false
-		print("You rat ahrr... you can go!")
-		print(total_health)
+		inst.text = "You rat ahrr... you can go!"
+		update_money(20, false)
 	elif current_client.client_info.type == Client_Info.Type.FAKE_ASAE:
-		print("Better Luck next time")
+		inst.text ="He was off duty"
 	else:
-		print("Not Inspector, you missed your chance")
+		inst.text ="You can't bribe regular customers!"
+	add_child(inst)
 
 func flipphone():
 	if current_client == null or not is_instance_valid(current_client):
 		return
+	
+	var inst = dealer_called.instantiate()
 	
 	if pay_fine.visible and current_client.client_info.type == Client_Info.Type.COP:
 		pay_fine.hide()
@@ -157,7 +162,7 @@ func flipphone():
 		current_client = null
 		await next_event()
 		is_processing_action = false
-		print("Phew, saved by the bell (or phone)!")
+		inst.text =("I'm needed somewhere. I'm leaving.")
 		return
 	
 	if is_processing_action:
@@ -169,11 +174,12 @@ func flipphone():
 		current_client = null
 		await next_event()
 		is_processing_action = false
-		print("I'm actually leaving, have a good day")
+		inst.text =("I'm actually leaving, have a good day")
 	elif current_client.client_info.type == Client_Info.Type.FAKE_COP:
-		print("Not currently working, you are a lucky man")
+		inst.text =("Not currently working, you are a lucky man")
 	else:
-		print("Not COP, you missed your chance")
+		inst.text =("Not a COP, you missed your chance")
+	add_child(inst)
 
 func lupa():
 	if current_client == null or not is_instance_valid(current_client):
@@ -392,22 +398,26 @@ func buy_bad_stock_amount() -> void:
 	add_child(inst)
 	_on_phone_show_dialog()
 	
+var can_press_bell : bool = true
 func _on_bell_bell_pressed() -> void:
-	if is_processing_action:
-		return
-	is_processing_action = true
-	print("is_processing_action = true")
-	
-	hurt()
-	
-	if current_client != null and is_instance_valid(current_client):
-		await hide_dialogs_and_buttons()
+	if can_press_bell:
+		can_press_bell = false
+		if is_processing_action:
+			return
+		is_processing_action = true
+		
+		hurt()
+		
 		if current_client != null and is_instance_valid(current_client):
-			current_client.leave()
-			current_client = null
-	
-	next_event()
-	is_processing_action = false
+			await hide_dialogs_and_buttons()
+			if current_client != null and is_instance_valid(current_client):
+				current_client.leave()
+				current_client = null
+		
+		next_event()
+		is_processing_action = false
+		await get_tree().create_timer(2).timeout
+		can_press_bell = true
 
 func show_game_over()-> void:
 	game_over.show()
@@ -473,8 +483,8 @@ func _on_cancel_deal_pressed() -> void:
 	
 func check_dealer():
 	if !is_good_meat:
-		deal_quantity = [3, 5, 8, 10].pick_random()
-		deal_price = deal_quantity * [2, 3, 4].pick_random()
+		deal_quantity = [3, 5, 6].pick_random()
+		deal_price = deal_quantity * [3, 4].pick_random()
 		
 		if total_money == 0:
 			var inst = dealer_called.instantiate()
@@ -491,7 +501,7 @@ func check_dealer():
 		
 			
 	else:
-		deal_quantity = [2,3].pick_random()
+		deal_quantity = 3
 		deal_price = deal_quantity * 10
 		if coupon_count > 0:
 			deal_price = deal_price / 2
