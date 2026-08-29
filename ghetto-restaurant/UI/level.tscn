@@ -365,6 +365,17 @@ mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 180
 text = "Cancel Deal"
 
+[node name="PayFine" type="Button" parent="ServiceController" unique_id=278690511]
+layout_mode = 0
+offset_left = 1485.0
+offset_top = 575.0
+offset_right = 3071.0
+offset_bottom = 829.0
+scale = Vector2(0.10561331, 0.18486848)
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 180
+text = "Pay Fine"
+
 [node name="Money" type="Label" parent="ServiceController" unique_id=993466695]
 z_index = 1
 layout_mode = 0
@@ -459,6 +470,7 @@ label_settings = SubResource("LabelSettings_gjcv7")
 [connection signal="pressed" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_bad_pressed"]
 [connection signal="pressed" from="ServiceController/TakeDeal" to="." method="_on_take_deal_pressed"]
 [connection signal="pressed" from="ServiceController/CancelDeal" to="." method="_on_cancel_deal_pressed"]
+[connection signal="pressed" from="ServiceController/PayFine" to="." method="_on_pay_fine_pressed"]
 [connection signal="buy_bad" from="Phone" to="." method="buy_bad_stock_amount"]
 [connection signal="buy_good" from="Phone" to="." method="buy_good_stock_amount"]
 [connection signal="hide_dialog" from="Phone" to="." method="_on_phone_hide_dialog"]

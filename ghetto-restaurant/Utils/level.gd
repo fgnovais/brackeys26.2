@@ -11,6 +11,7 @@ class_name Level
 @onready var cancel_deal: Button = $ServiceController/CancelDeal
 @onready var serve_good_button: Button = $ServiceController/GiveGoodBurger
 @onready var serve_bad_button: Button = $ServiceController/GiveBadBurger
+@onready var pay_fine: Button = $ServiceController/PayFine
 @onready var game_over: CanvasLayer = $GameOver
 @onready var preview: Preview = $Preview
 @onready var player_box: DialogBox = $PlayerBox
@@ -34,7 +35,7 @@ var bad_stock_amount = 1
 
 var bad_stock_purchases : int = 0
 var cop_chance_max : float = 0.3
-var cop_chance_step : float = 0.03
+var cop_chance_step : float = 0.15
 var fine_amount : int = 30
 
 var is_processing_action : bool = false
@@ -43,7 +44,7 @@ var is_spawning : bool = false
 var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
 var client_infos: Array[Client_Info] = []
-const GOOD_BURGER_COST = 30
+const GOOD_BURGER_COST = 50
 
 ## EVENT SYSTEM
 enum EVENT {
@@ -81,6 +82,7 @@ func _ready() -> void:
 	game_over.hide()
 	serve_good_button.hide()
 	serve_bad_button.hide()
+	pay_fine.hide()
 	
 	# start the day
 	next_day()
@@ -459,19 +461,11 @@ func get_caught() -> void:
 		current_client.client_info.update_texture_to_type()
 		current_client.sprite.texture = current_client.client_info.client_texture
 		current_client.dialog_system.face = current_client.client_info.get_face()
+		current_client.dialog_system.clear_dialogs()
 		current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
-		current_client.dialog_system.show_message("You have been caught, you will have to pay a fine now!")
+		current_client.dialog_system.show_message("You have been caught, you will have to pay a 30$ fine now!")
 	
-	total_money -= fine_amount
-	
-	await get_tree().create_timer(2.0).timeout
-	
-	if current_client != null and is_instance_valid(current_client):
-		current_client.leave()
-		current_client = null
-	
-	await next_event()
-	is_processing_action = false
+	pay_fine.show()
 	
 func get_lucky_fake_cop() -> void:
 	take_deal.hide()
@@ -507,3 +501,16 @@ func first_item_clear():
 	if is_first_item_clear:
 		next_client()
 		is_first_item_clear = false
+
+func _on_pay_fine_pressed() -> void:
+	pay_fine.hide()
+	total_money -= fine_amount
+	
+	await get_tree().create_timer(2.0).timeout
+	
+	if current_client != null and is_instance_valid(current_client):
+		current_client.leave()
+		current_client = null
+	
+	await next_event()
+	is_processing_action = false
