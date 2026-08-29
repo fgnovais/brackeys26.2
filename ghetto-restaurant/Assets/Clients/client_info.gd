@@ -5,16 +5,32 @@ enum Type { NORMAL, ASAE, COP, FAKE_COP, FAKE_ASAE, DEALER }
 
 var type: Type = Type.NORMAL
 var client_texture: Texture2D = load("res://Assets/texture1.png")
-var dialog : Array[String] = ["Yo! Can i get a burger, please?","A burger would be good!"]
+var dialog : Array = ["Yo! Can i get a burger, please?","A burger would be good!"]
 var cop_dialog : Array[String] = ["This is the police!", "I've got some questions for you."]
 var dealer_dialog : Array[String] = ["Yo, you got the stuff?", "Let's make this quick, man."]
-
+var inspector_dialog : Array[String] = ["This burger is in violation of EVERY health guideline!", "I'll be writing a report about this."]
 var dealer_is_requested : bool = false
 var asae_odd: float = 0.2
 var cop_odd: float = 0.2
 var fake_cop_odd: float = 0.1
 var fake_asae_odd: float = 0.1
 
+var normal_dialogs: Array[Array] = [
+	["Yo! Can i get a burger, please?","A burger would be good!"],
+	["Been waiting for ages!","Can't wait to get a burger."],
+	["I want a burger.", "I'm a loyal customer."],
+	["If I don't get a good burger I'll sue you.", "Will you take responsability?"],
+	["I'm a health inspector, you better treat me well.", "Did you get that?"],
+	["My dad is a health inspector.", "Treat me well, you hear?"],
+	["I better get a good burger, this time.", "You served me rotten meat last time!"],
+	["This stench is disgusting.", "But you can't beat these burgers."],
+	["I've been waiting for a long time", "You better serve me well!"],
+	["Something about these burgers keeps me coming back.", "The sauce is special I think."],
+	["This place is disgusting.", "I'll take a large burger, please."],
+	["I hate this smell.", "I'll write a report about this!"],
+	["If I get a bad a burger I'll write a report about this place.", "I like my job."],
+]
+	
 var day : int = 1
 static var type_queue: Array[Type] = []
 static var type_queue_day: int = -1
@@ -32,6 +48,7 @@ func _init(d: int = 1) -> void:
 		get_type()
 	
 	update_texture_to_type()
+	update_dialog_to_type()
 
 func get_type() -> void:
 	if dealer_is_requested == true:
@@ -119,6 +136,8 @@ func update_dialog_to_type() -> void:
 		dialog = dealer_dialog
 	elif type == Type.COP or type == Type.FAKE_COP:
 		dialog = cop_dialog
+	else:
+		dialog = normal_dialogs.pick_random()
 
 ### 
 const COP = preload("uid://bmh1fc8ur5fc3")

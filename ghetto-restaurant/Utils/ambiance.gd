@@ -7,14 +7,9 @@ const BURP_4 = preload("uid://1r26n0wxjrbm")
 const BURP_5 = preload("uid://d25acrqi8qm0r")
 ## cleaning
 const BROOM = preload("uid://cs17ygsketul6")
-const CLEAN_GLASS = preload("uid://c1h821q3s48s8")
-const FAUCET_CLEAN = preload("uid://dgrdc2hbryri0")
 const PLATE_TO_DRY = preload("uid://pobj44au6b4v")
-const SPONGE_CLEAN = preload("uid://wsar4dgryty")
-const WASHING_DISHES_WATER = preload("uid://dc2syjlkn3y0t")
 const WASHING_DISHES = preload("uid://csbcrkemke61b")
 ## coughs
-const BABY_COUGH_1 = preload("uid://b2k7r4o87tvqw")
 const FEMALE_COUGH_1 = preload("uid://bduqbjcmkwr3n")
 const FEMALE_COUGH_2 = preload("uid://vxka5tk66n4v")
 const MALE_COUGH_1 = preload("uid://cr36u6jmerp4x")
@@ -35,6 +30,20 @@ const SNEEZE_2 = preload("uid://37yjesp4k3nw")
 @onready var coughs: AudioStreamPlayer = $Coughs
 @onready var chairs: AudioStreamPlayer = $Chairs
 @onready var sneeze: AudioStreamPlayer = $Sneeze
+@onready var burps_timer: Timer = $Burps/BurpsTimer
+@onready var cleaning_timer: Timer = $Cleaning/CleaningTimer
+@onready var coughs_timer: Timer = $Coughs/CoughsTimer
+@onready var chair_timer: Timer = $Chairs/ChairTimer
+@onready var sneeze_timer: Timer = $Sneeze/SneezeTimer
+@onready var flies: AudioStreamPlayer = $Flies
+
+func start() -> void:
+	flies.play()
+	burps_timer.start() 
+	cleaning_timer.start() 
+	coughs_timer.start() 
+	chair_timer.start() 
+	sneeze_timer.start() 
 
 func _on_sneeze_timer_timeout() -> void:
 	sneeze.stream = [SNEEZE_1, SNEEZE_2].pick_random()
@@ -45,11 +54,11 @@ func _on_chair_timer_timeout() -> void:
 	chairs.play()
 	
 func _on_coughs_timer_timeout() -> void:
-	coughs.stream = [BABY_COUGH_1, FEMALE_COUGH_1, FEMALE_COUGH_2, MALE_COUGH_1, MALE_COUGH_2, MALE_COUGH_3].pick_random()
+	coughs.stream = [FEMALE_COUGH_1, FEMALE_COUGH_2, MALE_COUGH_1, MALE_COUGH_2, MALE_COUGH_3].pick_random()
 	coughs.play()
 	
 func _on_cleaning_timer_timeout() -> void:
-	cleaning.stream = [BROOM, CLEAN_GLASS, FAUCET_CLEAN, PLATE_TO_DRY, SPONGE_CLEAN, WASHING_DISHES_WATER, WASHING_DISHES].pick_random()
+	cleaning.stream = [BROOM, PLATE_TO_DRY, WASHING_DISHES].pick_random()
 	cleaning.play()
 	
 func _on_burps_timer_timeout() -> void:

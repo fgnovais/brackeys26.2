@@ -37,7 +37,6 @@ offset_right = -200.0
 offset_bottom = -134.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
 mouse_default_cursor_shape = 2
 script = ExtResource("1_6po3p")
 
@@ -74,10 +73,10 @@ columns = 4
 
 [node name="Button" type="Button" parent="." unique_id=1025547223]
 layout_mode = 0
-offset_left = 1440.0
-offset_top = 954.00006
-offset_right = 1576.0
-offset_bottom = 1208.0
+offset_left = 1441.0
+offset_top = 996.0
+offset_right = 1577.0
+offset_bottom = 1153.0
 scale = Vector2(0.8912864, 0.9165798)
 mouse_default_cursor_shape = 2
 theme_override_font_sizes/font_size = 180

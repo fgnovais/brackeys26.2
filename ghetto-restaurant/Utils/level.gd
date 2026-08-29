@@ -5,12 +5,12 @@ class_name Level
 @onready var money: Label = $ServiceController/Money
 @onready var day: Label = $ServiceController/Day
 @onready var health_points: AnimatedSprite2D = $HealthPoints
-@onready var good_stock: Label = $ServiceController/GiveGoodBurger/GoodStock
-@onready var bad_stock: Label = $ServiceController/GiveBadBurger/BadStock
+@onready var good_stock: Label = $PlayerBox/GiveGoodBurger/GoodStock
+@onready var bad_stock: Label = $PlayerBox/GiveBadBurger/BadStock
 @onready var take_deal: Button = $ServiceController/TakeDeal
 @onready var cancel_deal: Button = $ServiceController/CancelDeal
-@onready var serve_good_button: Button = $ServiceController/GiveGoodBurger
-@onready var serve_bad_button: Button = $ServiceController/GiveBadBurger
+@onready var serve_good_button: Button = $PlayerBox/GiveGoodBurger
+@onready var serve_bad_button: Button = $PlayerBox/GiveBadBurger
 @onready var pay_fine: Button = $ServiceController/PayFine
 @onready var game_over: CanvasLayer = $GameOver
 @onready var preview: Preview = $Preview
@@ -24,6 +24,7 @@ class_name Level
 @onready var register_player: AnimationPlayer = $Background/L1/Register/RegisterPlayer
 @onready var register_audio: AudioStreamPlayer = $Background/L1/Register/RegisterAudio
 @onready var serve: AudioStreamPlayer = $Serve
+@onready var coupons: HBoxContainer = $Coupons
 const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
 const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
 const CASH_REGISTER_2 = preload("uid://dtrfksvgsu1wx")
@@ -50,7 +51,6 @@ var is_spawning : bool = false
 var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
 var client_infos: Array[Client_Info] = []
-@onready var coupons: HBoxContainer = $Coupons
 const GOOD_BURGER_COST = 50
 
 ## EVENT SYSTEM
@@ -62,6 +62,7 @@ enum EVENT {
 	CHEF_COMPLAINING,
 	CLIENT_COMPLAINING
 }
+@onready var ambiance: Node = $Ambiance
 
 func spawn_client_asserter():
 	var clients_asserter = clients_asserter_scene.instantiate()
@@ -73,12 +74,13 @@ func spawn_client_asserter():
 func start_level():
 	is_first_item_clear = true
 	ItemManager.give_random_item(5)
+	ambiance.start()
 	# DEBUG
 	
 func _ready() -> void:
 	for i in 3:
 			coupons.get_child(i).hide()
-	Engine.time_scale = 1
+	Engine.time_scale = 4
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
@@ -166,7 +168,7 @@ func flipphone():
 func lupa():
 	if current_client == null or not is_instance_valid(current_client):
 		return
-	current_client.percentage.show()
+	current_client.type.show()
 		
 #refresh labels every 0.3 seconds
 var delta_add : float = 0.3
@@ -206,6 +208,11 @@ func next_event():
 					client_queue[0].client_info.update_texture_to_type()
 					client_queue[0].client_info.update_dialog_to_type()
 			await next_client()
+			player_box.hide()
+			serve_good_button.hide()
+			serve_bad_button.hide()
+			good_stock.hide()
+			bad_stock.hide()
 	
 		EVENT.GIVE_ITEM:
 			var item_name = "Coupon"
@@ -321,6 +328,8 @@ func next_client() -> void:
 		player_box.show_dialog_box("I'll give you a....")
 		serve_good_button.show()
 		serve_bad_button.show()
+		good_stock.show()
+		bad_stock.show()
 		
 		if current_client.client_info.type == Client_Info.Type.DEALER \
 		or current_client.client_info.type == Client_Info.Type.COP \
@@ -401,7 +410,8 @@ func _on_take_deal_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
-	
+	take_deal.hide()
+	cancel_deal.hide()
 	if !is_good_meat:
 		if current_client != null and is_instance_valid(current_client) and current_client.client_info.type == Client_Info.Type.COP:
 			get_caught()
@@ -451,7 +461,7 @@ func check_dealer():
 		deal_price = deal_quantity * [2, 3, 4].pick_random()
 		if deal_price > total_money: 
 			deal_price = total_money 
-		current_client.dialog_system.show_message("Here's the deal: These %d EXCELENT burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
+		current_client.dialog_system.show_message("Here's the deal: These %d [color=green]EXCELENT[/color] burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 		cancel_deal.show()
 		take_deal.show()
 	else:
@@ -467,7 +477,7 @@ func check_dealer():
 			current_client.leave()
 			next_event()
 		else:
-			current_client.dialog_system.show_message("Here's the deal: These %d AFFORDABLE burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
+			current_client.dialog_system.show_message("Here's the deal: These %d[color=maroon]AFFORDABLE[/color] burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 			cancel_deal.show()
 			take_deal.show()
 	
@@ -478,7 +488,17 @@ func hide_dialogs_and_buttons() -> void:
 	await player_box.hide_dialog_box()
 	serve_good_button.hide()
 	serve_bad_button.hide()
-
+	good_stock.hide()
+	bad_stock.hide()
+	
+func show_dialogs_and_buttons():
+	#await dialog_box.hide_dialog_box()
+	player_box.show_dialog_box("I'll give you a....")
+	serve_good_button.show()
+	serve_bad_button.show()
+	good_stock.show()
+	bad_stock.show()
+	
 func hurt():
 	total_health -= 1
 	animation_player.play("hurt")
@@ -544,12 +564,14 @@ func _on_phone_hide_dialog() -> void:
 		current_client.dialog_system.hide()
 	player_box.hide()
 	service_controller.hide()
+	hide_dialogs_and_buttons()
 	
 func _on_phone_show_dialog() -> void:
 	if current_client != null:
 		current_client.dialog_system.show()
 	player_box.show()
 	service_controller.show()
+	show_dialogs_and_buttons()
 
 var is_first_item_clear: bool = true
 func first_item_clear():

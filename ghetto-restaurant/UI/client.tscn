@@ -7,11 +7,6 @@
 [ext_resource type="PackedScene" uid="uid://c742pnbykexpk" path="res://UI/dialog_system.tscn" id="7_b07cc"]
 [ext_resource type="AudioStream" uid="uid://btsqleifxyl8b" path="res://Assets/Audio/Complain.wav" id="7_tpe35"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_74uuh"]
-font_size = 35
-font_color = Color(0, 0, 0, 1)
-outline_size = 33
-
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font_size = 72
 outline_size = 43
@@ -159,23 +154,13 @@ texture = ExtResource("3_bi6ty")
 [node name="HoverComponent" parent="Client" unique_id=163342927 instance=ExtResource("3_55wjg")]
 visible = false
 
-[node name="Dialog" type="Label" parent="." unique_id=797437850]
-visible = false
-offset_left = -378.0
-offset_top = -276.0
-offset_right = -21.0
-offset_bottom = -227.0
-text = "Give me a burger, yo!"
-label_settings = SubResource("LabelSettings_74uuh")
-
-[node name="Percentage" type="Label" parent="." unique_id=714298718]
+[node name="Type" type="Label" parent="." unique_id=714298718]
 visible = false
 offset_left = 105.00001
 offset_top = -137.0
 offset_right = 291.0
 offset_bottom = -38.0
 scale = Vector2(0.6846924, 0.6345766)
-text = "100%"
 label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1365836231]
@@ -184,11 +169,9 @@ autoplay = &"idle"
 
 [node name="ArriveSound" type="AudioStreamPlayer" parent="." unique_id=1812835863]
 stream = ExtResource("5_b07cc")
+volume_db = -20.0
 
 [node name="LeaveSound" type="AudioStreamPlayer" parent="." unique_id=305517918]
-stream = ExtResource("7_tpe35")
-
-[node name="ComplainSound" type="AudioStreamPlayer" parent="." unique_id=985776046]
 stream = ExtResource("7_tpe35")
 
 [node name="DialogSystem" parent="." unique_id=282480536 instance=ExtResource("7_b07cc")]

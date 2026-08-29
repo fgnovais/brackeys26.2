@@ -34,6 +34,7 @@
 [ext_resource type="Texture2D" uid="uid://cf4c0dgx26t30" path="res://Assets/Items/coupon.png" id="31_inh4j"]
 [ext_resource type="AudioStream" uid="uid://bk8yetx121xda" path="res://Assets/Audio/BackGround.wav" id="33_3mdya"]
 [ext_resource type="AudioStream" uid="uid://b7dg47oh87j0f" path="res://Assets/Audio/Serve.wav" id="34_sn240"]
+[ext_resource type="PackedScene" uid="uid://bstfvy4en8td" path="res://UI/ambiance.tscn" id="35_a8jji"]
 
 [sub_resource type="Animation" id="Animation_gjcv7"]
 length = 0.001
@@ -460,19 +461,13 @@ offset_top = 79.72508
 offset_right = 648.11993
 offset_bottom = 222.72508
 
-[node name="ServiceController" type="Control" parent="." unique_id=1547221562]
-layout_mode = 3
-anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_8bcmq")
-
-[node name="GiveGoodBurger" type="Button" parent="ServiceController" unique_id=1464754603]
+[node name="GiveGoodBurger" type="Button" parent="PlayerBox" unique_id=1464754603]
+visible = false
 layout_mode = 0
-offset_left = 174.0
-offset_top = 402.0
-offset_right = 1831.0
-offset_bottom = 656.0
+offset_left = 146.91734
+offset_top = 170.55112
+offset_right = 1803.9174
+offset_bottom = 424.55112
 scale = Vector2(0.13, 0.13)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
@@ -480,7 +475,7 @@ theme_override_font_sizes/font_size = 180
 text = "Good Burger.
 "
 
-[node name="GoodStock" type="Label" parent="ServiceController/GiveGoodBurger" unique_id=677769474]
+[node name="GoodStock" type="Label" parent="PlayerBox/GiveGoodBurger" unique_id=677769474]
 layout_mode = 0
 offset_left = 1369.2308
 offset_top = -253.84604
@@ -490,12 +485,13 @@ scale = Vector2(3, 3)
 text = "10"
 label_settings = SubResource("LabelSettings_hwoix")
 
-[node name="GiveBadBurger" type="Button" parent="ServiceController" unique_id=2032489855]
+[node name="GiveBadBurger" type="Button" parent="PlayerBox" unique_id=2032489855]
+visible = false
 layout_mode = 0
-offset_left = 464.0
-offset_top = 402.0
-offset_right = 1932.0
-offset_bottom = 656.0002
+offset_left = 442.7925
+offset_top = 170.55112
+offset_right = 1910.7925
+offset_bottom = 424.5513
 scale = Vector2(0.13, 0.13)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
@@ -503,7 +499,7 @@ theme_override_font_sizes/font_size = 180
 text = "Bad Burger.
 "
 
-[node name="BadStock" type="Label" parent="ServiceController/GiveBadBurger" unique_id=972599840]
+[node name="BadStock" type="Label" parent="PlayerBox/GiveBadBurger" unique_id=972599840]
 layout_mode = 0
 offset_left = 1169.2307
 offset_top = -246.15395
@@ -513,15 +509,24 @@ scale = Vector2(3, 3)
 text = "10"
 label_settings = SubResource("LabelSettings_hwoix")
 
+[node name="ServiceController" type="Control" parent="." unique_id=1547221562]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_8bcmq")
+
 [node name="TakeDeal" type="Button" parent="ServiceController" unique_id=469102990]
 visible = false
+z_index = 10
 layout_mode = 0
-offset_left = 937.9999
-offset_top = 652.0
-offset_right = 2524.0
-offset_bottom = 906.0
-scale = Vector2(0.10561331, 0.18486848)
+offset_left = 903.0
+offset_top = 650.00006
+offset_right = 2489.0
+offset_bottom = 904.00006
+scale = Vector2(0.2, 0.20082791)
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
 text = "Take Deal"
 
@@ -532,19 +537,22 @@ offset_left = 1380.0
 offset_top = 649.0
 offset_right = 2966.0
 offset_bottom = 903.0
-scale = Vector2(0.10561331, 0.18486848)
+scale = Vector2(0.2, 0.20082791)
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
 text = "Cancel Deal"
 
 [node name="PayFine" type="Button" parent="ServiceController" unique_id=278690511]
+visible = false
 layout_mode = 0
 offset_left = 1485.0
 offset_top = 575.0
 offset_right = 3071.0
 offset_bottom = 829.0
-scale = Vector2(0.10561331, 0.18486848)
+scale = Vector2(0.2, 0.20082791)
 mouse_default_cursor_shape = 2
+theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
 text = "Pay Fine"
 
@@ -656,20 +664,22 @@ texture = ExtResource("31_inh4j")
 
 [node name="Music" type="AudioStreamPlayer" parent="." unique_id=1968365781]
 stream = ExtResource("33_3mdya")
-volume_db = -15.0
+volume_db = -30.0
 autoplay = true
 
 [node name="Serve" type="AudioStreamPlayer" parent="." unique_id=625834251]
 stream = ExtResource("34_sn240")
 
+[node name="Ambiance" parent="." unique_id=531084822 instance=ExtResource("35_a8jji")]
+
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
+[connection signal="mouse_entered" from="PlayerBox/GiveGoodBurger" to="ServiceController" method="_on_hover"]
+[connection signal="pressed" from="PlayerBox/GiveGoodBurger" to="ServiceController" method="_on_good_pressed"]
+[connection signal="mouse_entered" from="PlayerBox/GiveBadBurger" to="ServiceController" method="_on_hover"]
+[connection signal="mouse_exited" from="PlayerBox/GiveBadBurger" to="ServiceController" method="_on_leave_hover"]
+[connection signal="pressed" from="PlayerBox/GiveBadBurger" to="ServiceController" method="_on_bad_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]
 [connection signal="serve_good" from="ServiceController" to="." method="_on_service_controller_serve_good"]
-[connection signal="mouse_entered" from="ServiceController/GiveGoodBurger" to="ServiceController" method="_on_hover"]
-[connection signal="pressed" from="ServiceController/GiveGoodBurger" to="ServiceController" method="_on_good_pressed"]
-[connection signal="mouse_entered" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_hover"]
-[connection signal="mouse_exited" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_leave_hover"]
-[connection signal="pressed" from="ServiceController/GiveBadBurger" to="ServiceController" method="_on_bad_pressed"]
 [connection signal="pressed" from="ServiceController/TakeDeal" to="." method="_on_take_deal_pressed"]
 [connection signal="pressed" from="ServiceController/CancelDeal" to="." method="_on_cancel_deal_pressed"]
 [connection signal="pressed" from="ServiceController/PayFine" to="." method="_on_pay_fine_pressed"]

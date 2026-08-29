@@ -1,7 +1,7 @@
 extends Control
 class_name DialogSystem
 
-var client_dialog : Array[String] = ["test", "yo", "burger", "hey boss"]
+var client_dialog : Array = ["test", "yo", "burger", "hey boss"]
 var idx := 0
 var dialog_scene : PackedScene = load("res://UI/dialog_box.tscn")
 var face : Texture2D

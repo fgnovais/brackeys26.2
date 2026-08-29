@@ -1,7 +1,7 @@
 extends TextureRect
 class_name DialogBox
 
-@onready var label: Label = $Label
+@onready var label: RichTextLabel = $Label
 var face : Texture2D
 @onready var face_card: TextureRect = $FaceCard
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 	
 func show_dialog_box(dialog : String):
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color.WHITE, 1).finished
+	await tween.tween_property(self, "modulate", Color.WHITE, 1).finished
 	label.text = dialog
 	tween = create_tween()
 	tween.tween_property(label, "visible_ratio", 1, 1)

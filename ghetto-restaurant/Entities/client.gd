@@ -4,11 +4,9 @@ class_name Client
 var client_info : Client_Info
 var money
 @onready var sprite: Sprite2D = $Client
-@onready var dialog: Label = $Dialog
-@onready var percentage: Label = $Percentage
+@onready var type: Label = $Type
 @onready var arrive_sound: AudioStreamPlayer = $ArriveSound
 @onready var leave_sound: AudioStreamPlayer = $LeaveSound
-@onready var complain_sound: AudioStreamPlayer = $ComplainSound
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var dialog_system: DialogSystem = $DialogSystem
 const COMPLAIN = preload("uid://btsqleifxyl8b")
@@ -19,13 +17,27 @@ func _ready() -> void:
 	sprite.texture = client_info.client_texture
 	animation_player.play("arrive")
 	animation_player.animation_finished.connect(transition_animations)
-	dialog.text = client_info.dialog.pick_random()
-	percentage.hide()
+	type.text = "Regular Customer"
+	type.hide()
 	arrive_sound.play()
-	dialog_system.client_dialog = client_info.dialog
+	dialog_system.client_dialog =  client_info.dialog
 	dialog_system.face = client_info.get_face()
 	dialog_system.spawn()
 	leave_sound.stream = client_info.get_sad_voice()
+	
+	match client_info.type:
+		Client_Info.Type.NORMAL:
+			type.text = "Regular Customer"
+		Client_Info.Type.ASAE:
+			type.text = "REAL Health Inspector"
+		Client_Info.Type.COP:
+			type.text = "REAL Cop"
+		Client_Info.Type.DEALER:
+			type.text = "Meat dealer"
+		Client_Info.Type.FAKE_ASAE:
+			type.text = "FAKE Health Inspector"
+		Client_Info.Type.FAKE_COP:
+			type.text = "FAKE Cop"
 
 func transition_animations(anim_name : String):
 	if anim_name == "arrive":
@@ -35,13 +47,11 @@ func transition_animations(anim_name : String):
 
 func leave():
 	animation_player.play("leave")
-	dialog.text = "I'm Leaving!"
 	if Client_Info.Type.DEALER == client_info.type:
 		leave_sound.stream = client_info.get_happy_voice()
 	leave_sound.play()
 
 func receive_good_food()->int:
-	dialog.text = "Thanks!"
 	leave_sound.stream = client_info.get_happy_voice()
 	return money
 

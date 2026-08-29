@@ -12,17 +12,17 @@ func _init() -> void:
 func get_item_name():
 	match title:
 		ItemManager.Items.BRIBE:
-			item_name = "Let's forget this"
+			item_name = "Bribe a cop."
 		ItemManager.Items.SKIP_CUSTOMER:
-			item_name = "MOVE IT, BUDDY"
+			item_name = "MOVE IT, BUDDY!"
 		ItemManager.Items.COUPON:
-			item_name = "Discount"
+			item_name = "Discount x3"
 		ItemManager.Items.LUPA:
 			item_name = "Investigate"
 		ItemManager.Items.FLIP_PHONE:
-			item_name = "Call a friend"
+			item_name = "Call a friend."
 		ItemManager.Items.ORDER:
-			item_name = "Free groceries"
+			item_name = "Free groceries."
 					
 func apply() -> void:
 	ItemManager.apply(title)
