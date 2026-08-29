@@ -30,18 +30,28 @@ const DRAG_SOMETHING_2 = preload("uid://wlqrlf0yxhbv")
 ## sneeze
 const SNEEZE_1 = preload("uid://dq1jvykefr4ch")
 const SNEEZE_2 = preload("uid://37yjesp4k3nw")
+@onready var burps: AudioStreamPlayer = $Burps
+@onready var cleaning: AudioStreamPlayer = $Cleaning
+@onready var coughs: AudioStreamPlayer = $Coughs
+@onready var chairs: AudioStreamPlayer = $Chairs
+@onready var sneeze: AudioStreamPlayer = $Sneeze
 
 func _on_sneeze_timer_timeout() -> void:
-	pass # Replace with function body.
-
+	sneeze.stream = [SNEEZE_1, SNEEZE_2].pick_random()
+	sneeze.play()
+	
 func _on_chair_timer_timeout() -> void:
-	pass # Replace with function body.
-
+	chairs.stream = [DRAG_CHAIR_1, DRAG_CHAIR_2, DRAG_CHAIR_3, DRAG_QUICK, DRAG_SOMETHING_1, DRAG_SOMETHING_2].pick_random()
+	chairs.play()
+	
 func _on_coughs_timer_timeout() -> void:
-	pass # Replace with function body.
-
+	coughs.stream = [BABY_COUGH_1, FEMALE_COUGH_1, FEMALE_COUGH_2, MALE_COUGH_1, MALE_COUGH_2, MALE_COUGH_3].pick_random()
+	coughs.play()
+	
 func _on_cleaning_timer_timeout() -> void:
-	pass # Replace with function body.
-
+	cleaning.stream = [BROOM, CLEAN_GLASS, FAUCET_CLEAN, PLATE_TO_DRY, SPONGE_CLEAN, WASHING_DISHES_WATER, WASHING_DISHES].pick_random()
+	cleaning.play()
+	
 func _on_burps_timer_timeout() -> void:
-	pass # Replace with function body.
+	burps.stream = [BURP_1, BURP_2, BURP_3, BURP_4, BURP_5].pick_random()
+	burps.play()
