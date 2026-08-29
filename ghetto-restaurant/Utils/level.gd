@@ -252,7 +252,7 @@ func increase_good_stock(deal_quantity)-> void:
 		is_processing_action = false
 		return
 	good_stock_amount += deal_quantity
-	total_money -= deal_price
+	update_money(deal_price, false)
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
@@ -271,7 +271,7 @@ func increase_bad_stock(deal_quantity)-> void:
 		is_processing_action = false
 		return
 	bad_stock_amount += deal_quantity
-	total_money -= deal_price
+	update_money(deal_price, false)
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
