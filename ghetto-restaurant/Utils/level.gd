@@ -442,6 +442,8 @@ func check_dealer():
 		if deal_price > total_money: 
 			deal_price = total_money 
 		current_client.dialog_system.show_message("Here's the deal: These %d EXCELENT burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
+		cancel_deal.show()
+		take_deal.show()
 	else:
 		deal_quantity = [2,3].pick_random()
 		deal_price = deal_quantity * 10
@@ -458,7 +460,7 @@ func check_dealer():
 			current_client.dialog_system.show_message("Here's the deal: These %d AFFORDABLE burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 			cancel_deal.show()
 			take_deal.show()
-		
+	
 	current_client.dialog_system.space_bar.hide()
 	
 func hide_dialogs_and_buttons() -> void:
@@ -487,6 +489,7 @@ func get_caught() -> void:
 		current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
 		current_client.dialog_system.show_message("You have been caught, you will have to pay a 30$ fine now!")
 		current_client.dialog_system.space_bar.hide()
+		pay_fine.show()
 	
 	update_money(fine_amount, false)
 	await get_tree().create_timer(2.0).timeout
@@ -510,8 +513,6 @@ func update_money(amount: int, is_to_add: bool):
 		register_audio.pitch_scale = 0.5
 		register_player.play("remove_money")
 			
-	pay_fine.show()
-	
 func get_lucky_fake_cop() -> void:
 	take_deal.hide()
 	cancel_deal.hide()
