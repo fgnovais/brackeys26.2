@@ -148,9 +148,19 @@ func bribe():
 		print("Not Inspector, you missed your chance")
 
 func flipphone():
-	if is_processing_action:
-		return
 	if current_client == null or not is_instance_valid(current_client):
+		return
+	
+	if pay_fine.visible and current_client.client_info.type == Client_Info.Type.COP:
+		pay_fine.hide()
+		current_client.leave()
+		current_client = null
+		await next_event()
+		is_processing_action = false
+		print("Phew, saved by the bell (or phone)!")
+		return
+	
+	if is_processing_action:
 		return
 	
 	if current_client.client_info.type == Client_Info.Type.COP:
@@ -287,6 +297,7 @@ func _on_service_controller_serve_bad() -> void:
 	if bad_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
 		serve.play()
 		is_processing_action = true
+		print("is_processing_action = true")
 		bad_stock_amount -= 1
 		var paid_money = current_client.receive_bad_food()
 		await hide_dialogs_and_buttons()
@@ -307,6 +318,7 @@ func _on_service_controller_serve_good() -> void:
 	if good_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
 		serve.play()
 		is_processing_action = true
+		print("is_processing_action = true")
 		good_stock_amount -= 1
 		update_money(current_client.receive_good_food(), true)
 		await hide_dialogs_and_buttons()
@@ -384,6 +396,7 @@ func _on_bell_bell_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
+	print("is_processing_action = true")
 	
 	hurt()
 	
@@ -412,8 +425,10 @@ func _on_take_deal_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
+<<<<<<< Updated upstream
 	take_deal.hide()
 	cancel_deal.hide()
+>>>>>>> Stashed changes
 	if !is_good_meat:
 		if current_client != null and is_instance_valid(current_client) and current_client.client_info.type == Client_Info.Type.COP:
 			get_caught()
@@ -448,6 +463,7 @@ func _on_cancel_deal_pressed() -> void:
 	if is_processing_action:
 		return
 	is_processing_action = true
+	print("is_processing_action = true")
 	print("deal cancelled")
 	take_deal.hide()
 	cancel_deal.hide()
@@ -523,15 +539,18 @@ func get_caught() -> void:
 	take_deal.hide()
 	cancel_deal.hide()
 	
-	if current_client != null and is_instance_valid(current_client):
-		current_client.client_info.update_texture_to_type()
-		current_client.sprite.texture = current_client.client_info.client_texture
-		current_client.dialog_system.face = current_client.client_info.get_face()
-		current_client.dialog_system.clear_dialogs()
-		current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
-		current_client.dialog_system.show_message("You have been caught, you will have to pay a 30$ fine now!")
-		current_client.dialog_system.space_bar.hide()
-		pay_fine.show()
+	if current_client == null or not is_instance_valid(current_client):
+		is_processing_action = false
+		return
+	
+	current_client.client_info.update_texture_to_type()
+	current_client.sprite.texture = current_client.client_info.client_texture
+	current_client.dialog_system.face = current_client.client_info.get_face()
+	current_client.dialog_system.clear_dialogs()
+	current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
+	current_client.dialog_system.show_message("You have been caught, you will have to pay a 30$ fine now!")
+	current_client.dialog_system.space_bar.hide()
+	pay_fine.show()
 	
 func update_money(amount: int, is_to_add: bool):
 	if is_to_add:
