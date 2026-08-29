@@ -93,6 +93,7 @@ func get_type_chaos_day() -> void:
 	#return q
 
 func request_cop() -> void:
+	
 	type = Client_Info.Type.COP
 	var r_fake = randf()
 	if r_fake < fake_cop_odd:
