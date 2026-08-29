@@ -16,7 +16,7 @@ func show_dialog_box(dialog : String):
 	await tween.tween_property(self, "modulate", Color.WHITE, 1).finished
 	label.text = dialog
 	tween = create_tween()
-	tween.tween_property(label, "visible_ratio", 1, 1)
+	await tween.tween_property(label, "visible_ratio", 1, 1)
 	
 func hide_dialog_box():
 	var tween = create_tween()
