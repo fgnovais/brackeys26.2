@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://367qglfqs81h" path="res://Assets/Game/Restaurant/L1/Counter.png" id="7_jnhw6"]
 [ext_resource type="PackedScene" uid="uid://c468wne2xcvtm" path="res://UI/preview.tscn" id="7_thgdw"]
 [ext_resource type="Texture2D" uid="uid://bamw4ru0flfn3" path="res://Assets/Game/Restaurant/L1/Register.png" id="8_mcco3"]
+[ext_resource type="AudioStream" uid="uid://dtrfksvgsu1wx" path="res://Assets/Audio/Cash Register 2.wav" id="9_1rd7f"]
 [ext_resource type="PackedScene" uid="uid://tvnrhe63rnis" path="res://UI/dialog_box.tscn" id="9_2im43"]
 [ext_resource type="Texture2D" uid="uid://cuqor4c18sm8a" path="res://Assets/player_box.png" id="10_7j0cy"]
 [ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/aseprite.otf" id="14_jnhw6"]
@@ -30,6 +31,7 @@
 [ext_resource type="Texture2D" uid="uid://tlqapk87wvvf" path="res://UI/hp/4.png" id="23_y2i1u"]
 [ext_resource type="Texture2D" uid="uid://q38td8i5smqa" path="res://UI/hp/4.5.png" id="24_8k21o"]
 [ext_resource type="Texture2D" uid="uid://b7kj0nw3gl1aj" path="res://UI/hp/5.png" id="25_ng07t"]
+[ext_resource type="Texture2D" uid="uid://cf4c0dgx26t30" path="res://Assets/Items/coupon.png" id="31_inh4j"]
 
 [sub_resource type="Animation" id="Animation_gjcv7"]
 length = 0.001
@@ -69,6 +71,132 @@ _data = {
 &"flies": SubResource("Animation_3na28")
 }
 
+[sub_resource type="Animation" id="Animation_3mdya"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RegisterAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../ServiceController/Money:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.43296888, 0.23683104)]
+}
+
+[sub_resource type="Animation" id="Animation_sn240"]
+resource_name = "add_money"
+length = 1.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.43333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RegisterAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../ServiceController/Money:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.43296888, 0.23683104), Vector2(1.598, 0.917), Vector2(0.43296888, 0.23683104)]
+}
+
+[sub_resource type="Animation" id="Animation_a8jji"]
+resource_name = "remove_money"
+length = 1.0333333
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.13333334, 0.43333334, 0.6666667),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(0.95, 0.95), Vector2(1.05, 1.05), Vector2(1, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("RegisterAudio:playing")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.033333335),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("../../../ServiceController/Money:scale")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.6333333),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.43296888, 0.23683104), Vector2(1.598, 0.917), Vector2(0.43296888, 0.23683104)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_a8jji"]
+_data = {
+&"RESET": SubResource("Animation_3mdya"),
+&"add_money": SubResource("Animation_sn240"),
+&"remove_money": SubResource("Animation_a8jji")
+}
+
 [sub_resource type="LabelSettings" id="LabelSettings_hwoix"]
 font = ExtResource("14_jnhw6")
 font_size = 73
@@ -76,7 +204,7 @@ font_color = Color(0, 1, 1, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_7ta8d"]
 font = ExtResource("14_jnhw6")
-font_size = 144
+font_size = 127
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
 font_size = 147
@@ -263,6 +391,12 @@ texture = ExtResource("7_jnhw6")
 position = Vector2(957, 549)
 texture = ExtResource("8_mcco3")
 
+[node name="RegisterPlayer" type="AnimationPlayer" parent="Background/L1/Register" unique_id=1419889740]
+libraries/ = SubResource("AnimationLibrary_a8jji")
+
+[node name="RegisterAudio" type="AudioStreamPlayer" parent="Background/L1/Register" unique_id=224435030]
+stream = ExtResource("9_1rd7f")
+
 [node name="Bell" parent="." unique_id=2098198925 instance=ExtResource("2_yib0q")]
 z_index = 1
 position = Vector2(668.00006, 813)
@@ -368,11 +502,12 @@ text = "Cancel Deal"
 [node name="Money" type="Label" parent="ServiceController" unique_id=993466695]
 z_index = 1
 layout_mode = 0
-offset_left = 357.0
-offset_top = 581.0
-offset_right = 604.0
-offset_bottom = 778.0
+offset_left = 355.00003
+offset_top = 596.0
+offset_right = 622.0
+offset_bottom = 793.0
 scale = Vector2(0.43296888, 0.23683104)
+text = "154"
 label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="Day" type="Label" parent="ServiceController" unique_id=2137333337]
@@ -448,6 +583,26 @@ offset_right = 643.7988
 offset_bottom = 140.56563
 text = "Order Meat."
 label_settings = SubResource("LabelSettings_gjcv7")
+
+[node name="Coupons" type="HBoxContainer" parent="." unique_id=1677973775]
+z_index = 3
+offset_left = 1277.9999
+offset_top = 899.00006
+offset_right = 1975.9999
+offset_bottom = 1078.0
+scale = Vector2(0.39717132, 0.3932691)
+
+[node name="TextureRect" type="TextureRect" parent="Coupons" unique_id=1167554215]
+layout_mode = 2
+texture = ExtResource("31_inh4j")
+
+[node name="TextureRect2" type="TextureRect" parent="Coupons" unique_id=1368610137]
+layout_mode = 2
+texture = ExtResource("31_inh4j")
+
+[node name="TextureRect3" type="TextureRect" parent="Coupons" unique_id=123354601]
+layout_mode = 2
+texture = ExtResource("31_inh4j")
 
 [connection signal="bell_pressed" from="Bell" to="." method="_on_bell_bell_pressed"]
 [connection signal="serve_bad" from="ServiceController" to="." method="_on_service_controller_serve_bad"]

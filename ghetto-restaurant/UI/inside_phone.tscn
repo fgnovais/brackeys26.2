@@ -140,10 +140,10 @@ scale = Vector2(0.12809534, 0.14334267)
 text = "Expensive meat"
 
 [node name="Name" parent="ItemIcon" index="1" unique_id=864228699]
-offset_left = 22.189386
-offset_top = 135.40909
-offset_right = 287.1894
-offset_bottom = 164.40909
+offset_left = 27.0433
+offset_top = 129.42416
+offset_right = 170.07742
+offset_bottom = 217.34149
 scale = Vector2(0.87262356, 0.8509317)
 text = "3 = 30$"
 

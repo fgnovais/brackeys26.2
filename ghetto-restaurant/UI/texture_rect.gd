@@ -20,6 +20,10 @@ func _ready() -> void:
 		name_label.text = "3 = 30$"
 	elif item.title == ItemManager.Items.BAD_MEAT:
 		name_label.text = "? = ?$"
+	
+	if item.title == ItemManager.Items.GOOD_MEAT and ItemManager.has_coupon:
+		name_label.text = "3 = 15$"
+		description.text = item.description + ", 50% off!"
 		
 func _on_mouse_entered() -> void:
 	description.show()

@@ -8,7 +8,12 @@ var face : Texture2D
 @onready var client_dialogs: VBoxContainer = $ClientDialogs
 @onready var player_dialogs: VBoxContainer = $PlayerDialogs
 signal no_more_dialog
+@onready var animation_player: AnimationPlayer = $AnimationPlayer
+@onready var space_bar: TextureRect = $SpaceBar
 
+func _ready() -> void:
+	space_bar.hide()
+	
 func spawn():
 	var inst : DialogBox = dialog_scene.instantiate()
 	inst.face = face
@@ -19,6 +24,12 @@ func spawn():
 		var tween = create_tween()
 		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -200), 1)
 	idx+= 1
+	#if idx < client_dialogs.get_child_count():
+	show_space_bar()
+
+func show_space_bar():
+	space_bar.show()
+	animation_player.play("bob")
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if idx < client_dialog.size():

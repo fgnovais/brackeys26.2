@@ -8,6 +8,7 @@ var lupa_resource: Item = load("res://Assets/Items/Lupa.tres")
 var flip_phone_resource: Item = load("res://Assets/Items/Flipphone.tres")
 var order_resource: Item = load("res://Assets/Items/Order.tres")
 var get_item: PackedScene = load("res://UI/get_item.tscn")
+var has_coupon: bool = false
 
 signal bribe
 signal skip_customer

@@ -20,12 +20,16 @@ class_name Level
 @onready var animation_player: AnimationPlayer = $HealthPoints/AnimationPlayer
 @onready var service_controller: Control = $ServiceController
 @onready var phone: Sprite2D = $Phone
+@onready var register_player: AnimationPlayer = $Background/L1/Register/RegisterPlayer
+@onready var register_audio: AudioStreamPlayer = $Background/L1/Register/RegisterAudio
 const BAD_MEAT_RESOURCE = preload("uid://phng332imj5i")
 const GOOD_MEAT_RESOURCE = preload("uid://cffxeehgwieho")
+const CASH_REGISTER_2 = preload("uid://dtrfksvgsu1wx")
+const COINS_2 = preload("uid://dl5j1xdx1ne1e")
 
 var you_got_stock_scene : PackedScene = load("res://UI/get_item.tscn")
 var total_health : int = 5
-var total_money : int = 150
+var total_money : int = 30
 var client_queue : Array[Client] = []
 var current_client : Client
 var current_day : int = 0
@@ -44,6 +48,7 @@ var event_queue : Array[EVENT] = []
 var coupon_count: int = 0
 var client_infos: Array[Client_Info] = []
 const GOOD_BURGER_COST = 30
+@onready var coupons: HBoxContainer = $Coupons
 
 ## EVENT SYSTEM
 enum EVENT {
@@ -68,6 +73,8 @@ func start_level():
 	# DEBUG
 	
 func _ready() -> void:
+	for i in 3:
+			coupons.get_child(i).hide()
 	Engine.time_scale = 8
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
@@ -108,6 +115,9 @@ func skip_customer():
 	
 func coupon():
 	coupon_count = 3
+	for i in coupon_count:
+		coupons.get_child(i).show()
+	ItemManager.has_coupon = true
 
 func bribe():
 	if is_processing_action:
@@ -231,7 +241,7 @@ func increase_good_stock(deal_quantity)-> void:
 		is_processing_action = false
 		return
 	good_stock_amount += deal_quantity
-	total_money -= deal_price
+	update_money(deal_price, false)
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
@@ -249,7 +259,7 @@ func increase_bad_stock(deal_quantity)-> void:
 		is_processing_action = false
 		return
 	bad_stock_amount += deal_quantity
-	total_money -= deal_price
+	update_money(deal_price, false)
 	print("deal taken")
 	take_deal.hide()
 	cancel_deal.hide()
@@ -273,7 +283,7 @@ func _on_service_controller_serve_bad() -> void:
 			hurt()
 			#event_queue.push_back(EVENT.CLIENT_COMPLAINING)
 		else:
-			total_money += paid_money
+			update_money(paid_money, true)
 		next_event()
 		is_processing_action = false
 		
@@ -283,7 +293,7 @@ func _on_service_controller_serve_good() -> void:
 	if good_stock_amount > 0 and current_client != null and is_instance_valid(current_client):
 		is_processing_action = true
 		good_stock_amount -= 1
-		total_money += current_client.receive_good_food()
+		update_money(current_client.receive_good_food(), true)
 		await hide_dialogs_and_buttons()
 		if current_client != null and is_instance_valid(current_client):
 			current_client.leave()
@@ -325,19 +335,14 @@ func next_day() -> void:
 	client_queue.shuffle()
 
 func buy_good_stock_amount() -> void:
-	if coupon_count > 0 && total_money >= 5:
-		total_money -= 10
-		coupon_count -= 1
+	if coupon_count > 0 && total_money >= GOOD_BURGER_COST/2:
 		add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 		phone.disable()
 		is_good_meat = true
 	elif total_money >= GOOD_BURGER_COST:
-		total_money -= GOOD_BURGER_COST
 		add_to_queue_in(EVENT.SPAWN_DEALER, 1)
 		phone.disable()
 		is_good_meat = true
-	else:
-		print("You got no money!")
 	_on_phone_show_dialog()
 		
 func buy_bad_stock_amount() -> void:
@@ -400,6 +405,13 @@ func _on_take_deal_pressed() -> void:
 		stock.item_icon._ready()
 		stock._ready()
 	else:
+		coupon_count -= 1
+		if coupon_count <= 0:
+			ItemManager.has_coupon = false
+		for i in 3:
+			coupons.get_child(i).hide()
+		for i in coupon_count:
+			coupons.get_child(i).show()
 		var stock = you_got_stock_scene.instantiate()
 		stock.connect("give_meat", increase_stock.bind(true))
 		add_child(stock)
@@ -426,16 +438,24 @@ func check_dealer():
 		deal_quantity = [3, 5, 8, 10].pick_random()
 		deal_price = deal_quantity * [2, 3, 4].pick_random()
 		if deal_price > total_money: 
-				deal_price = total_money 
+			deal_price = total_money 
 		current_client.dialog_system.show_message("Here's the deal: These %d EXCELENT burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
 	else:
 		deal_quantity = [2,3].pick_random()
-		deal_price = deal_quantity * [10,11].pick_random()
+		deal_price = deal_quantity * 10
+		if coupon_count > 0:
+			deal_price = deal_price / 2
+				
 		if deal_price > total_money: 
-				deal_price = total_money 
-		current_client.dialog_system.show_message("Here's the deal: These %d AFFORDABLE burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
-	cancel_deal.show()
-	take_deal.show()
+			current_client.dialog_system.show_message("You called me here and you have no money?")
+			current_client.dialog_system.show_message("Get real.")
+			await get_tree().create_timer(4).timeout
+			current_client.leave()
+			next_event()
+		else:
+			current_client.dialog_system.show_message("Here's the deal: These %d AFFORDABLE burgers for $%d, do you take them man?" % [deal_quantity, deal_price])
+			cancel_deal.show()
+			take_deal.show()
 	
 func hide_dialogs_and_buttons() -> void:
 	#await dialog_box.hide_dialog_box()
@@ -462,8 +482,7 @@ func get_caught() -> void:
 		current_client.dialog_system.show_message(current_client.client_info.cop_dialog.pick_random())
 		current_client.dialog_system.show_message("You have been caught, you will have to pay a fine now!")
 	
-	total_money -= fine_amount
-	
+	update_money(fine_amount, false)
 	await get_tree().create_timer(2.0).timeout
 	
 	if current_client != null and is_instance_valid(current_client):
@@ -472,7 +491,18 @@ func get_caught() -> void:
 	
 	await next_event()
 	is_processing_action = false
-	
+
+func update_money(amount: int, is_to_add: bool):
+	if is_to_add:
+		total_money += amount
+		register_audio.stream = CASH_REGISTER_2
+		register_audio.pitch_scale = 1
+	else:
+		total_money -= amount
+		register_audio.stream = COINS_2
+		register_audio.pitch_scale = 0.7
+	register_player.play("add_money")
+			
 func get_lucky_fake_cop() -> void:
 	take_deal.hide()
 	cancel_deal.hide()

@@ -1,6 +1,69 @@
 [gd_scene format=3 uid="uid://c742pnbykexpk"]
 
 [ext_resource type="Script" uid="uid://cg57ris1uk6yj" path="res://UI/dialog_system.gd" id="1_eya45"]
+[ext_resource type="Texture2D" uid="uid://oovfkoseuhuj" path="res://UI/space_bar.png" id="2_eya45"]
+
+[sub_resource type="Animation" id="Animation_eya45"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpaceBar:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpaceBar:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_uunpa"]
+resource_name = "bob"
+length = 1.1
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SpaceBar:offset_transform_position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.26666668, 0.56666666, 1.03),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 6.115), Vector2(0, -6.605), Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SpaceBar:offset_transform_scale")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.55, 1.06),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(1, 1), Vector2(1.2, 1.2), Vector2(1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5l6r"]
+_data = {
+&"RESET": SubResource("Animation_eya45"),
+&"bob": SubResource("Animation_uunpa")
+}
 
 [node name="DialogSystem" type="Control" unique_id=282480536]
 top_level = true
@@ -31,3 +94,16 @@ offset_right = 579.0
 offset_bottom = 844.0
 scale = Vector2(0.8819352, 0.09773482)
 offset_transform_enabled = true
+
+[node name="SpaceBar" type="TextureRect" parent="." unique_id=1666855076]
+layout_mode = 0
+offset_left = 1399.0
+offset_top = 18.0
+offset_right = 1530.0
+offset_bottom = 58.0
+scale = Vector2(1.248155, 0.8470764)
+offset_transform_enabled = true
+texture = ExtResource("2_eya45")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1207256666]
+libraries/ = SubResource("AnimationLibrary_x5l6r")
