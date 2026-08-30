@@ -47,7 +47,7 @@ func transition_animations(anim_name : String):
 
 func leave():
 	animation_player.play("leave")
-	if Client_Info.Type.DEALER == client_info.type:
+	if Client_Info.Type.DEALER == client_info.type or Client_Info.Type.COP == client_info.type or Client_Info.Type.FAKE_ASAE == client_info.type:
 		leave_sound.stream = client_info.get_happy_voice()
 	leave_sound.play()
 

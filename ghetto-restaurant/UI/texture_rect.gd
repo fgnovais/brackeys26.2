@@ -3,8 +3,8 @@ extends TextureRect
 class_name ItemIcon
 
 @onready var hover: AudioStreamPlayer = $Hover
-@onready var description: Label = $Description
-@onready var name_label: Label = $Name
+@onready var description: RichTextLabel = $Description
+@onready var name_label: RichTextLabel = $Name
 @export var item : Item 
 signal selected
 
@@ -17,9 +17,9 @@ func _ready() -> void:
 	material.set_shader_parameter("onoff",0.2)
 	
 	if item.title == ItemManager.Items.GOOD_MEAT:
-		name_label.text = "3 = 30$"
+		name_label.text = " 3 = 30$"
 	elif item.title == ItemManager.Items.BAD_MEAT:
-		name_label.text = "? = ?$"
+		name_label.text = " ? = ?$"
 	
 	if item.title == ItemManager.Items.GOOD_MEAT and ItemManager.has_coupon:
 		name_label.text = "3 = 15$"

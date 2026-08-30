@@ -6,6 +6,7 @@ var client_scene : PackedScene = load("res://UI/client.tscn")
 var HIGHLIGHT = preload("uid://d25a46rib4y4v")
 const INSPECTOR_HIGHLIGHT = preload("uid://dspccllwrqw0k")
 @onready var start: Button = $Start
+@onready var repeat_timer: Timer = $RepeatTimer
 
 signal start_level
 var label_text = "%s Clients
@@ -18,8 +19,10 @@ Can you guess who is who?"
 func _ready() -> void:
 	start.hide()
 	animation_player.play("spawn")
-	
+
+var curr_day = 1
 func populate_day(current_day: int) -> Array[Client_Info]:
+	curr_day = current_day
 	var clients_amount = 2
 	var inspectors_amount = 2
 	var entities_array : Array[Client_Info] = []	
@@ -29,15 +32,21 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 			clients_amount = 4
 			inspectors_amount = 1
 		2:
-			clients_amount = 6
+			clients_amount = 4
 			inspectors_amount = 3
 		3:
-			clients_amount = 8
-			inspectors_amount = 6
+			clients_amount = 2
+			inspectors_amount = 5
 		4:
-			clients_amount = 8
-			inspectors_amount = 10
-	
+			clients_amount = 3
+			inspectors_amount = 6
+		5:
+			clients_amount = 4
+			inspectors_amount = 8
+		_:
+			clients_amount = current_day*randi_range(1,2)
+			inspectors_amount =  current_day*randi_range(1,2)
+		
 	for i in clients_amount:
 		var client_info = Client_Info.new()
 		client_info.type = Client_Info.Type.NORMAL
@@ -66,6 +75,16 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 	
 	label.text = "%s Clients" % clients_amount + "
 %s[color=yellow] Inspectors[/color]" % inspectors_amount
+
+	if inspectors_amount == 1:
+		label.text = "%s Clients" % clients_amount + "
+%s[color=yellow] Inspector[/color]" % inspectors_amount
+		label_text = "%s Clients
+%s[color=yellow] Inspector[/color]
+
+Feed a [color=maroon]bad[/color] burger to an [color=yellow]inspector[/color] if you want to [b] lose [/b].
+Can you guess who is who?"
+		
 	await play_animation(entities_array, clients_amount, inspectors_amount)
 	
 	return entities_array
@@ -80,8 +99,7 @@ func play_animation(entities_array : Array[Client_Info], clients_amount : int, i
 			await get_tree().create_timer(0.5).timeout
 	await get_tree().create_timer(1).timeout
 	
-	label.text = label_text % [str(clients_amount), str(inspectors_amount)]
-	
+	label.text = label_text % [str(clients_amount), str(inspectors_amount)]		
 	await get_tree().create_timer(2).timeout
 	#get positions
 	var positions: Array[Vector2] = []
@@ -112,7 +130,6 @@ func play_animation(entities_array : Array[Client_Info], clients_amount : int, i
 		await get_tree().create_timer(0.2).timeout
 			
 	await get_tree().create_timer(1).timeout
-	
 	var idx = 0
 	for ent in h_box_container.get_children():
 		var tween = create_tween().set_parallel(true)
@@ -121,9 +138,16 @@ func play_animation(entities_array : Array[Client_Info], clients_amount : int, i
 				
 	await get_tree().create_timer(1).timeout
 	start.show()
+	repeat_timer.start()
 	
 func _on_start_pressed() -> void:
 	start_level.emit()
 	animation_player.play("kill")
 	await get_tree().create_timer(1).timeout
 	queue_free()
+
+func _on_repeat_timer_timeout() -> void:
+	for child in h_box_container.get_children():
+		h_box_container.remove_child(child)
+	populate_day(curr_day)
+	repeat_timer.stop()

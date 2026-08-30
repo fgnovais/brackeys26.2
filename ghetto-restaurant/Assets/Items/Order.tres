@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_6ro81")
-description = "Get instant groceries"
+description = " Get instant [color=green]meat[/color]"
 title = 5
 icon = ExtResource("1_cum1x")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

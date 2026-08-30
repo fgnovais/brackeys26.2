@@ -68,8 +68,21 @@ func give_item(item : Items):
 
 func give_random_item(amount: int = 1):
 	hide_dialogs.emit()
+	
 	for i in amount:
-		give_item(randi_range(0, 5))
+		var range = randi_range(0, 100)
+		if range <= 30:
+			give_item(Items.LUPA)
+		elif range > 30 and range <= 50:
+			give_item(Items.SKIP_CUSTOMER)
+		elif range > 50 and range <= 65:
+			give_item(Items.COUPON)
+		elif range > 65 and range <= 85:
+			give_item(Items.BRIBE)
+		elif range > 85 and range <= 93:
+			give_item(Items.FLIP_PHONE)
+		elif range > 95 and range <= 100:
+			give_item(Items.ORDER)
 	
 func _show_dialogs():
 	if get_child_count() == 1:

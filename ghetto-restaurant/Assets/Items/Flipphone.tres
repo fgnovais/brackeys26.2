@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_qw70s")
-description = "A friend of yours can make the cop go \"away\"."
+description = " A friend of yours can make the cop go \"away\"."
 title = 4
 icon = ExtResource("1_pekov")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

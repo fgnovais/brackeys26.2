@@ -38,7 +38,7 @@ wait_time = 45.0
 
 [node name="Flies" type="AudioStreamPlayer" parent="." unique_id=2013970468]
 stream = ExtResource("2_4j2cg")
-volume_db = -25.0
+volume_db = -18.0
 
 [connection signal="timeout" from="Burps/BurpsTimer" to="." method="_on_burps_timer_timeout"]
 [connection signal="timeout" from="Cleaning/CleaningTimer" to="." method="_on_cleaning_timer_timeout"]

@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_ac2vi")
-description = "Cheap Meat"
+description = " [color=maroon]Cheap[/color] Meat"
 title = 7
 icon = ExtResource("1_d7jk1")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

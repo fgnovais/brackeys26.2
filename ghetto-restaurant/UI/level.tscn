@@ -35,6 +35,7 @@
 [ext_resource type="AudioStream" uid="uid://bk8yetx121xda" path="res://Assets/Audio/BackGround.wav" id="33_3mdya"]
 [ext_resource type="AudioStream" uid="uid://b7dg47oh87j0f" path="res://Assets/Audio/Serve.wav" id="34_sn240"]
 [ext_resource type="PackedScene" uid="uid://bstfvy4en8td" path="res://UI/ambiance.tscn" id="35_a8jji"]
+[ext_resource type="AudioStream" uid="uid://cfb21x4ihvtjk" path="res://Assets/Audio/siren.mp3" id="35_nxgci"]
 
 [sub_resource type="Animation" id="Animation_gjcv7"]
 length = 0.001
@@ -283,7 +284,8 @@ font = ExtResource("14_jnhw6")
 font_size = 88
 
 [sub_resource type="LabelSettings" id="LabelSettings_bp5er"]
-font_size = 147
+font = ExtResource("14_jnhw6")
+font_size = 101
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_7ta8d"]
 animations = [{
@@ -412,7 +414,8 @@ _data = {
 }
 
 [sub_resource type="LabelSettings" id="LabelSettings_wnmnv"]
-font_size = 301
+font = ExtResource("14_jnhw6")
+font_size = 72
 
 [sub_resource type="LabelSettings" id="LabelSettings_gjcv7"]
 font = ExtResource("14_jnhw6")
@@ -506,52 +509,76 @@ offset_right = 648.11993
 offset_bottom = 222.72508
 
 [node name="GiveGoodBurger" type="Button" parent="PlayerBox" unique_id=1464754603]
-visible = false
 layout_mode = 0
-offset_left = 146.91734
-offset_top = 170.55112
-offset_right = 1803.9174
-offset_bottom = 424.55112
-scale = Vector2(0.13, 0.13)
+offset_left = 148.95786
+offset_top = 170.5511
+offset_right = 1865.2666
+offset_bottom = 424.5511
+scale = Vector2(0.13434564, 0.15147719)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
-text = "Good Burger.
+text = "
 "
 
 [node name="GoodStock" type="Label" parent="PlayerBox/GiveGoodBurger" unique_id=677769474]
 layout_mode = 0
-offset_left = 1369.2308
-offset_top = -253.84604
-offset_right = 1471.2308
-offset_bottom = -152.84604
+offset_left = 1549.2345
+offset_top = -259.8278
+offset_right = 1651.2345
+offset_bottom = -158.82779
 scale = Vector2(3, 3)
 text = "10"
 label_settings = SubResource("LabelSettings_hwoix")
 
-[node name="GiveBadBurger" type="Button" parent="PlayerBox" unique_id=2032489855]
-visible = false
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerBox/GiveGoodBurger" unique_id=300670127]
 layout_mode = 0
-offset_left = 442.7925
-offset_top = 170.55112
-offset_right = 1910.7925
-offset_bottom = 424.5513
+offset_left = 7.5942917
+offset_top = 7.7628174
+offset_right = 401.65298
+offset_bottom = 141.14001
+scale = Vector2(4.606, 4.595)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("14_jnhw6")
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "[color=green]Good[/color] Burger"
+
+[node name="GiveBadBurger" type="Button" parent="PlayerBox" unique_id=2032489855]
+layout_mode = 0
+offset_left = 404.02267
+offset_top = 173.57864
+offset_right = 2122.7668
+offset_bottom = 437.5176
 scale = Vector2(0.13, 0.13)
 mouse_default_cursor_shape = 2
 theme_override_fonts/font = ExtResource("14_jnhw6")
 theme_override_font_sizes/font_size = 180
-text = "Bad Burger.
+text = "
 "
 
 [node name="BadStock" type="Label" parent="PlayerBox/GiveBadBurger" unique_id=972599840]
 layout_mode = 0
-offset_left = 1169.2307
-offset_top = -246.15395
-offset_right = 1271.2307
-offset_bottom = -145.15395
+offset_left = 1553.9332
+offset_top = -256.176
+offset_right = 1655.9332
+offset_bottom = -155.176
 scale = Vector2(3, 3)
 text = "10"
 label_settings = SubResource("LabelSettings_hwoix")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="PlayerBox/GiveBadBurger" unique_id=851272101]
+layout_mode = 0
+offset_left = 94.177895
+offset_top = 7.7628174
+offset_right = 416.8582
+offset_bottom = 141.14001
+scale = Vector2(4.606, 4.595)
+mouse_filter = 2
+theme_override_fonts/normal_font = ExtResource("14_jnhw6")
+theme_override_font_sizes/normal_font_size = 41
+bbcode_enabled = true
+text = "[color=maroon]Bad[/color] Burger"
 
 [node name="ServiceController" type="Control" parent="." unique_id=1547221562]
 layout_mode = 3
@@ -612,10 +639,12 @@ text = "154$"
 label_settings = SubResource("LabelSettings_7ta8d")
 
 [node name="Day" type="Label" parent="ServiceController" unique_id=2137333337]
-visible = false
 layout_mode = 0
-offset_right = 332.0
-offset_bottom = 202.0
+offset_left = 53.0
+offset_top = 103.0
+offset_right = 385.0
+offset_bottom = 305.0
+scale = Vector2(0.585, 0.585)
 text = "DAY:"
 label_settings = SubResource("LabelSettings_bp5er")
 
@@ -649,15 +678,27 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0, 0, 0, 0.8235294)
+color = Color(0, 0, 0, 0.8666667)
 
 [node name="Label" type="Label" parent="GameOver" unique_id=1056926789]
-offset_left = 24.0
-offset_top = 258.0
-offset_right = 1888.0
-offset_bottom = 669.0
-text = "you lose, bro!"
+offset_left = 29.0
+offset_top = 157.0
+offset_right = 1876.0
+offset_bottom = 568.0
+text = "GAME OVER!
+
+your restaurant was shutdown."
 label_settings = SubResource("LabelSettings_wnmnv")
+horizontal_alignment = 1
+
+[node name="Button" type="Button" parent="GameOver" unique_id=838840650]
+offset_left = 528.0
+offset_top = 749.0
+offset_right = 1386.0
+offset_bottom = 961.0
+theme_override_fonts/font = ExtResource("14_jnhw6")
+theme_override_font_sizes/font_size = 151
+text = "Restart"
 
 [node name="Preview" parent="." unique_id=1857883474 instance=ExtResource("7_thgdw")]
 visible = false
@@ -687,7 +728,7 @@ text = "Order Meat. Wait for dealer."
 label_settings = SubResource("LabelSettings_gjcv7")
 
 [node name="Coupons" type="HBoxContainer" parent="." unique_id=1677973775]
-z_index = 3
+z_index = 2
 offset_left = 1146.0
 offset_top = 906.00006
 offset_right = 1844.0
@@ -717,6 +758,11 @@ autoplay = true
 
 [node name="Serve" type="AudioStreamPlayer" parent="." unique_id=625834251]
 stream = ExtResource("34_sn240")
+volume_db = 5.0
+
+[node name="Siren" type="AudioStreamPlayer" parent="." unique_id=335487856]
+stream = ExtResource("35_nxgci")
+volume_db = -20.0
 
 [node name="Ambiance" parent="." unique_id=531084822 instance=ExtResource("35_a8jji")]
 
@@ -731,8 +777,10 @@ stream = ExtResource("34_sn240")
 [connection signal="pressed" from="ServiceController/TakeDeal" to="." method="_on_take_deal_pressed"]
 [connection signal="pressed" from="ServiceController/CancelDeal" to="." method="_on_cancel_deal_pressed"]
 [connection signal="pressed" from="ServiceController/PayFine" to="." method="_on_pay_fine_pressed"]
+[connection signal="pressed" from="GameOver/Button" to="." method="_on_restart_pressed"]
 [connection signal="buy_bad" from="Phone" to="." method="buy_bad_stock_amount"]
 [connection signal="buy_good" from="Phone" to="." method="buy_good_stock_amount"]
+[connection signal="close" from="Phone" to="." method="close_phone"]
 [connection signal="hide_dialog" from="Phone" to="." method="_on_phone_hide_dialog"]
 [connection signal="pressed" from="Phone/HoverComponent" to="Phone" method="_on_hover_component_pressed"]
 [connection signal="selected" from="Phone/HoverComponent" to="Phone" method="_on_hover_component_selected"]

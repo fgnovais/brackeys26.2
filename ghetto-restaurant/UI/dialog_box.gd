@@ -13,13 +13,13 @@ func _ready() -> void:
 	
 func show_dialog_box(dialog : String):
 	var tween = create_tween()
-	await tween.tween_property(self, "modulate", Color.WHITE, 1).finished
+	await tween.tween_property(self, "modulate", Color.WHITE, 0.5).finished
 	label.text = dialog
 	tween = create_tween()
-	await tween.tween_property(label, "visible_ratio", 1, 1)
+	await tween.tween_property(label, "visible_ratio", 1, 0.5)
 	
 func hide_dialog_box():
 	var tween = create_tween()
 	tween.set_parallel()
-	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.7).finished
+	tween.tween_property(self, "modulate", Color.TRANSPARENT, 0.5).finished
 	await tween.tween_property(label, "visible_ratio", 0, 0.3).finished

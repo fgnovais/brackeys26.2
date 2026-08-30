@@ -78,10 +78,10 @@ script = ExtResource("1_eya45")
 
 [node name="ClientDialogs" type="VBoxContainer" parent="." unique_id=1965849705]
 layout_mode = 0
-offset_left = 1023.99994
-offset_top = 25.0
-offset_right = 1557.0
-offset_bottom = 78.0
+offset_left = 979.99994
+offset_top = 9.0
+offset_right = 1513.0
+offset_bottom = 62.0
 scale = Vector2(0.9422507, 1.0896518)
 offset_transform_enabled = true
 mouse_filter = 2
@@ -101,14 +101,25 @@ offset_left = 1614.0
 offset_top = 70.0
 offset_right = 1745.0
 offset_bottom = 110.0
-scale = Vector2(1.786, 1.217)
+scale = Vector2(1.541, 1.068)
 offset_transform_enabled = true
 texture = ExtResource("2_eya45")
+
+[node name="Button" type="Button" parent="." unique_id=2142958930]
+layout_mode = 0
+offset_left = 1597.0
+offset_top = 61.0
+offset_right = 1810.0
+offset_bottom = 92.0
+scale = Vector2(1.1464056, 1.7265842)
+text = "                                              "
+flat = true
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1207256666]
 libraries/ = SubResource("AnimationLibrary_x5l6r")
 
 [node name="Wait" type="Timer" parent="." unique_id=221114776]
-wait_time = 5.0
+wait_time = 3.0
 
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 [connection signal="timeout" from="Wait" to="." method="_on_wait_timeout"]

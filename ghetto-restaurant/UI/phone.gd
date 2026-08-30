@@ -4,6 +4,7 @@ var menu_scene : PackedScene = load("res://UI/inside_phone.tscn")
 var is_menu_spawned : bool = false
 signal buy_good
 signal buy_bad
+signal close
 @onready var order: Label = $Order
 @onready var hover_component: Node2D = $HoverComponent
 signal hide_dialog
@@ -15,6 +16,7 @@ func spawn_menu():
 	var menu = menu_scene.instantiate()
 	menu.connect("buy_good", good)
 	menu.connect("buy_bad", bad)
+	menu.connect("close", close_e)
 	add_child(menu)
 
 func despawn_menu():
@@ -31,6 +33,10 @@ func good():
 	
 func bad():
 	buy_bad.emit()
+	is_menu_spawned = false
+
+func close_e():
+	close.emit()
 	is_menu_spawned = false
 
 func _on_hover_component_selected(selected: bool) -> void:

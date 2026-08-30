@@ -8,39 +8,7 @@
 [ext_resource type="Resource" uid="uid://cffxeehgwieho" path="res://Assets/Items/good_meat_resource.tres" id="5_51xre"]
 [ext_resource type="Resource" uid="uid://phng332imj5i" path="res://Assets/Items/bad_meat_resource.tres" id="7_bryqp"]
 [ext_resource type="FontFile" uid="uid://jiffeyp7pgb" path="res://Assets/oldwest.otf" id="8_bryqp"]
-
-[sub_resource type="Shader" id="Shader_bryqp"]
-resource_local_to_scene = true
-code = "shader_type canvas_item;
-
-uniform vec4 line_color : source_color = vec4(1.0);
-uniform float line_thickness : hint_range(0, 10) = 1.0;
-uniform float onoff: hint_range(0.0,1.0) = 0.0;
-
-const vec2 OFFSETS[8] = {
-	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
-	vec2(1, -1), vec2(1, 0), vec2(1, 1)
-};
-
-void fragment() {
-	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
-	float outline = 0.0;
-	
-	for (int i = 0; i < OFFSETS.length(); i++) {
-		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a  * onoff ;
-	}
-	outline = min(outline, 1.0)  * onoff ;
-	
-	vec4 color = texture(TEXTURE, UV) ;
-	COLOR = mix(color, line_color, outline - color.a); 
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_xi4sj"]
-resource_local_to_scene = true
-shader = SubResource("Shader_bryqp")
-shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 2.5690001220275
-shader_parameter/onoff = 0.2
+[ext_resource type="Texture2D" uid="uid://bt7mqucbo2g1h" path="res://UI/arrow.png" id="9_xi4sj"]
 
 [sub_resource type="Shader" id="Shader_y1fkb"]
 resource_local_to_scene = true
@@ -72,6 +40,39 @@ void fragment() {
 resource_local_to_scene = true
 shader = SubResource("Shader_y1fkb")
 shader_parameter/line_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 2.5690001220275
+shader_parameter/onoff = 0.2
+
+[sub_resource type="Shader" id="Shader_u1g5p"]
+resource_local_to_scene = true
+code = "shader_type canvas_item;
+
+uniform vec4 line_color : source_color = vec4(1.0);
+uniform float line_thickness : hint_range(0, 10) = 1.0;
+uniform float onoff: hint_range(0.0,1.0) = 0.0;
+
+const vec2 OFFSETS[8] = {
+	vec2(-1, -1), vec2(-1, 0), vec2(-1, 1), vec2(0, -1), vec2(0, 1), 
+	vec2(1, -1), vec2(1, 0), vec2(1, 1)
+};
+
+void fragment() {
+	vec2 size = TEXTURE_PIXEL_SIZE * line_thickness;
+	float outline = 0.0;
+	
+	for (int i = 0; i < OFFSETS.length(); i++) {
+		outline += texture(TEXTURE, UV + size * OFFSETS[i]).a  * onoff ;
+	}
+	outline = min(outline, 1.0)  * onoff ;
+	
+	vec4 color = texture(TEXTURE, UV) ;
+	COLOR = mix(color, line_color, outline - color.a); 
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gxe01"]
+resource_local_to_scene = true
+shader = SubResource("Shader_u1g5p")
+shader_parameter/line_color = Color(1, 1, 1, 1)
 shader_parameter/line_thickness = 3.00800014288
 shader_parameter/onoff = 0.2
 
@@ -80,6 +81,25 @@ font = ExtResource("8_bryqp")
 font_size = 84
 outline_size = 32
 outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bv4c1"]
+border_width_left = 1
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 1
+expand_margin_left = 2.0
+expand_margin_top = 1.0
+
+[sub_resource type="InputEventKey" id="InputEventKey_ufma1"]
+device = -1
+keycode = 4194305
+
+[sub_resource type="InputEventKey" id="InputEventKey_1dual"]
+device = -1
+keycode = 4194309
+
+[sub_resource type="Shortcut" id="Shortcut_7iu0x"]
+events = [SubResource("InputEventKey_ufma1"), SubResource("InputEventKey_1dual")]
 
 [node name="InsidePhone" type="Control" unique_id=623244722]
 top_level = true
@@ -120,7 +140,7 @@ texture = ExtResource("2_bryqp")
 
 [node name="ItemIcon" parent="." unique_id=1078016639 instance=ExtResource("4_51xre")]
 z_index = 2
-material = SubResource("ShaderMaterial_xi4sj")
+material = SubResource("ShaderMaterial_rjtvq")
 layout_mode = 0
 offset_left = 608.99994
 offset_top = 371.00003
@@ -148,7 +168,7 @@ text = "3 = 30$"
 
 [node name="ItemIcon2" parent="." unique_id=1469221418 instance=ExtResource("4_51xre")]
 z_index = 2
-material = SubResource("ShaderMaterial_rjtvq")
+material = SubResource("ShaderMaterial_gxe01")
 layout_mode = 0
 offset_left = 966.99994
 offset_top = 366.00003
@@ -185,8 +205,24 @@ scale = Vector2(0.6, 0.6)
 text = "I will order..."
 label_settings = SubResource("LabelSettings_7ta8d")
 
+[node name="Button" type="Button" parent="." unique_id=1921009835]
+z_index = 8
+layout_mode = 0
+offset_left = 862.00006
+offset_top = 611.0
+offset_right = 998.00006
+offset_bottom = 768.0
+scale = Vector2(0.6325259, 0.5975688)
+mouse_default_cursor_shape = 2
+theme_override_font_sizes/font_size = 180
+theme_override_styles/hover = SubResource("StyleBoxFlat_bv4c1")
+shortcut = SubResource("Shortcut_7iu0x")
+icon = ExtResource("9_xi4sj")
+flat = true
+
 [connection signal="selected" from="ItemIcon" to="." method="_on_buy_good_stock_pressed"]
 [connection signal="selected" from="ItemIcon2" to="." method="_on_buy_bad_stock_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
 
 [editable path="ItemIcon"]
 [editable path="ItemIcon2"]

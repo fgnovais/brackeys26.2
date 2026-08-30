@@ -107,11 +107,11 @@ script = ExtResource("1_f6fsj")
 
 [node name="ColorRect" type="ColorRect" parent="." unique_id=305223786]
 layout_mode = 0
-offset_left = -37.0
-offset_top = -576.0
-offset_right = 3.0
-offset_bottom = -536.0
-scale = Vector2(49.37826, 44.09061)
+offset_left = -715.0
+offset_top = -1038.0
+offset_right = -675.0
+offset_bottom = -998.0
+scale = Vector2(84.65501, 78.98743)
 color = Color(0, 0, 0, 0.8156863)
 
 [node name="Box" type="TextureRect" parent="." unique_id=211498813]
@@ -164,4 +164,8 @@ theme_override_font_sizes/normal_font_size = 41
 theme_override_font_sizes/bold_font_size = 47
 bbcode_enabled = true
 
+[node name="RepeatTimer" type="Timer" parent="." unique_id=91736209]
+wait_time = 5.0
+
 [connection signal="pressed" from="Start" to="." method="_on_start_pressed"]
+[connection signal="timeout" from="RepeatTimer" to="." method="_on_repeat_timer_timeout"]

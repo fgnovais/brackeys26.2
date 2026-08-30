@@ -29,6 +29,23 @@ var normal_dialogs: Array[Array] = [
 	["This place is disgusting.", "I'll take a large burger, please."],
 	["I hate this smell.", "I'll write a report about this!"],
 	["If I get a bad a burger I'll write a report about this place.", "I like my job."],
+	["I want the best burgers ONLY.", "I can tell when you use bad meat."],
+	["The meat gives this place its charm.", "I can't get enough."],
+	["I love this meat.", "I can't get enough of it."],
+	["I can't wait to get a burger on my hands!.", "Let's go!."],
+	["I've waited so long for this.", "I want to eat a burger right now!."],
+	["I can tell when you use the cheap meat.", "I only want the best."],
+	["I'll give you a poor rating if you give me that meat again!", "You never learn, do you?"],
+	["I don't want fries, I only want BURGER.", "Give me my burger!."],
+	["I don't want to wait any longer!", "I want your best burger, right now!"],
+	["The last rating I gave you didn't scare you?", "I'll do it again if you feed me that cheap meat!"],
+	["I keep coming back to this place.", "It's my comfort food."],
+	["I've eaten so much of this burger.", "I should get a trophy!"],
+	["My business card is on the back.", "It says 'BURGER LOVER', for a reason."],
+	["It's been 3 days since I last came here.", "I'm craving that burger!"],
+	["I only want two things. A burger.", "And that someone cleans up this place!"],
+	["I've gotten used to this stench.", "I can't eat burgers without it now!"],
+	["This meat is really something special.", "I crave it everyday!"],
 ]
 	
 var day : int = 1
@@ -110,7 +127,6 @@ func get_type_chaos_day() -> void:
 	#return q
 
 func request_cop() -> void:
-	
 	type = Client_Info.Type.COP
 	var r_fake = randf()
 	if r_fake < fake_cop_odd:
@@ -127,7 +143,17 @@ func update_texture_to_type() -> void:
 	elif type == Type.COP:
 		client_texture = COP
 
+var amounts = [0,0,0,0]
 func give_normal_texture():
+	#var id = [1,2,3,4].pick_random()
+	#amounts[id] = amounts[id] + 1
+	#var highest = 0
+	#for i in amounts:
+		#if i > highest:
+			#highest = i
+	#if amounts[id] == highest:
+		#give_normal_texture()
+		
 	var textures = ["res://Assets/texture1.png","res://Assets/texture2.png","res://Assets/texture3.png","res://Assets/texture4.png"]
 	client_texture = load(textures.pick_random())
 
@@ -199,7 +225,6 @@ func get_happy_voice():
 const VOZ_TRISTE_1 = preload("uid://bl1dwyi182e0v")
 const VOZ_TRISTE_2 = preload("uid://hevrwqajyucs")
 const VOZ_TRISTE_3 = preload("uid://ba456sjje0plm")
-const VOZ_TRISTE_4 = preload("uid://u1yjdvn2t3kd")
 const VOZ_TRISTE_5 = preload("uid://d0h8upsaq1lil")
 
 func get_sad_voice():
@@ -210,8 +235,6 @@ func get_sad_voice():
 			return VOZ_TRISTE_2
 		FORK:
 			return VOZ_TRISTE_5
-		KETCHUP:
-			return VOZ_TRISTE_4
 		SUNGLASSES:
 			return VOZ_TRISTE_3
 		_:

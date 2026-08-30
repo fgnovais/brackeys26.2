@@ -1,2 +1,7 @@
 Client
 	can be inspector (animation to change to inspector texture)
+
+BETTER STOCK language / visuals
+starting screen 
+game over screen
+better tutorial

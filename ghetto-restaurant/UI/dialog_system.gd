@@ -11,22 +11,24 @@ signal no_more_dialog
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
 @onready var space_bar: TextureRect = $SpaceBar
 @onready var wait: Timer = $Wait
+var block_messages := false
+@onready var button: Button = $Button
 
 func _ready() -> void:
 	space_bar.hide()
 	
 func spawn():
-	var inst : DialogBox = dialog_scene.instantiate()
-	inst.face = face
-	inst.global_position = Vector2(0,0)
-	client_dialogs.add_child(inst)
-	inst.show_dialog_box(client_dialog[idx])
-	if idx > 1:
-		var tween = create_tween()
-		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -240), 1)
-	idx+= 1
-	#if idx < client_dialogs.get_child_count():
-	show_space_bar()
+	if block_messages != true:
+		var inst : DialogBox = dialog_scene.instantiate()
+		inst.face = face
+		inst.global_position = Vector2(0,0)
+		client_dialogs.add_child(inst)
+		inst.show_dialog_box(client_dialog[idx])
+		if idx > 1:
+			var tween = create_tween()
+			tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -240), 0.8)
+		idx+= 1
+		show_space_bar()
 
 func show_space_bar():
 	space_bar.show()
@@ -37,9 +39,12 @@ func _unhandled_input(event: InputEvent) -> void:
 	if idx < client_dialog.size():
 		if event.is_action_pressed("space"):
 			spawn()
+			wait.stop()
+			button.hide()
 	else:
 		no_more_dialog.emit()
 		space_bar.hide()
+		button.hide()
 
 func show_message(text: String) -> void:
 	var inst : DialogBox = dialog_scene.instantiate()
@@ -49,7 +54,7 @@ func show_message(text: String) -> void:
 	
 	if idx > 1:
 		var tween = create_tween()
-		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -240), 1)
+		tween.tween_property(client_dialogs, "offset_transform_position", client_dialogs.offset_transform_position + Vector2(0, -240), 0.8)
 
 func clear_dialogs() -> void:
 	client_dialogs.offset_transform_position = Vector2(0,0)
@@ -58,7 +63,11 @@ func clear_dialogs() -> void:
 	idx = 0
 
 func _on_wait_timeout() -> void:
+	button.hide()
 	spawn()
 	wait.stop()
 	no_more_dialog.emit()
 	space_bar.hide()
+
+func _on_button_pressed() -> void:
+	wait.timeout.emit()

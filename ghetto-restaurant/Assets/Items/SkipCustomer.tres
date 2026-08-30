@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("2_wg22a")
-description = "Skip a pesky customer!"
+description = " Skip a pesky customer!"
 title = 1
 icon = ExtResource("1_r4wb8")
 metadata/_custom_type_script = "uid://bw1l8gyl4dad1"
