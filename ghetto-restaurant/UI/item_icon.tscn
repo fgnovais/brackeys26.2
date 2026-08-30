@@ -35,8 +35,8 @@ void fragment() {
 resource_local_to_scene = true
 shader = SubResource("Shader_pxlly")
 shader_parameter/line_color = Color(1, 1, 1, 1)
-shader_parameter/line_thickness = 6.9230003288425
-shader_parameter/onoff = 0.2000000095
+shader_parameter/line_thickness = 4.0750001935625
+shader_parameter/onoff = 0.414000019665
 
 [node name="ItemIcon" type="TextureRect" unique_id=1469221418]
 material = SubResource("ShaderMaterial_umbco")

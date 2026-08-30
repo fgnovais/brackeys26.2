@@ -14,7 +14,7 @@ func _ready() -> void:
 	name_label.text = item.item_name
 	description.hide()
 	texture = item.icon
-	material.set_shader_parameter("onoff",0.2)
+	material.set_shader_parameter("onoff",0.4)
 	
 	if item.title == ItemManager.Items.GOOD_MEAT:
 		name_label.text = " 3 = 30$"
@@ -37,7 +37,7 @@ func _on_mouse_exited() -> void:
 	hover.stop()
 	description.hide()
 	modulate ='#FFFFFF' 
-	material.set_shader_parameter("onoff",0.2)
+	material.set_shader_parameter("onoff",0.4)
 	
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("mouse1"):
