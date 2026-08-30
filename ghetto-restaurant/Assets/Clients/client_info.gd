@@ -8,12 +8,26 @@ var client_texture: Texture2D = load("res://Assets/texture1.png")
 var dialog : Array = ["Yo! Can i get a burger, please?","A burger would be good!"]
 var cop_dialog : Array[String] = ["This is the police!", "I've got some questions for you."]
 var dealer_dialog : Array[String] = ["Yo, you got the stuff?", "Let's make this quick, man."]
-var inspector_dialog : Array[String] = ["This burger is in violation of EVERY health guideline!", "I'll be writing a report about this."]
+var inspector_dialog : Array[String] = [
+	"This burger is in violation of EVERY health guideline!", 
+	"I'll be writing a report about this.",
+	"Say goodbye to your ratings.",
+	"I'll finally shut you down.",
+	"Your ratings are going down!",
+	"This meat is awful, and I can finally prove it!",
+	"You are poisoning this city!",
+	"You should have shut down a long time ago.",
+	"No one should eat this burger.",
+	"Disgusting, I'll put you down.",
+	"This restaurant is done for.",
+	"Public Health will thank me for this.",
+	"Public Health is thriving because of me.",
+]
 var dealer_is_requested : bool = false
 var asae_odd: float = 0.2
 var cop_odd: float = 0.2
-var fake_cop_odd: float = 0.1
-var fake_asae_odd: float = 0.1
+var fake_cop_odd: float = 0
+var fake_asae_odd: float = 0
 
 var normal_dialogs: Array[Array] = [
 	["Yo! Can i get a burger, please?","A burger would be good!"],
@@ -36,7 +50,7 @@ var normal_dialogs: Array[Array] = [
 	["I've waited so long for this.", "I want to eat a burger right now!."],
 	["I can tell when you use the cheap meat.", "I only want the best."],
 	["I'll give you a poor rating if you give me that meat again!", "You never learn, do you?"],
-	["I don't want fries, I only want BURGER.", "Give me my burger!."],
+	["I don't want fries, I only want BURGER.", "Give me my burger!"],
 	["I don't want to wait any longer!", "I want your best burger, right now!"],
 	["The last rating I gave you didn't scare you?", "I'll do it again if you feed me that cheap meat!"],
 	["I keep coming back to this place.", "It's my comfort food."],

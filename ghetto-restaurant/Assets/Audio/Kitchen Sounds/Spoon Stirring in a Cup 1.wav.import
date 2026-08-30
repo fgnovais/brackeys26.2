@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://823eh23cwh85"
+path="res://.godot/imported/Spoon Stirring in a Cup 1.wav-bfb95ddb63c3b35059b47a54500e907b.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Spoon Stirring in a Cup 1.wav"
+dest_files=["res://.godot/imported/Spoon Stirring in a Cup 1.wav-bfb95ddb63c3b35059b47a54500e907b.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

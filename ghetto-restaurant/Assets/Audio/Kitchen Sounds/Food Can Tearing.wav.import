@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://b4umqflkkp5rs"
+path="res://.godot/imported/Food Can Tearing.wav-dbbe92275360000261064ccae57c71b1.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Food Can Tearing.wav"
+dest_files=["res://.godot/imported/Food Can Tearing.wav-dbbe92275360000261064ccae57c71b1.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

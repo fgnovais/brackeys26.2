@@ -18,6 +18,6 @@ script = ExtResource("2_3hgwf")
 
 [node name="HoverComponent" parent="." unique_id=1123238874 instance=ExtResource("3_q80vo")]
 material = null
-scale = Vector2(3.1040165, 0.80595094)
+scale = Vector2(3.515726, 1.5663071)
 
 [connection signal="pressed" from="HoverComponent" to="." method="_on_hover_component_pressed"]

@@ -19,6 +19,7 @@ Can you guess who is who?"
 func _ready() -> void:
 	start.hide()
 	animation_player.play("spawn")
+	modulate = Color.TRANSPARENT
 
 var curr_day = 1
 func populate_day(current_day: int) -> Array[Client_Info]:
@@ -29,7 +30,7 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 	
 	match current_day:
 		1:
-			clients_amount = 4
+			clients_amount = 3
 			inspectors_amount = 1
 		2:
 			clients_amount = 4
@@ -41,11 +42,11 @@ func populate_day(current_day: int) -> Array[Client_Info]:
 			clients_amount = 3
 			inspectors_amount = 6
 		5:
-			clients_amount = 4
+			clients_amount = 0
 			inspectors_amount = 8
 		_:
-			clients_amount = current_day*randi_range(1,2)
-			inspectors_amount =  current_day*randi_range(1,2)
+			clients_amount = randi_range(2,6)
+			inspectors_amount =  randi_range(4,6)
 		
 	for i in clients_amount:
 		var client_info = Client_Info.new()

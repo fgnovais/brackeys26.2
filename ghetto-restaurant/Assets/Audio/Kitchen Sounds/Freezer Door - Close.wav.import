@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bxlqgfjwu0vf4"
+path="res://.godot/imported/Freezer Door - Close.wav-02d2037e376cec082a1ee54492c33b3e.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Freezer Door - Close.wav"
+dest_files=["res://.godot/imported/Freezer Door - Close.wav-02d2037e376cec082a1ee54492c33b3e.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

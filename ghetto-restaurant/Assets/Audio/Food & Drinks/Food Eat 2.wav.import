@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c8aluakgnclu0"
+path="res://.godot/imported/Food Eat 2.wav-15d56857b5987e813221a24dc3da1ac2.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Food & Drinks/Food Eat 2.wav"
+dest_files=["res://.godot/imported/Food Eat 2.wav-15d56857b5987e813221a24dc3da1ac2.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

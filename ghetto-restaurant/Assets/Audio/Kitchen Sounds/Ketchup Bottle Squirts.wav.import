@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://c4jx2jctivgq4"
+path="res://.godot/imported/Ketchup Bottle Squirts.wav-1997c7d63d2bb77b4e2de0bbcedacdfc.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Ketchup Bottle Squirts.wav"
+dest_files=["res://.godot/imported/Ketchup Bottle Squirts.wav-1997c7d63d2bb77b4e2de0bbcedacdfc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

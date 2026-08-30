@@ -23,6 +23,7 @@ scale = Vector2(0.7917795, 0.65540344)
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1367600675]
 stream = ExtResource("4_fqbv2")
+volume_db = -20.0
 
 [node name="Label" type="Label" parent="." unique_id=1715014584]
 offset_left = -230.00002

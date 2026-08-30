@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dxjp3abuewr3s"
+path="res://.godot/imported/Slurping 2.wav-855e8788f21987f17827873f82cc1d3a.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Food & Drinks/Slurping 2.wav"
+dest_files=["res://.godot/imported/Slurping 2.wav-855e8788f21987f17827873f82cc1d3a.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

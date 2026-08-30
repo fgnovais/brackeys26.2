@@ -36,12 +36,26 @@ volume_db = -25.0
 [node name="SneezeTimer" type="Timer" parent="Sneeze" unique_id=1928362164]
 wait_time = 45.0
 
+[node name="Eat" type="AudioStreamPlayer" parent="." unique_id=626780725]
+volume_db = -26.0
+
+[node name="EatTimer" type="Timer" parent="Eat" unique_id=1131547695]
+wait_time = 20.0
+
+[node name="Kitchen" type="AudioStreamPlayer" parent="." unique_id=494198181]
+volume_db = -25.0
+
+[node name="KitchenTimer" type="Timer" parent="Kitchen" unique_id=74238425]
+wait_time = 15.0
+
 [node name="Flies" type="AudioStreamPlayer" parent="." unique_id=2013970468]
 stream = ExtResource("2_4j2cg")
-volume_db = -18.0
+volume_db = -21.0
 
 [connection signal="timeout" from="Burps/BurpsTimer" to="." method="_on_burps_timer_timeout"]
 [connection signal="timeout" from="Cleaning/CleaningTimer" to="." method="_on_cleaning_timer_timeout"]
 [connection signal="timeout" from="Coughs/CoughsTimer" to="." method="_on_coughs_timer_timeout"]
 [connection signal="timeout" from="Chairs/ChairTimer" to="." method="_on_chair_timer_timeout"]
 [connection signal="timeout" from="Sneeze/SneezeTimer" to="." method="_on_sneeze_timer_timeout"]
+[connection signal="timeout" from="Eat/EatTimer" to="." method="_on_eat_timer_timeout"]
+[connection signal="timeout" from="Kitchen/KitchenTimer" to="." method="_on_kitchen_timer_timeout"]

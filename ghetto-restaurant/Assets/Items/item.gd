@@ -22,7 +22,9 @@ func get_item_name():
 		ItemManager.Items.FLIP_PHONE:
 			item_name = "Call a friend"
 		ItemManager.Items.ORDER:
-			item_name = "Free groceries"
+			item_name = "Instant [color=green]meat[/color]"
+		ItemManager.Items.CLEAR_DEBT:
+			item_name = "Get a loan"
 					
 func apply() -> void:
 	ItemManager.apply(title)

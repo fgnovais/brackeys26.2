@@ -30,7 +30,7 @@ func _on_mouse_entered() -> void:
 	modulate ='#d2dae2' 
 	material.set_shader_parameter("onoff",1)
 	
-	hover.pitch_scale = randf_range(0.7, 1)
+	hover.pitch_scale = randf_range(0.3, 0.7)
 	hover.play()
 	
 func _on_mouse_exited() -> void:

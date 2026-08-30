@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://cfie2jf7hkl8r"]
+
+[ext_resource type="Texture2D" uid="uid://btihiguud3ki5" path="res://Assets/Items/clear_debt.png" id="1_biof2"]
+[ext_resource type="Script" uid="uid://bw1l8gyl4dad1" path="res://Assets/Items/item.gd" id="2_hfon8"]
+
+[resource]
+script = ExtResource("2_hfon8")
+description = "Get 30$. Lose 3 Ratings."
+title = 6
+icon = ExtResource("1_biof2")
+metadata/_custom_type_script = "uid://bw1l8gyl4dad1"

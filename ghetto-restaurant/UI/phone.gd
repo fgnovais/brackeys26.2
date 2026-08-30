@@ -8,6 +8,8 @@ signal close
 @onready var order: Label = $Order
 @onready var hover_component: Node2D = $HoverComponent
 signal hide_dialog
+var popup_text : String = "Dealer is on the way."
+
 func _ready() -> void:
 	order.hide()
 	
@@ -44,7 +46,7 @@ func _on_hover_component_selected(selected: bool) -> void:
 		if hover_component.is_enabled:
 			order.text = "Order Meat. Wait for dealer."
 		else:
-			order.text = "Dealer is on the way."
+			order.text = popup_text
 		order.show()
 	else:
 		order.hide()

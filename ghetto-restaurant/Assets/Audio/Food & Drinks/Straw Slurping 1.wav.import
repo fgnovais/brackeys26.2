@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d38qq8o0wl01p"
+path="res://.godot/imported/Straw Slurping 1.wav-89f4a08561b5c48a78fe35d6f54550cb.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Food & Drinks/Straw Slurping 1.wav"
+dest_files=["res://.godot/imported/Straw Slurping 1.wav-89f4a08561b5c48a78fe35d6f54550cb.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

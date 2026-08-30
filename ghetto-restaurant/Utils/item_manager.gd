@@ -7,6 +7,7 @@ var skip_resource: Item = load("res://Assets/Items/SkipCustomer.tres")
 var lupa_resource: Item = load("res://Assets/Items/Lupa.tres")
 var flip_phone_resource: Item = load("res://Assets/Items/Flipphone.tres")
 var order_resource: Item = load("res://Assets/Items/Order.tres")
+var clear_debt_resource: Item = load("res://Assets/Items/ClearDebt.tres")
 var get_item: PackedScene = load("res://UI/get_item.tscn")
 var has_coupon: bool = false
 
@@ -16,6 +17,7 @@ signal coupon
 signal lupa
 signal flipphone
 signal uberEats
+signal clear_debt
 signal hide_dialogs
 signal show_dialogs
 
@@ -26,6 +28,7 @@ enum Items {
 	LUPA,
 	FLIP_PHONE,
 	ORDER,
+	CLEAR_DEBT,
 	GOOD_MEAT,
 	BAD_MEAT
 }
@@ -44,6 +47,8 @@ func apply(item_name : Items) -> void:
 			flipphone.emit()
 		Items.ORDER:
 			uberEats.emit()
+		Items.CLEAR_DEBT:
+			clear_debt.emit()
 		
 func give_item(item : Items):
 	var inst = get_item.instantiate()
@@ -63,6 +68,8 @@ func give_item(item : Items):
 			inst.item_icon.item = flip_phone_resource
 		Items.ORDER:
 			inst.item_icon.item = order_resource
+		Items.CLEAR_DEBT:
+			inst.item_icon.item = clear_debt_resource
 			
 	inst.item_icon._ready()
 
@@ -71,10 +78,12 @@ func give_random_item(amount: int = 1):
 	
 	for i in amount:
 		var range = randi_range(0, 100)
-		if range <= 30:
+		if range <= 35:
 			give_item(Items.LUPA)
-		elif range > 30 and range <= 50:
+		elif range > 35 and range <= 45:
 			give_item(Items.SKIP_CUSTOMER)
+		elif range > 45 and range <= 50:
+			give_item(Items.CLEAR_DEBT)
 		elif range > 50 and range <= 65:
 			give_item(Items.COUPON)
 		elif range > 65 and range <= 85:

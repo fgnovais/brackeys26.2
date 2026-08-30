@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpgycshukah8q"
+path="res://.godot/imported/Bottle Opening.wav-55c5bb96c2f39bd6779265b6c975386d.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Bottle Opening.wav"
+dest_files=["res://.godot/imported/Bottle Opening.wav-55c5bb96c2f39bd6779265b6c975386d.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cdxdivaws2dfp"
+path="res://.godot/imported/Mincing Beef Short.wav-4e2d79737ccc5a092520e6b3a2e7bafc.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Mincing Beef Short.wav"
+dest_files=["res://.godot/imported/Mincing Beef Short.wav-4e2d79737ccc5a092520e6b3a2e7bafc.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

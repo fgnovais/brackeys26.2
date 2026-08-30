@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bn1q3dwbggd5b"
+path="res://.godot/imported/Ice In Glass 1.wav-775879ee2a40d33c2545ab56e8c578f8.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Ice In Glass 1.wav"
+dest_files=["res://.godot/imported/Ice In Glass 1.wav-775879ee2a40d33c2545ab56e8c578f8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

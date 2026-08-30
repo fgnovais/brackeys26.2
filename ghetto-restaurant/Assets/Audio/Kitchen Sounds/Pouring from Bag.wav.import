@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dljapkal8xjmo"
+path="res://.godot/imported/Pouring from Bag.wav-1befcf5763238ed39470a900a9e52edd.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Pouring from Bag.wav"
+dest_files=["res://.godot/imported/Pouring from Bag.wav-1befcf5763238ed39470a900a9e52edd.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

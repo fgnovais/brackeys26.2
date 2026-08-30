@@ -96,7 +96,7 @@ offset_top = -42.0
 offset_right = 2393.252
 offset_bottom = 263.0
 scale = Vector2(0.28387502, 0.2639334)
-text = "See exactly who they are"
+text = " See exactly who they are"
 
 [node name="Name" parent="ItemIcon" index="1" unique_id=1462658782]
 offset_left = -29.000004
@@ -104,6 +104,9 @@ offset_top = 262.0
 offset_right = 345.01135
 offset_bottom = 337.70624
 theme_override_font_sizes/normal_font_size = 24
+
+[node name="Hover" parent="ItemIcon" index="2" unique_id=758157654]
+volume_db = -25.0
 
 [node name="Label" type="Label" parent="." unique_id=500862777]
 z_index = 2

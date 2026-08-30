@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://dlso8rjemcnau"
+path="res://.godot/imported/Peeling.wav-317b427b785276cde4da1d0aaa9f97c8.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Peeling.wav"
+dest_files=["res://.godot/imported/Peeling.wav-317b427b785276cde4da1d0aaa9f97c8.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

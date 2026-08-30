@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://bpjcqt5gu004y"
+path="res://.godot/imported/Grating Food.wav-1fdb735ff43c92b8ebb16e3c622efcc3.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Grating Food.wav"
+dest_files=["res://.godot/imported/Grating Food.wav-1fdb735ff43c92b8ebb16e3c622efcc3.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

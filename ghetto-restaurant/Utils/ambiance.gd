@@ -30,12 +30,16 @@ const SNEEZE_2 = preload("uid://37yjesp4k3nw")
 @onready var coughs: AudioStreamPlayer = $Coughs
 @onready var chairs: AudioStreamPlayer = $Chairs
 @onready var sneeze: AudioStreamPlayer = $Sneeze
+@onready var eat: AudioStreamPlayer = $Eat
 @onready var burps_timer: Timer = $Burps/BurpsTimer
 @onready var cleaning_timer: Timer = $Cleaning/CleaningTimer
 @onready var coughs_timer: Timer = $Coughs/CoughsTimer
 @onready var chair_timer: Timer = $Chairs/ChairTimer
 @onready var sneeze_timer: Timer = $Sneeze/SneezeTimer
 @onready var flies: AudioStreamPlayer = $Flies
+@onready var eat_timer: Timer = $Eat/EatTimer
+@onready var kitchen: AudioStreamPlayer = $Kitchen
+@onready var kitchen_timer: Timer = $Kitchen/KitchenTimer
 
 func start() -> void:
 	flies.play()
@@ -44,6 +48,8 @@ func start() -> void:
 	coughs_timer.start() 
 	chair_timer.start() 
 	sneeze_timer.start() 
+	eat_timer.start()
+	kitchen_timer.start()
 
 func _on_sneeze_timer_timeout() -> void:
 	sneeze.stream = [SNEEZE_1, SNEEZE_2].pick_random()
@@ -64,3 +70,73 @@ func _on_cleaning_timer_timeout() -> void:
 func _on_burps_timer_timeout() -> void:
 	burps.stream = [BURP_1, BURP_2, BURP_3, BURP_4, BURP_5].pick_random()
 	burps.play()
+	
+const APPLE_SLICING_1 = preload("uid://c85jwtidxxv78")
+const APPLE_SLICING_2 = preload("uid://dcdpo4onrtsbu")
+const BAKED_CUTTING_1 = preload("uid://dauqpahx0ljxh")
+const BAKED_CUTTING_2 = preload("uid://do1v560rm3egi")
+const BOTTLE_OPENING = preload("uid://bpgycshukah8q")
+const CAN_CRUSHING = preload("uid://cs48gmsa0dbcn")
+const CAN_OPENING = preload("uid://6xkkst07y4kr")
+const CERAMIC_LID___CLOSE = preload("uid://bbyff20718yn4")
+const CERAMIC_LID___OPEN = preload("uid://bkqhxy0kxf1rh")
+const COFFEE_CUP_PICKING_UP = preload("uid://0bvdpdip4w55")
+const COFFEE_CUP_PUTTING_DOWN = preload("uid://bnqopbum4cajp")
+const COFFEE_CUP_VIBRATING = preload("uid://dgsbg6x01b4w0")
+const FORK_DROP_IN_KITCHEN = preload("uid://jji2ei7x4mqt")
+const GLASSES_CLINKING_1 = preload("uid://cyvp8d1ukjvam")
+const GLASSES_CLINKING_2 = preload("uid://c430tb3t5opps")
+const ICE_IN_GLASS_1 = preload("uid://bn1q3dwbggd5b")
+const ICE_IN_GLASS_2 = preload("uid://cflfir0lep0j5")
+const KNIFE_DROP_IN_KITCHEN = preload("uid://bfvywdui3082")
+const PEELING = preload("uid://dlso8rjemcnau")
+const SPOON_DROP_IN_KITCHEN = preload("uid://58olc6fvvjqt")
+const WINE_BOTTLE_OPENING = preload("uid://vw5hhmbe4vut")
+
+const KITCHEN_SOUNDS = [
+  APPLE_SLICING_1,
+  APPLE_SLICING_2,
+  BAKED_CUTTING_1,
+  BAKED_CUTTING_2,
+  BOTTLE_OPENING,
+  CAN_CRUSHING,
+  CAN_OPENING,
+  CERAMIC_LID___CLOSE,
+  CERAMIC_LID___OPEN,
+  COFFEE_CUP_PICKING_UP,
+  COFFEE_CUP_PUTTING_DOWN,
+  COFFEE_CUP_VIBRATING,
+  FORK_DROP_IN_KITCHEN,
+  GLASSES_CLINKING_1,
+  GLASSES_CLINKING_2,
+  ICE_IN_GLASS_1,
+  ICE_IN_GLASS_2,
+  PEELING,
+  SPOON_DROP_IN_KITCHEN,
+  WINE_BOTTLE_OPENING
+];
+
+const BITING_HARD_1 = preload("uid://ctnfsstvvdkx1")
+const BITING_HARD_2 = preload("uid://rj544g1socox")
+const DRINKING = preload("uid://3f1nm0fgmwcx")
+const FOOD_EAT_1 = preload("uid://7hajjxivbnpy")
+const STRAW_SLURPING_1 = preload("uid://d38qq8o0wl01p")
+const STRAW_SLURPING_2 = preload("uid://bqkhkp8dwkhka")
+const SWALLOW_DRINK = preload("uid://bnylns5tc7wlt")
+
+const EAT_SOUNDS = [
+  BITING_HARD_1,
+  BITING_HARD_2,
+  DRINKING,
+  FOOD_EAT_1,
+  STRAW_SLURPING_1,
+  STRAW_SLURPING_2,
+  SWALLOW_DRINK
+];
+func _on_eat_timer_timeout() -> void:
+	eat.stream = EAT_SOUNDS.pick_random()
+	eat.play()
+
+func _on_kitchen_timer_timeout() -> void:
+	kitchen.stream = KITCHEN_SOUNDS.pick_random()
+	kitchen.play()

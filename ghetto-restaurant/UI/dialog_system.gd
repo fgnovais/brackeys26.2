@@ -63,11 +63,12 @@ func clear_dialogs() -> void:
 	idx = 0
 
 func _on_wait_timeout() -> void:
-	button.hide()
-	spawn()
-	wait.stop()
-	no_more_dialog.emit()
-	space_bar.hide()
+	if idx !=0:
+		button.hide()
+		spawn()
+		wait.stop()
+		no_more_dialog.emit()
+		space_bar.hide()
 
 func _on_button_pressed() -> void:
 	wait.timeout.emit()

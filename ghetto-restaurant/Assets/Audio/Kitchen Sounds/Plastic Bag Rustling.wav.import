@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://d3tbh4yuxshmc"
+path="res://.godot/imported/Plastic Bag Rustling.wav-c103282239ea09e57f644071ee692a69.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Plastic Bag Rustling.wav"
+dest_files=["res://.godot/imported/Plastic Bag Rustling.wav-c103282239ea09e57f644071ee692a69.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

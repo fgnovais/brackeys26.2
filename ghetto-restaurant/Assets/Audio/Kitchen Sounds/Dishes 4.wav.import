@@ -1,0 +1,24 @@
+[remap]
+
+importer="wav"
+type="AudioStreamWAV"
+uid="uid://cv8ti71xsv8hy"
+path="res://.godot/imported/Dishes 4.wav-489605621f0d2b43d59c45c46ca39119.sample"
+
+[deps]
+
+source_file="res://Assets/Audio/Kitchen Sounds/Dishes 4.wav"
+dest_files=["res://.godot/imported/Dishes 4.wav-489605621f0d2b43d59c45c46ca39119.sample"]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop_mode=0
+edit/loop_begin=0
+edit/loop_end=-1
+compress/mode=2

@@ -170,9 +170,11 @@ autoplay = &"idle"
 [node name="ArriveSound" type="AudioStreamPlayer" parent="." unique_id=1812835863]
 stream = ExtResource("5_b07cc")
 volume_db = -20.0
+pitch_scale = 1.2
 
 [node name="LeaveSound" type="AudioStreamPlayer" parent="." unique_id=305517918]
 stream = ExtResource("7_tpe35")
+volume_db = -5.0
 
 [node name="DialogSystem" parent="." unique_id=282480536 instance=ExtResource("7_b07cc")]
 offset_left = 7.0

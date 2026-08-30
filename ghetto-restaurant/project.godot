@@ -10,10 +10,10 @@ config_version=5
 
 [application]
 
-config/name="ghetto_restaurant"
-run/main_scene="uid://b6qnw4fxtou7m"
+config/name="avoid the inspector"
+run/main_scene="uid://d3owle0nrd7wk"
 config/features=PackedStringArray("4.7", "GL Compatibility")
-config/icon="uid://cjej8nxd2857f"
+config/icon="uid://b687gsqawhai8"
 
 [autoload]
 
@@ -50,6 +50,9 @@ space={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+textures/decals/filter=0
+textures/light_projectors/filter=0
