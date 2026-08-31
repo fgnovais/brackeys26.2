@@ -44,7 +44,7 @@ var current_day : int = 0
 var good_stock_amount = 1
 var bad_stock_amount = 1
 var bad_stock_purchases : int = -1
-var cop_chance_max : float = 0.3
+var cop_chance_max : float = 0.35
 var cop_chance_step : float = 0.15
 var fine_amount : int = 25
 var is_processing_action : bool = false
@@ -83,7 +83,7 @@ func start_level():
 func _ready() -> void:
 	for i in 3:
 		coupons.get_child(i).hide()
-	Engine.time_scale = 1 
+	Engine.time_scale =1
 	ItemManager.connect("uberEats", uberEats)
 	ItemManager.connect("bribe", bribe)
 	ItemManager.connect("skip_customer", skip_customer)
