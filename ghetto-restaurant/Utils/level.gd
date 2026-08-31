@@ -219,7 +219,7 @@ func lupa():
 var delta_add : float = 0.3
 func _process(delta: float) -> void:
 	delta_add += delta
-	if delta_add > 0.2:
+	if delta_add > 0.3:
 		delta_add = 0
 		refresh_labels()
 

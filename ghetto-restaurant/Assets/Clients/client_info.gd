@@ -219,7 +219,6 @@ const FELIZ_2 = preload("uid://cuokpltc00u7h")
 const FELIZ_3 = preload("uid://b5vyljieuqien")
 const FELIZ_4 = preload("uid://dkvd6be4mf4fi")
 const FELIZ_5 = preload("uid://t688afk8sjor")
-const SUSPIRO = preload("uid://cpeuav6od8gkw")
 
 func get_happy_voice():
 	match client_texture:
